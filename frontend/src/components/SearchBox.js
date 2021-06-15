@@ -10,7 +10,7 @@ function SearchBox(props) {
         <form onSubmit={submitHandler} className="search">
             <div className="row">
                 <input type="text" name="q" id = "q" onChange={e=>setName(e.target.value)} />
-                <button className="primary" type="submit"><i className="fa fa-search"></i></button>
+                <button  type="submit"><i className="fa fa-search"></i></button>
             </div>
         </form>
     )

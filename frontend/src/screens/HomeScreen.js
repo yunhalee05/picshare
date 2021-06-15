@@ -10,6 +10,7 @@ import { listTopSellers } from '../actions/userActions';
 import {Link} from 'react-router-dom'
 
 
+
 function HomeScreen() {
     const dispatch = useDispatch();
     
@@ -26,7 +27,7 @@ function HomeScreen() {
 
     return (
         <div>
-            <h2>Top Sellers</h2>
+            {/* <h2>Top Sellers</h2>
             {loadingSellers ?(
             <LoadingBox></LoadingBox>
             ): errorSellers?(
@@ -45,7 +46,29 @@ function HomeScreen() {
                     ))}
                 </Carousel>
                 </>
-            )}
+            )} */}
+
+            <div className="topproducts">
+                {loading ?(
+                <LoadingBox></LoadingBox>
+                ): error?(
+                <MessageBox variant="danger">{error}</MessageBox>
+                ): (
+                    <>
+                    {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
+                    <div className="row-center">
+                        {products.map((product, index)=>(
+                            index<2 &&
+                            <span key = {product._id} >
+                                <Link to = {`/product/${product._id}`}>
+                                <img className="topproduct" src={product.image} alt={product.name}/>
+                                </Link> 
+                            </span>
+                        ))}
+                    </div>
+                </>
+                )}
+            </div>
             <h2>Featured Products</h2>
             {loading ?(
             <LoadingBox></LoadingBox>

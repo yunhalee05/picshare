@@ -33,6 +33,7 @@ import DashboardScreen from './screens/DashboardScreen';
 import SupportScreen from './screens/SupportScreen';
 import ChatBox from './components/ChatBox';
 import { GrInbox } from "react-icons/gr";
+import { FaRegHandPointRight } from "react-icons/fa";
 
 function App() {
 
@@ -64,7 +65,7 @@ function App() {
           <header className="row">
             <div>
               <button type="button" className="open-sidebar" onClick={()=>setSidebarIsOpen(true)}>
-                <GrInbox/>
+                <GrInbox className="sidbar-icon"/>
               </button>
               <Link className="brand" to="/">PICSHARE</Link>
             </div>
@@ -140,10 +141,11 @@ function App() {
           <aside className={sidebarIsOpen? 'open': ''}>
                 <ul className="categories">
                   <li>
-                    <strong>Categories</strong>
+                    <div style={{"WebkitTextStroke":" 2px black", "color":"white"}}> <br/>CATEGORY
                     <button type="button" className="close-sidebar" onClick={()=>setSidebarIsOpen(false)}>
-                        <i className="fa fa-close"></i>
+                        <FaRegHandPointRight size="28" />
                       </button>
+                    </div>
                   </li>
                   {loadingCategories? <LoadingBox></LoadingBox> :
                     errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
@@ -152,7 +154,7 @@ function App() {
                             {categories.map(c=>
                                 (
                                     <li key = {c}>
-                                        <Link to ={`/search/category/${c}`} onClick={()=>setSidebarIsOpen(false)} >{c}</Link>
+                                        <Link to ={`/search/category/${c}`} onClick={()=>setSidebarIsOpen(false)}  className="categories_category">{c}</Link>
                                     </li>
                                 ))
                             }
