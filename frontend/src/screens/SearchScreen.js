@@ -36,10 +36,10 @@ function SearchScreen(props) {
     }
     return (
         <div>
-            <div className="row">
+            <div className="row" >
                 {loading? <LoadingBox></LoadingBox> :
                 error? <MessageBox variant='danger'>{error}</MessageBox> :
-                (<div>
+                (<div style={{"fontSize":"1.4rem", "marginLeft":"2rem","padding":"1rem","borderRadius":"50%", "border":"1px solid black", "backgroundColor":"black", "color":"white"}}>
                     {products.length} Results
                 </div>
                 )}
@@ -54,14 +54,16 @@ function SearchScreen(props) {
                 </div>
             </div>
             <div className="row top">
-                <div className="col-1">
+                <div className="col-1" style={{"paddingLeft":"3rem", "marginTop":"1rem"}}>
                     <div>
-                        <h3>Department</h3>
+                        <div className="search-filter">
+                            Category
+                        </div>
                         {loadingCategories? <LoadingBox></LoadingBox> :
                         errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
                         (
-                            <ul>
-                                <li>
+                            <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
+                                <li >
                                     <Link to ={getFilterUrl({category:'all'})} className={'all'==='category'? 'active':''}>Any</Link>
                                 </li>
                                 {categories.map(c=>
@@ -75,8 +77,10 @@ function SearchScreen(props) {
                         )}
                     </div>
                     <div>
-                        <h3>Price</h3>
-                        <ul>
+                        <div className="search-filter">
+                            Price
+                        </div>
+                        <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
                             {prices.map(p=>(
                                 <li key={p.name}>
                                     <Link className={`${p.min}-${p.max}`=== `${min}-${max}`? 'active':''} to={getFilterUrl({min:p.min, max:p.max})} >{p.name}</Link>
@@ -85,8 +89,10 @@ function SearchScreen(props) {
                         </ul>
                     </div>
                     <div>
-                        <h3>Avg. Customer Reviews</h3>
-                        <ul>
+                        <div className="search-filter">
+                            Reviews
+                        </div>
+                        <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
                             {ratings.map(r=>(
                                 <li key={r.name}>
                                     <Link className={`${r.rating}`===`${rating}`? 'active':''} to={getFilterUrl({rating:r.rating})} ><Rating caption={" & up"} rating={r.rating}></Rating></Link>
@@ -102,7 +108,10 @@ function SearchScreen(props) {
                         {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
                         <div className="row center">
                             {products.map(product=>(
-                                <Product key={product._id}  product = {product}/> 
+                                <div className="col-1">
+
+                                    <Product key={product._id}  product = {product}/> 
+                                </div>
                             ))}
                         </div>
                         <div className="row center pagination">
