@@ -61,7 +61,7 @@ function HomeScreen() {
                             index<2 &&
                             <span key = {product._id} >
                                 <Link to = {`/product/${product._id}`}>
-                                <img className="topproduct" src={product.image} alt={product.name}/>
+                                <img className="topproduct"  src={product.image} alt={product.name}/>
                                 </Link> 
                             </span>
                         ))}
@@ -69,7 +69,7 @@ function HomeScreen() {
                 </>
                 )}
             </div>
-            <h2>Featured Products</h2>
+            <div className="maintopic" >'PICSHARE always with you'</div>
             {loading ?(
             <LoadingBox></LoadingBox>
             ): error?(
@@ -77,9 +77,11 @@ function HomeScreen() {
             ): (
                 <>
                 {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
-                <div className="row center">
-                    {products.map(product=>(
-                        <Product key={product._id}  product = {product}/> 
+                <div className="row center" style={{"marginTop":"4rem", "padding":"3rem"}}>
+                    {products.map((product,index)=>(
+                        <div className="col-1" style={{"alignSelf":"flex-start"}}>
+                            <Product key={product._id}  product = {product}/> 
+                        </div>  
                     ))}
                 </div>
               </>

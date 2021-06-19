@@ -34,6 +34,8 @@ import SupportScreen from './screens/SupportScreen';
 import ChatBox from './components/ChatBox';
 import { GrInbox } from "react-icons/gr";
 import { FaRegHandPointRight } from "react-icons/fa";
+import Footer from './components/Footer';
+
 
 function App() {
 
@@ -65,7 +67,7 @@ function App() {
           <header className="row">
             <div>
               <button type="button" className="open-sidebar" onClick={()=>setSidebarIsOpen(true)}>
-                <GrInbox className="sidbar-icon"/>
+                <GrInbox/>
               </button>
               <Link className="brand" to="/">PICSHARE</Link>
             </div>
@@ -83,15 +85,15 @@ function App() {
                   (
                     <div className="dropdown">
                     <Link to="#">{userInfo.name.toUpperCase()} <i className="fa fa-caret-down"></i> </Link>
-                    <ul className="dropdown-content">
+                    <ul className="dropdown-content" >
                       <li>
-                        <Link to = "/profile">User Profile</Link>
+                        <Link to = "/profile">USER PROFILE</Link>
                       </li>
                       <li>
-                        <Link to = "/orderhistory">Order History</Link>
+                        <Link to = "/orderhistory">ORDER HISTORY</Link>
                       </li>
                       <li>
-                      <Link to="#signout" onClick={signoutHandler}>Sign Out</Link>
+                      <Link to="#signout" onClick={signoutHandler}>SIGN OUT</Link>
                       </li>
                     </ul>
                     </div>
@@ -105,10 +107,10 @@ function App() {
                     <Link to="#seller">SELLER {' '}<i className="fa fa-caret-down"></i> </Link>
                     <ul className="dropdown-content">
                       <li>
-                        <Link to = "/productlist/seller">Products</Link>
+                        <Link to = "/productlist/seller">PRODUCTS</Link>
                       </li>
                       <li>
-                        <Link to = "/orderlist/seller">Orders</Link>
+                        <Link to = "/orderlist/seller">ORDERS</Link>
                       </li>
                     </ul>
                   </div>
@@ -192,10 +194,13 @@ function App() {
               <AdminRoute path="/support" component={SupportScreen} exact></AdminRoute>          
 
             </main>
-          <footer className="row center">
+          {/* <footer className="row center">
             {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo}></ChatBox>}
             <div>All right reserved</div> {' '}
-          </footer>
+          </footer> */}
+            {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo}></ChatBox>}
+            <Footer/>
+
         </div>
     </BrowserRouter>
   );

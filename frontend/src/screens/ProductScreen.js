@@ -6,6 +6,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { createReview, detailsProduct } from '../actions/productActions';
 import { PRODUCT_REVIEW_CREATE_RESET } from '../constants/productConstants';
+import {FaBackward} from "react-icons/fa";
 
 function ProductScreen(props) {
     const dispatch = useDispatch();
@@ -57,13 +58,13 @@ function ProductScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
         ): (
         <div>
-            <Link to ="/">Back to result</Link>
+            <Link to ="/" style={{"color":"white","borderRadius":"50%", "backgroundColor":"black", "padding":"10px", "marginLeft":"2rem"}}>Back to result</Link>
 
-            <div className="row top">
+            <div className="row top" style={{"position":"relative"}}>
                 <div className="col-2">
                     <img className="large"src={product.image} alt={product.name} />
                 </div>
-                <div className="col-1">
+                <div className="col-1" style={{"position":"absolute", "right":"2rem"}}>
                     <ul>
                         <li>
                             <h1>{product.name}</h1>
@@ -79,7 +80,7 @@ function ProductScreen(props) {
                         </li>
                     </ul>
                 </div>
-                <div className="col-1">
+                <div className="col-1" style={{"position":"absolute", "bottom":"1rem","right":"2rem"}}>
                     <div className="card card-body">
                         <ul>
                             <li>
@@ -128,7 +129,7 @@ function ProductScreen(props) {
 
             </div>
             <div>
-                <h2 id="reviews">Reviews</h2>
+                <h2 id="reviews" style={{"textAlign":"center"}}>Reviews</h2>
                 {product.reviews.length ===0 && <MessageBox>There is no reviews.</MessageBox> }
                 <ul>
                     {product.reviews.map(review=>(

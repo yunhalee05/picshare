@@ -7,21 +7,21 @@ function Product(props) {
     const{product} = props;
 
     return (
-        <div key={product._id} className="card">
+        <div key={product._id} className="card" >
         <Link to={`/product/${product._id}`}>
             <img className="medium" src={product.image} alt={product.name}/>
         </Link>
         <div className="card-body">
            <Link to={`/product/${product._id}`}>
-                <h2>{product.name}</h2>
+                <div style={{"color":"black", "textAlign":"center", "fontSize": "2rem", "fontWeight":"600"}}>{product.name}</div>
             </Link>
             <Rating rating ={product.rating} numReviews={product.numReviews}/>
             <div className="row">
                 <div className="price">
                     ${product.price}
                 </div>
-                <div>
-                    <Link to={`/seller/${product.seller._id}`}>{product.seller.seller.name}</Link>
+                <div >
+                    <Link to={`/seller/${product.seller._id}`}><img className="seller-logosmall" src={product.seller.seller.logo} alt="" /><span className="seller-name">{product.seller.seller.name}</span></Link>
                 </div>
             </div>
         </div>
