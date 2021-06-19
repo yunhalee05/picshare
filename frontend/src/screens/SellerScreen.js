@@ -26,7 +26,33 @@ function SellerScreen(props) {
                 {loading? <LoadingBox></LoadingBox> :
                  error? <MessageBox variant='danger'>{error}</MessageBox> :
                  (
-                     <ul className="card card-body">
+                     <>
+                    <div className="col-1" style={{"textAlign":"center", "marginTop":"6rem" , "padding":"4rem"}}>
+                        <div className="seller-container" style={{"height":"50rem", "width":"50rem"}} >
+                                <img className="seller-logo" src={user.seller.logo} alt="" />
+                        </div>
+                        <div style={{"transform":"translate(0, -300px)"}}>
+                                <div style={{"fontSize":"10rem", "fontStyle":"italic","WebkitTextStroke":"1.5px black", "color":"white"}} to={`/seller/${user.seller._id}`}>{user.seller.name.toUpperCase()}</div>
+                        </div>
+                        <div className="seller-information">
+                            <div className="row" style={{"marginTop":"1rem"}}>
+                                <div style={{"fontSize":"4rem"}}>Seller reviews</div>
+                                <Rating rating = {user.seller.rating} numReviews = {user.seller.numReviews}></Rating>
+                            </div>
+                            <div className="row" style={{"marginTop":"2rem"}}>
+                                <div style={{"fontSize":"4rem"}}>Description</div>
+                                <div>{user.seller.description}</div>
+                            </div>
+                            <div className="row" style={{"marginTop":"2rem"}}>
+                                <div style={{"fontSize":"4rem"}}>Email</div>
+                                <div>{user.email}</div>
+                            </div>
+                        </div>
+                            <button className="primary" style={{"transform":"translate(0, -50px"}}>
+                                <a href={`mailto :${user.email}`}  style={{"color":"white"}}>Contact Seller</a>
+                            </button>
+                     </div>
+                     {/* <ul className="card card-body">
                         <li>
                             <div className="row start">
                                 <div className="p-1">
@@ -46,7 +72,8 @@ function SellerScreen(props) {
                         <li>
                             {user.seller.description}
                         </li>
-                     </ul>
+                     </ul> */}
+                     </>
                  )
                 }
             </div>
@@ -58,7 +85,9 @@ function SellerScreen(props) {
                     {products.length===0 &&<MessageBox>No Product Found</MessageBox>}
                     <div className="row center">
                             {products.map(product=>(
-                            <Product key={product._id}  product = {product}/> 
+                        <div className="col-1" style={{"alignSelf":"flex-start"}}>
+                        <Product key={product._id}  product = {product}/> 
+                        </div>
                         ))}
                     </div>
                     </>
