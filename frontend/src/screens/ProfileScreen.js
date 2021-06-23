@@ -74,11 +74,12 @@ function ProfileScreen() {
 
     return (
         <div>
-            <form onSubmit={submitHandler} className="form">
-                <div> 
-                    <h1>User Profile</h1>
-                </div>
-                <div>
+
+                <form onSubmit={submitHandler} style={{"textAlign":"center"}}>
+                <div className="form">
+                    <div className="formtitle" style={{"marginBottom":"8rem"}}> 
+                        USER PROFILE
+                    </div>
                     {
                         loading? <LoadingBox></LoadingBox> :
                         error ? <MessageBox variant='danger'>{error}</MessageBox> :
@@ -86,40 +87,40 @@ function ProfileScreen() {
                         { loadingUpdate && <LoadingBox></LoadingBox>}
                         { errorUpdate && <MessageBox variant='danger'>{errorUpdate}</MessageBox>}
                         {successUpdate && <MessageBox variant="success">Profile Updated Successfully</MessageBox>}
-                        <div>
-                            <label htmlFor="name">Name</label>
+                        <div >
+                            <label htmlFor="name">NAME</label>
                             <input id = "name" placeholder="Enter name" type="text" value = {name} onChange={e=>setname(e.target.value)}/>
                         </div>
                         <div>
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">EMAIL</label>
                             <input id = "email" placeholder="Enter email" type="email" value = {email} onChange={e=>setemail(e.target.value)} />
                         </div>
                         <div>
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">PASSWORD</label>
                             <input id = "password" placeholder="Enter password" type="password" onChange={e=>setpassword(e.target.value)} />
                         </div>
                         <div>
-                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <label htmlFor="confirmPassword">CONFIRM PASSWORD</label>
                             <input id = "confirmPassword" placeholder="Enter confirmPassword" type="password" onChange={e=>setconfirmPassword(e.target.value)} />
                         </div>
                         {
                             user.isSeller && (
                                 <>
-                                <h2>Seller</h2>
+                                <div className="formtitle" style={{"marginBottom":"8rem"}}>SELLER</div>
                                 <div>
-                                    <label htmlFor="sellerName">Seller Name</label>
+                                    <label htmlFor="sellerName">SELLER NAME</label>
                                     <input type="text" id="sellerName" placeholder="Enter seller name" value = {sellerName} onChange={(e)=>setSellerName(e.target.value)}/>
                                 </div>
                                 <div>
-                                    <label htmlFor="sellerLogo">Seller Logo</label>
+                                    <label htmlFor="sellerLogo">SELLER LOGO</label>
                                     <input type="text" id="sellerLogo" placeholder="Enter seller logo" value = {sellerLogo} onChange={(e)=>setSellerLogo(e.target.value)}/>
                                 </div>
                                 <div>
-                                    <label htmlFor="logoFile">Logo File</label>
+                                    <label htmlFor="logoFile">LOGO FILE</label>
                                     <input type="file" id="logoFile" label="Choose Image" onChange={profileuploadFileHandler} />
                                 </div>
                                 <div>
-                                    <label htmlFor="sellerDescription">Seller Description</label>
+                                    <label htmlFor="sellerDescription">SELLER DESCRIPTION</label>
                                     <input type="text" id="sellerDescription" placeholder="Enter seller Description" value = {sellerDescription} onChange={(e)=>setSellerDescription(e.target.value)}/>
                                 </div>
                                 </>
@@ -127,7 +128,7 @@ function ProfileScreen() {
                         }
                         <div>
                             <label ></label>
-                            <button className="primary" type="submit">Update</button>
+                            <button className="formbutton" type="submit" style={{"margin":" 4rem 0 4rem 9rem "}}>Update</button>
                         </div>
                         </>
                     }

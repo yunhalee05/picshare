@@ -74,9 +74,11 @@ function ProductEditScreen(props) {
     }
     return (
         <div>
-            <form onSubmit= {submitHandler} className="form">
-                <div>
-                    <h1>EditProdcut {productId}</h1>
+            <form onSubmit= {submitHandler} style={{"textAlign":"center"}}>
+                <div className="form" >
+                <div className="formtitle" style={{"marginBottom":"8rem"}}>EDIT PRODUCT</div>
+                <div style={{"fontSize":"3rem" , "paddingLeft":"20rem", "marginBottom":"8rem"}}>
+                    ID : {productId}
                 </div>
                 {loadingUpdate && <LoadingBox></LoadingBox>}
                 {errorUpdate && <MessageBox variant='danger'>{errorUpdate}</MessageBox>}
@@ -84,7 +86,7 @@ function ProductEditScreen(props) {
                 error? <MessageBox variant='danger'>{error}</MessageBox>:
                     <>
                         <div>
-                            <label htmlFor="name">Name</label>
+                            <label htmlFor="name">NAME</label>
                             <input
                                 id="name"
                                 type="text"
@@ -94,7 +96,7 @@ function ProductEditScreen(props) {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="price">Price</label>
+                            <label htmlFor="price">PRICE</label>
                             <input
                                 id="price"
                                 type="text"
@@ -104,7 +106,7 @@ function ProductEditScreen(props) {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="image">Image</label>
+                            <label htmlFor="image">IMAGE</label>
                             <input
                                 id="image"
                                 type="text"
@@ -114,13 +116,13 @@ function ProductEditScreen(props) {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="imageFile">ImageFile</label>
+                            <label htmlFor="imageFile">IMAGEFILE</label>
                             <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
                         </div>
                         {loadingUpload && <LoadingBox></LoadingBox>}
                         {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>}
                         <div>
-                            <label htmlFor="category">Category</label>
+                            <label htmlFor="category">CATEGORY</label>
                             <input
                                 id="category"
                                 type="text"
@@ -130,7 +132,7 @@ function ProductEditScreen(props) {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="brand">Brand</label>
+                            <label htmlFor="brand">BRAND</label>
                             <input
                                 id="brand"
                                 type="text"
@@ -140,7 +142,7 @@ function ProductEditScreen(props) {
                             ></input>
                         </div>
                         <div>
-                            <label htmlFor="countInStock">Count In Stock</label>
+                            <label htmlFor="countInStock">COUNT IN STOCK</label>
                             <input
                                 id="countInStock"
                                 type="text"
@@ -150,7 +152,7 @@ function ProductEditScreen(props) {
                             ></input>
                         </div>
                             <div>
-                            <label htmlFor="description">Description</label>
+                            <label htmlFor="description">DESCRIPTION</label>
                             <textarea
                                 id="description"
                                 rows="3"
@@ -162,12 +164,13 @@ function ProductEditScreen(props) {
                             </div>
                         <div>
                             <label></label>
-                            <button className="primary" type="submit">
+                            <button className="formbutton" type="submit" style={{"margin":" 4rem 0 4rem 9rem "}}>
                                 Update
                             </button>
                         </div>
                     </>
                 }
+                </div>
             </form>
         </div>
     )

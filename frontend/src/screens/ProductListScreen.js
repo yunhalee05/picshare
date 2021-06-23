@@ -48,9 +48,10 @@ function ProductListScreen(props) {
 
     return (
         <div>
+            <div className="listtitle">PRODUCTS</div>
             <div className="row">
-                <h1>Products</h1>
-                <button className="primary" type="button" onClick={createHandler}>Create Product</button>
+                <h1>   </h1>
+                <button className="formbutton" style={{"fontSize":"2rem", "margin":"3rem"}} type="button" onClick={createHandler}>Create Product</button>
             </div>
             {loadingDelete && <LoadingBox></LoadingBox>}
             {errorDelete &&<MessageBox variant='danger'>{errorDelete}</MessageBox>}
@@ -80,9 +81,9 @@ function ProductListScreen(props) {
                             <td>{product.brand}</td>
                             <td>
                                 <button type="button" className="small" onClick={()=>props.history.push(`/product/${product._id}/edit`)}>
-                                    Edit
+                                    EDIT
                                 </button>
-                                <button className="small" type="button" onClick={()=>deleteHandler(product)}>Delete</button>
+                                <button className="small" type="button" onClick={()=>deleteHandler(product)}>DELETE</button>
                             </td>
                         </tr>
                     ))}

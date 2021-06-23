@@ -32,7 +32,7 @@ function OrderListScreen(props) {
 
     return (
         <div>
-            <h1>Orders</h1>
+            <div className="listtitle" style={{"marginBottom":"12rem"}}>ORDERS</div>
             {loadingDelete && <LoadingBox></LoadingBox>}
             {loadingDelete && <MessageBox variant='danger'>{errorDelete}</MessageBox>}
             {

@@ -16,7 +16,7 @@ function OrderHistoryScreen(props) {
 
     return (
         <div>
-            <h1>Order History</h1>
+            <div className="listtitle" style={{"marginBottom":"12rem"}}>ORDER HISTORY</div>
             {
                 loading? (<LoadingBox></LoadingBox>) :
                 error? (<MessageBox variant= 'danger'>{error}</MessageBox>) :
