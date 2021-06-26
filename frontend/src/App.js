@@ -144,7 +144,7 @@ function App() {
                 <ul className="categories">
                   <li>
                     <div style={{"WebkitTextStroke":" 2px black", "color":"white"}}> <br/>CATEGORY
-                    <button type="button" className="close-sidebar" onClick={()=>setSidebarIsOpen(false)}>
+                    <button style={{"color":"black"}} type="button" className="close-sidebar" onClick={()=>setSidebarIsOpen(false)}>
                         <FaRegHandPointRight size="28" />
                       </button>
                     </div>
