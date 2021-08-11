@@ -2,25 +2,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,700&display=swap');
 
+
 html {
   font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
   box-sizing: border-box;
 }
 body {
   margin: 0;
-  height: 100vh;
+  width:  100%;
   font-size: 1.6rem;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 #root{
   height:100%
 }
 
 /* Layout */
-.grid-container {
+/* .grid-container {
   display: grid;
   grid-template-areas:
     'header'
@@ -29,19 +31,19 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
+} */
+
+
+/* -------Header------ */
+@import url("./style/Header.css");
+
+
+.main {
+  /* grid-area: main; */
+  z-index: -1;
 }
-header {
-  grid-area: header;
-  background-color: white;
-  padding-top: 1.4rem;
-  padding-right: 3rem;
-}
-main {
-  grid-area: main;
-  padding-top: 4rem;
-}
-footer {
-  grid-area: footer;
+.footer {
+  /* grid-area: footer; */
   background-color: #dbdbdb;
   color: black;
 }
@@ -58,9 +60,9 @@ h2 {
 a {
   text-decoration: none;
 }
-a:hover {
+/* a:hover {
   color: #ff8000;
-}
+} */
 
 ul{
   padding:0;
@@ -87,10 +89,9 @@ button{
   cursor:pointer;
   color: white;
 }
-input:hover, 
+
 select:hover, 
-textarea:hover,
-button:hover{
+textarea:hover{
   border: 0.1rem #404040 solid;
 }
 
@@ -109,24 +110,6 @@ button.block{
 button.small{
   font-size: 1.2rem;
   font-family: 'Ubuntu', sans-serif;
-}
-
-/* Header */
-header a {
-  color: black;
-  font-family: 'Fugaz One', cursive;
-  padding:1rem;
-  letter-spacing: 2px;
-}
-
-
-a.brand {
-  color: white;
-  -webkit-text-stroke: 1px black;
-  font-family: 'Fugaz One', cursive;
-  font-size: 4.5rem;
-  font-weight: bold;
-  margin-top: 2rem;
 }
 
 .maintopic{
@@ -222,83 +205,6 @@ a.brand {
 }
 
 
-/* Aside */
-aside {
-  position: fixed;
-  width: 50rem;
-  height: 100rem;
-  background-color: white;
-  z-index: 1000 ;
-  transform: translate(-50rem);
-  transition: all 0.5s;
-}
-aside.open{
-  transform: translate(0) ;
-  border-radius: 0px 100rem 120rem 0px;
-}
-
-
-button.open-sidebar{
-  font-size: 2.5rem;
-  padding-left: 2rem;
-  margin:0 0.5rem;
-  background:none;
-  color: black;
-  cursor:pointer;
-  border: none;
-}
-
-
-.categories_category{
-  font-size: 3rem;
-  color: black;
-}
-
-.categories_category:hover{
-  /* color: white;
-  -webkit-text-stroke: 1.5px  black; */
-  font-size: 3.1rem;
-  color: black;
-}
-
-.categories_category:before{
-  content: "";
-  position: absolute;
-  width: 0.3rem;
-  height: 0.3rem;
-  border-radius: 50%;
-  border: 2px solid black;
-  transition: 0.5s;
-}
-
-.categories_category:hover:before{
-  content: "";
-  width: 15rem;
-  height: 0.1rem;
-  border-radius: 20%;
-}
-
-aside ul{
-  padding:1rem;
-  list-style: none;
-  font-family: 'Fugaz One';
-  font-size: 5rem;
-}
-aside li{
-  display: inline-flex;
-  justify-content: space-between;
-  padding:1rem;
-}
-button.close-sidebar{
-  padding-top: 0;
-  padding-left: 4rem;
-  margin-top: 0;
-  border: none;
-  background-color: white;
-}
-
-
-
 
 
 /* Image */
@@ -331,7 +237,7 @@ img.topproduct{
   height: 100rem;
   object-fit: cover;
   border-radius: 0;
-
+  margin-top: -10rem;
 }
 
 /* Cart */
@@ -557,29 +463,6 @@ img.topproduct{
   margin-bottom: 2rem;
 }
 
-/* Dropdown */
-.dropdown{
-  display: inline-block;
-  position: relative;
-}
-.dropdown-content{
-  position: absolute;
-  display: none;
-  right:0;
-  min-width: 15rem;
-  padding: 0rem 0.5rem 1rem 0.5rem ;
-  z-index: 1;
-  background-color: white;
-  margin: 0;
-  margin-top: 0.4rem;
-  border-radius: 1rem;
-  font-size: 13px;
-  text-align: center;
-}
-.dropdown:hover .dropdown-content{
-  display: block;
-}
-
 /* Checkout Steps */
 .checkout-steps >div{
   border-top: 0.3rem #c0c0c0 solid;
@@ -613,34 +496,6 @@ img.topproduct{
 /* Carousel */
 .carousel .slide img{
   max-width: 30rem;
-}
-
-/* Search */
-.search button{
-  border: none;
-  border-right: none;
-  margin-right: 0.5rem;
-  background-color: white;
-  color: black;
-}
-.search input{
-  border: none;
-  border-bottom: 1px solid black;
-
-}
-
-.search-filter{
-  text-align: center;
-  padding: 2rem;
-  font-size: 5rem;
-  border-radius: 50%;
-  box-shadow: -13px 13px;
-  border: 1px solid black;
-  max-width: 35rem;
-
-}
-.active{
-  font-weight:bold;
 }
 
 /* Map */

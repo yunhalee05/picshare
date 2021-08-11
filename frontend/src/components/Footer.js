@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
     return (
-        <div className="footer-row">
+        <div className="footer footer-row">
             <div className="col-1" style={{"textAlign":"center"}} >
                 <span className="footer-text">
                     &nbsp; PICSHARE  &nbsp;

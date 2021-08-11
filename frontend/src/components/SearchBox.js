@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
+import {Link} from 'react-router-dom'
 
-function SearchBox(props) {
+function SearchBox({history}) {
     const [name, setName] = useState('')
-    const submitHandler=(e)=>{
-        e.preventDefault();
-        props.history.push(`/search/name/${name}`)
-    }
+    // const submitHandler=(e)=>{
+    //     e.preventDefault();
+    //     history.push(`/search/name/${name}`)
+    // }
     return (
-        <form onSubmit={submitHandler} className="search">
-            <div className="row">
-                <input type="text" name="q" id = "q" onChange={e=>setName(e.target.value)} />
-                <button  type="submit"><i className="fa fa-search"></i></button>
+            <div className="search">
+                <input type="text" name="name" id = "name" onChange={e=>setName(e.target.value)} />
+                <Link to={`/search/name/${name}`}><i className="fa fa-search" style={{color:'#fac83e'}}></i></Link>
             </div>
-        </form>
     )
 }
 

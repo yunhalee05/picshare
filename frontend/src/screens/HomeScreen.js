@@ -49,43 +49,44 @@ function HomeScreen() {
             )} */}
 
             <div className="topproducts">
-                {loading ?(
-                <LoadingBox></LoadingBox>
-                ): error?(
-                <MessageBox variant="danger">{error}</MessageBox>
-                ): (
-                    <>
-                    {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
-                    <div className="row-center">
-                        {products.map((product, index)=>(
-                            index<2 &&
-                            <span key = {product._id} >
-                                <Link to = {`/product/${product._id}`}>
-                                <img className="topproduct"  src={product.image} alt={product.name}/>
-                                </Link> 
-                            </span>
-                        ))}
-                    </div>
-                </>
-                )}
+                {   loading 
+                    ?<LoadingBox></LoadingBox>
+                    : error
+                        ?<MessageBox variant="danger">{error}</MessageBox>
+                        : (
+                        <>
+                            {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
+                            <div className="row-center">
+                                {products.map((product, index)=>(
+                                    index<2 &&
+                                    <span key = {product._id} >
+                                        <Link to = {`/product/${product._id}`}>
+                                        <img className="topproduct"  src={product.image} alt={product.name}/>
+                                        </Link> 
+                                    </span>
+                                ))}
+                            </div>
+                        </>
+                        )}
             </div>
             <div className="maintopic" >'PICSHARE always with you'</div>
-            {loading ?(
-            <LoadingBox></LoadingBox>
-            ): error?(
-            <MessageBox variant="danger">{error}</MessageBox>
-            ): (
-                <>
-                {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
-                <div className="row center" style={{"marginTop":"4rem", "padding":"3rem"}}>
-                    {products.map((product,index)=>(
-                        <div className="col-1" style={{"alignSelf":"flex-start"}}>
-                            <Product key={product._id}  product = {product}/> 
-                        </div>  
-                    ))}
-                </div>
-              </>
-            )}
+            {
+                loading 
+                ?<LoadingBox></LoadingBox>
+                : error
+                    ?<MessageBox variant="danger">{error}</MessageBox>
+                    : (
+                        <>
+                        {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
+                        <div className="row center" style={{"marginTop":"4rem", "padding":"3rem"}}>
+                            {products.map((product,index)=>(
+                                <div className="col-1" style={{"alignSelf":"flex-start"}}>
+                                    <Product key={product._id}  product = {product}/> 
+                                </div>  
+                            ))}
+                        </div>
+                    </>
+                    )}
         </div>
     )
 }
