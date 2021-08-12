@@ -42,45 +42,42 @@ function RegisterScreen(props) {
 
     return (
         <div>
-            <form onSubmit={submitHandler} className="form">
-                <div>
-                    <h1>WELCOME TO PICSHARE!</h1>
-                </div>
-                {loading && <LoadingBox></LoadingBox>}
-                {error && <MessageBox variant="danger">{error}</MessageBox>}
-                <div>
+            {loading && <LoadingBox></LoadingBox>}
+            {error && <MessageBox variant="danger">{error}</MessageBox>}
+        <div className="sign-in">
+            <form onSubmit={submitHandler} className="auth-form">
+
+                <div className="container">
                     <label htmlFor="name">Name</label>
                     <input type="text" id = "name" placeholder="Enter name" required onChange={e=>setname(e.target.value)} />
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="email">Email</label>
                     <input type="email" id = "email" placeholder="Enter email" required onChange={e=>setemail(e.target.value)} />
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="password">Password</label>
                     <input type="password" id = "password" placeholder="Enter password" required onChange={e=>setpassword(e.target.value)} />
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="confirmPassword">Confirm Password</label>
                     <input type="password" id = "confirmPassword" placeholder="Enter confirmPassword" required onChange={e=>setconfirmPassword(e.target.value)} />
                 </div>
-                <div>
+                <div className="container">
                         <label htmlFor="isSeller">You want to be a Seller?</label>
                         <input type="checkbox" id="isSeller" value={isSeller} onChange= {checkHandler} />
                     </div>
-                <div>
-                    <label ></label>
-                    <button className="primary" type="submit">Register</button>
+                <div className="container">
+                    <button  type="submit">Register</button>
                 </div>
-                <div>
-                    <label ></label>
-                    <div>
+                <div className="container">
                         Already have an account? {' '}
                         <Link to = {`/signin?redirect=${redirect}`}>Sign - In</Link>
-                    </div>
                 </div>
 
             </form>
+        </div>
+                    
         </div>
     )
 }

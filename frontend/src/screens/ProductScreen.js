@@ -148,9 +148,9 @@ function ProductScreen(props) {
                     {
                         userInfo
                         ? (
-                            <form onSubmit={submitHandler} className="form">
-                                    <div style={{"textAlign":"center", "fontSize":"5rem"}}>
-                                        <FaHamburger style={{"padding":"0", "margin":"0"}}/>write a review
+                            <form onSubmit={submitHandler} className="review-form">
+                                    <div style={{ "fontSize":"5rem"}}>
+                                        <FaHamburger style={{"padding":"0", "margin":"0"}}/> &nbsp; write a review
                                     </div>
                                     <div>
                                         <label htmlFor="rating">Rating</label>
@@ -167,10 +167,7 @@ function ProductScreen(props) {
                                         <label htmlFor="comment">Comment</label>
                                         <textarea id="comment" value={comment} onChange={e=>setComment(e.target.value)}></textarea>
                                     </div>
-                                    <div style={{"padding":"4rem"}}>
-                                        <label></label>
-                                        <button className="primary" type="submit">SUBMIT</button>
-                                    </div>
+                                    <button type="submit">SUBMIT</button>
                                     <div>
                                         {loadingReviewCreate && <LoadingBox></LoadingBox>}
                                         {errorReviewCreate && (<MessageBox variant='danger'>{errorReviewCreate}</MessageBox>)}

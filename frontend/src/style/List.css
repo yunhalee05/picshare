@@ -1,0 +1,128 @@
+.list{
+    margin: 8rem 12vw 8rem 12vw;
+    min-height: 100%;
+    width: auto;
+    justify-content: space-around;
+    display: flex;
+    border: 1px solid black;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    
+}
+/* List */
+.listtitle{
+    text-align: center;
+    width: 30vw;
+    height: 10vw;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fugaz One', cursive;
+    font-size: 4vw;
+    display: flex;
+    margin-top: 8rem;
+    margin-bottom: 6rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+
+/* Table */
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    min-height: 55vh;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    
+  }
+  .table tbody tr:nth-of-type(odd){
+    background-color: #f4f4f4;
+  }
+
+  .table td, .table th{
+    text-align: left;
+    border: 0.1rem solid #e4e4e4;
+    padding:0.5rem;
+  }
+
+  .table td{
+      height: auto;
+  }
+
+  .table button{
+    margin:0 0.2rem;
+  }
+
+  .list .create-button {
+      width: 100%;
+      padding-left: 6vw;
+      padding-bottom: 3rem;
+  }
+
+  .list .create-button button{
+    background-color: white;
+    color: black;
+    border: 2px dashed black;
+    border-radius: 50%;
+    font-family: 'Fugaz One', cursive;
+    font-size: 0.8vw;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 8vw;
+  }
+
+  .list .create-button button:hover{
+    border: 5px dashed black;
+  }
+
+  .table button{
+    font-size: 1rem;
+    font-family: 'Fugaz One', cursive;
+    padding: 3px;
+    border-radius: 50%;
+  }
+  
+  
+
+  @media (max-width:800px) {
+    .list{
+        margin: 8rem 3vw 8rem 3vw;
+    }
+
+  }
+  
+  @media (max-width:720px){
+      .listtitle{
+        width: 20rem;
+        height: 8rem;
+        font-size: 3rem;
+      }
+
+  }
+
+  @media (max-width:450px){
+      .table{
+          font-size: 1rem;
+      }
+  }
+
+  @media (max-width:950px){
+      .hidden{
+          display: none;
+      }
+  }
+
+  @media (max-width:750px){
+      .list .create-button button{
+          width: 6.2rem;
+      }
+      .list .create-button {
+        padding-left: 5vw;
+        padding-bottom: 2rem;
+    }
+  }

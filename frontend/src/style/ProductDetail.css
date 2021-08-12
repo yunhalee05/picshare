@@ -1,3 +1,8 @@
+
+.product-detail{
+    margin-top: 2rem;
+}
+
 .product-detail .product-info{
     align-items: flex-start;
     position: relative;
@@ -70,6 +75,47 @@
     align-items: center;
 }
 
+
+.review-form{
+    max-width: 80rem;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+  }
+  .review-form >div{
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .review-form label {
+    width: 200px;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .review-form input{
+    border: none;
+    border-bottom: 1px solid gray;
+    border-radius: none;
+    width: 50rem;
+  
+  }
+  
+  .review-form button{
+    background-color: white;
+    color: black;
+    border: 2px dashed black;
+    border-radius: 50%;
+    font-family: 'Fugaz One', cursive;
+    font-size: 4rem;
+    text-align: center;
+  }
+  
+  .review-form button:hover{
+    border: 5px dashed black;
+  }
+
 .review-box .review-show{
     flex:2 1 50rem;
     padding: 2rem;
@@ -78,7 +124,13 @@
 .review-box .review-write{
     flex:1 1 25rem;
     padding: 2rem;
+    display: flex;
+    justify-content:space-between
+
 }
+
+
+
 
 
 @media (max-width: 827px){

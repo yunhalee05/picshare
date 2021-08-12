@@ -51,6 +51,16 @@ body {
 @import url("./style/Cart.css");
 
 
+/* -----Auth------ */
+@import url("./style/Auth.css");
+
+/* -----Profile------ */
+@import url("./style/Profile.css");
+
+/* -----List Screen------ */
+@import url("./style/List.css");
+
+
 
 /* Common */
 h1 {
@@ -340,24 +350,6 @@ img.large{
 }
 
 
-/* List */
-.listtitle{
-  text-align: center;
-  width: 70rem;
-  height: 17rem;
-  background-color: black;
-  color: white;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Fugaz One', cursive;
-  font-size: 8rem;
-  display: flex;
-  margin: 0 auto;
-  margin-top: 9rem;
-  margin-bottom: 2rem;
-}
-
 /* Checkout Steps */
 .checkout-steps >div{
   border-top: 0.3rem #c0c0c0 solid;
@@ -369,23 +361,6 @@ img.large{
 .checkout-steps>div.active{
   border-top-color: #ff8000;
   color: #ff8000;
-}
-
-/* Table */
-.table{
-  width: 100%;
-  border-collapse: collapse;
-}
-.table tbody tr:nth-of-type(odd){
-  background-color: #f4f4f4;
-}
-.table td, .table th{
-  text-align: left;
-  border: 0.1rem solid #e4e4e4;
-  padding:0.5rem;
-}
-.table button{
-  margin:0 0.2rem;
 }
 
 /* Carousel */

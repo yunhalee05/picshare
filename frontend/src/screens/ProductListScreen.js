@@ -47,11 +47,10 @@ function ProductListScreen(props) {
     }, [createdProduct, dispatch, props.history, successCreate, successDelete,sellerMode, pageNumber])
 
     return (
-        <div>
+        <div className="list">
             <div className="listtitle">PRODUCTS</div>
-            <div className="row">
-                <h1>   </h1>
-                <button className="formbutton" style={{"fontSize":"2rem", "margin":"3rem"}} type="button" onClick={createHandler}>Create Product</button>
+            <div className="create-button">
+                <button  type="button" onClick={createHandler}>Create Product</button>
             </div>
             {loadingDelete && <LoadingBox></LoadingBox>}
             {errorDelete &&<MessageBox variant='danger'>{errorDelete}</MessageBox>}
@@ -63,27 +62,27 @@ function ProductListScreen(props) {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th className="hidden">ID</th>
                         <th>NAME</th>
                         <th>PRICE</th>
                         <th>CATEGORY</th>
-                        <th>BRAND</th>
+                        <th className="hidden">BRAND</th>
                         <th>ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
                     {products.map(product=>(
                         <tr key = {product._id}>
-                            <td>{product._id}</td>
+                            <td className="hidden">{product._id}</td>
                             <td>{product.name}</td>
                             <td>{product.price}</td>
                             <td>{product.category}</td>
-                            <td>{product.brand}</td>
+                            <td className="hidden">{product.brand}</td>
                             <td>
-                                <button type="button" className="small" onClick={()=>props.history.push(`/product/${product._id}/edit`)}>
+                                <button type="button" onClick={()=>props.history.push(`/product/${product._id}/edit`)}>
                                     EDIT
                                 </button>
-                                <button className="small" type="button" onClick={()=>deleteHandler(product)}>DELETE</button>
+                                <button type="button" onClick={()=>deleteHandler(product)}>DELETE</button>
                             </td>
                         </tr>
                     ))}

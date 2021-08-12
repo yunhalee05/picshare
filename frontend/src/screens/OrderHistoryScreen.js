@@ -15,7 +15,7 @@ function OrderHistoryScreen(props) {
     }, [dispatch])
 
     return (
-        <div>
+        <div className="list">
             <div className="listtitle" style={{"marginBottom":"12rem"}}>ORDER HISTORY</div>
             {
                 loading? (<LoadingBox></LoadingBox>) :

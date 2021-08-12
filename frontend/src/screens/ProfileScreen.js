@@ -73,11 +73,9 @@ function ProfileScreen() {
     }
 
     return (
-        <div>
-
-                <form onSubmit={submitHandler} style={{"textAlign":"center"}}>
-                <div className="form">
-                    <div className="formtitle" style={{"marginBottom":"8rem"}}> 
+        <div className="profile">
+            <form onSubmit={submitHandler} className="profile-form" >
+                    <div className="profile-title" > 
                         USER PROFILE
                     </div>
                     {
@@ -87,52 +85,50 @@ function ProfileScreen() {
                         { loadingUpdate && <LoadingBox></LoadingBox>}
                         { errorUpdate && <MessageBox variant='danger'>{errorUpdate}</MessageBox>}
                         {successUpdate && <MessageBox variant="success">Profile Updated Successfully</MessageBox>}
-                        <div >
+                        <div className="container">
                             <label htmlFor="name">NAME</label>
                             <input id = "name" placeholder="Enter name" type="text" value = {name} onChange={e=>setname(e.target.value)}/>
                         </div>
-                        <div>
+                        <div className="container">
                             <label htmlFor="email">EMAIL</label>
                             <input id = "email" placeholder="Enter email" type="email" value = {email} onChange={e=>setemail(e.target.value)} />
                         </div>
-                        <div>
+                        <div className="container">
                             <label htmlFor="password">PASSWORD</label>
                             <input id = "password" placeholder="Enter password" type="password" onChange={e=>setpassword(e.target.value)} />
                         </div>
-                        <div>
+                        <div className="container">
                             <label htmlFor="confirmPassword">CONFIRM PASSWORD</label>
                             <input id = "confirmPassword" placeholder="Enter confirmPassword" type="password" onChange={e=>setconfirmPassword(e.target.value)} />
                         </div>
                         {
                             user.isSeller && (
                                 <>
-                                <div className="formtitle" style={{"marginBottom":"8rem"}}>SELLER</div>
-                                <div>
+                                <div className="profile-title" >SELLER</div>
+                                <div className="container">
                                     <label htmlFor="sellerName">SELLER NAME</label>
                                     <input type="text" id="sellerName" placeholder="Enter seller name" value = {sellerName} onChange={(e)=>setSellerName(e.target.value)}/>
                                 </div>
-                                <div>
+                                <div className="container">
                                     <label htmlFor="sellerLogo">SELLER LOGO</label>
                                     <input type="text" id="sellerLogo" placeholder="Enter seller logo" value = {sellerLogo} onChange={(e)=>setSellerLogo(e.target.value)}/>
                                 </div>
-                                <div>
+                                <div className="container">
                                     <label htmlFor="logoFile">LOGO FILE</label>
                                     <input type="file" id="logoFile" label="Choose Image" onChange={profileuploadFileHandler} />
                                 </div>
-                                <div>
+                                <div className="container">
                                     <label htmlFor="sellerDescription">SELLER DESCRIPTION</label>
                                     <input type="text" id="sellerDescription" placeholder="Enter seller Description" value = {sellerDescription} onChange={(e)=>setSellerDescription(e.target.value)}/>
                                 </div>
                                 </>
                             )
                         }
-                        <div>
-                            <label ></label>
-                            <button className="formbutton" type="submit" style={{"margin":" 4rem 0 4rem 9rem "}}>Update</button>
+                        <div className="container">
+                            <button className="formbutton" type="submit" >Update</button>
                         </div>
                         </>
                     }
-                </div>
             </form>
         </div>
     )

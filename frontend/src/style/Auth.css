@@ -1,0 +1,79 @@
+.sign-in {
+    margin-top: 4rem;
+    display: flex;
+    min-height: 80vh;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+
+}
+
+
+/* Form */
+
+  
+  .auth-form{
+    height: 100%;
+    width: 70vw;
+    max-width: 90rem;
+    /* width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 2rem 0 2rem 0;
+    text-align: center;
+    border: 1px solid black;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .auth-form .container{
+    margin: 2rem 0 2rem 0;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .auth-form label {
+    width: 100%;
+    max-width: 20vw;
+    font-size: 2rem;
+    transform: translateY(12px);
+    text-align: center;
+  }
+  
+  .auth-form input{
+    border: none;
+    border-bottom: 1px solid gray;
+    border-radius: none;
+    width: 30vw;
+    max-width: 60vw;
+  
+  }
+
+  .auth-form .container button{    
+    background-color: white;
+    color: black;
+    border: 2px dashed black;
+    border-radius: 50%;
+    font-family: 'Fugaz One', cursive;
+    font-size: 3.5vw;
+    padding: 2rem;
+  }
+  
+  .auth-form button:hover{
+    border: 5px dashed black;
+  }
+  
+
+  @media (max-width:750px) {
+    .auth-form label {
+        transform: translateY(5px);
+        font-size: 2rem;
+    }
+  }
+
+  @media (max-width:450px){
+      .auth-form label{
+          font-size: 1.4rem;
+      }
+  }

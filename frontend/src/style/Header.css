@@ -9,6 +9,7 @@
     justify-content: space-around;
     align-items: center;
     position: relative;
+    flex-wrap:wrap;
 }
 
 .header a {
@@ -170,7 +171,7 @@ background-color: white;
 }
 
 
-@media ( max-width: 768px){
+@media ( max-width: 814px){
     .header-menu{
         position:fixed;
         bottom: 0;
