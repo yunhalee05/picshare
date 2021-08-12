@@ -96,13 +96,9 @@ function App() {
             <PrivateRoute path="/map" component={MapScreen} exact></PrivateRoute>
             <AdminRoute path="/dashboard" component={DashboardScreen} exact></AdminRoute>          
             <AdminRoute path="/support" component={SupportScreen} exact></AdminRoute>          
-
           </div>
-        {/* <footer className="row center">
           {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo}></ChatBox>}
-          <div>All right reserved</div> {' '}
-        </footer> */}
-          {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo}></ChatBox>}
+          
           <div className="footer">
             <Footer/>
           </div>

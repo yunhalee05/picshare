@@ -99,16 +99,21 @@ color: #fac83e;
 /* Aside */
 .aside {
     position: fixed;
-    width: 50rem;
-    height: 100rem;
-    background-color: white;
+    width: 50vw;
+    height: 30rem;
+    background-color:#fffbe8;
     z-index: 2 ;
-    transform: translate(-50rem);
-    transition: all 0.5s;
+    transform: translate(-51vw);
+    transition: all 1s;
+    max-width: 400px;
+
   }
   .aside.open{
     transform: translate(0) ;
-    border-radius: 0px 100rem 120rem 0px;
+    border-radius: 0px 120rem 120rem 0px;
+  }
+  .categories{
+    padding-left: 2rem;
   }
   
   .brandName button{
@@ -119,14 +124,12 @@ color: #fac83e;
   }
   
 .categories_category{
-    font-size: 3rem;
+    font-size: 2rem;
     color: black;
   }
   
 .categories_category:hover{
-/* color: white;
--webkit-text-stroke: 1.5px  black; */
-font-size: 3.1rem;
+font-size: 2.1rem;
 color: black;
 }
 
@@ -167,7 +170,7 @@ background-color: white;
 }
 
 
-@media (max-width: 768px){
+@media ( max-width: 768px){
     .header-menu{
         position:fixed;
         bottom: 0;
@@ -188,6 +191,31 @@ background-color: white;
         background-color: rgba(255, 255, 255, 0.5);
 
     }
+
+
+}
+@media ( max-width: 450){
+    .header-menu{
+        position:fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 2rem;
+
+        background-color: rgba(255, 255, 255, 0.5);
+
+    }
+
+    .header-menu .dropdown-content{
+        bottom: 100%;
+        top: auto;
+        background-color: rgba(255, 255, 255, 0.5);
+
+    }
+
 
 
 }

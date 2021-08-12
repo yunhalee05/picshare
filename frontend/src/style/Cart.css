@@ -1,0 +1,156 @@
+.cart{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-height: 80vh;
+    margin-bottom: 8rem;
+}
+
+.cart .cart-item{
+    flex:1 1 25rem;
+}
+
+
+/* Cart */
+
+  .cart-row{
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+    /* text-align: center; */
+    align-items: center;
+    box-shadow: -2rem 2rem  black;
+    margin-left: 5rem;
+    padding: 3rem;
+    border: 1px solid black;
+    font-size: 2rem;
+    margin-top: 5rem;
+  }
+
+  .cart-image{
+      flex:1 1 25rem;
+  }
+
+  .cart-image img{
+      max-height: 50rem;
+      width: 100%;
+      height: 100%;
+      border: 1px solid black;
+  }
+
+  .cart-product-info{
+      flex:1 1 25rem;
+      margin: 2rem;
+  }
+
+  .cart-info-container{
+    display:flex;
+    justify-content:space-between
+  }
+
+  .cart-info-name{
+    text-align: left;
+  }
+
+  .cart-info-value{
+      text-align: right;
+      margin-right: 1vw;
+  }
+
+  .cart-row button{
+      color: white;
+      background-color: black;
+      padding: 0 3px 0 3px;
+      display: flex;
+  }
+
+  .shopping-info-hidden{
+      display: none;
+  }
+
+  .shopping-info,
+  .shopping-info-hidden{
+      flex: 1 1 25rem;
+      margin-top: 6rem;
+      padding: 0 2vw 0  2vw;
+      justify-content: center;
+      text-align: center;
+      margin-left: 3rem;
+  }
+  
+
+.carttitle{
+    margin-left: 2rem;
+    text-align: center;
+    font-family: 'Fugaz One', cursive;
+    font-size: 4vw;
+    font-weight: 600;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+    padding: 2rem;
+    width: 85%;
+  }
+
+  .subtotal{
+      margin-left: 2rem;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-top: 3rem;
+      justify-content: space-between;
+      display: flex;
+      width: 90%;
+
+  }
+
+  .shopping-info .subtotal .subtotal-name,
+  .shopping-info-hidden .subtotal .subtotal-name{
+      text-align: left;
+  }
+
+  .shopping-info .subtotal .subtotal-value,
+  .shopping-info-hidden .subtotal .subtotal-value{
+      text-align: right;
+      background-color: #fcba03;
+      font-style: italic;
+  }
+.shopping-info button,
+.shopping-info-hidden button{
+  margin-top: 3rem;
+  text-align: center;
+  background-color: white;
+  color: black;
+  border: 2px dashed black;
+  border-radius: 50%;
+  font-family: 'Fugaz One', cursive;
+  font-size: 2vw;
+}
+
+.shopping-info button:hover,
+.shopping-info-hidden button:hover{
+  border: 5px dashed black;
+}
+
+@media (max-width:690px){
+    .shopping-info{
+        display: none;
+    }
+    .shopping-info-hidden{
+        display: block;
+        flex: 2 1 50rem;
+    }
+
+    .carttitle{
+        font-size: 7vw;
+    }
+
+    .shopping-info-hidden button{
+        font-size: 4.5vw;
+    }
+
+    .cart-item{
+        display: flex;
+        margin-right: 2rem;
+    }
+}

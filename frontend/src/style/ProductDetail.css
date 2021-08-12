@@ -1,0 +1,101 @@
+.product-detail .product-info{
+    align-items: flex-start;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-info-box{
+    padding: 0 3vw 0 2.5vw ;
+    transform: translateY(-100px);
+    font-size: 2rem;
+}
+
+
+.product-info-container{
+    display:flex;
+    justify-content:space-between
+}
+
+.product-info-name{
+    text-align: left;
+}
+.product-info-value{
+    text-align: right;
+    /* border: 1px solid black; */
+
+}
+
+.product-info .product-image{
+    flex:2 1 50rem;
+    text-align: center;
+}
+
+.product-info .product-image img{
+    max-width:95%;
+    margin: 2.5rem 0 0 3rem ;
+    max-height: 100rem;
+    border-radius: 0;
+    border: 2px solid black;
+}
+
+.product-info .seller-logo{
+    flex:1 1 25rem;
+    text-align: center;
+    margin: 6rem 2rem 0 2rem;
+}
+
+.seller-logo .seller-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info button{
+    background-color: black;
+    border-radius: 50%;
+    font-size: 2vw;
+    font-family: 'Fugaz One', cursive;
+    margin-top: 2rem;
+    width:78%;
+
+}
+
+
+.review-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-box .review-show{
+    flex:2 1 50rem;
+    padding: 2rem;
+}
+
+.review-box .review-write{
+    flex:1 1 25rem;
+    padding: 2rem;
+}
+
+
+@media (max-width: 827px){
+    .product-info .product-image img{
+        margin: 2.5rem 0 0 0rem ;
+    }
+    .product-info .seller-logo{
+        margin-right: 4rem;
+    }
+
+    .product-info button{
+        font-size: 6vw;
+        width: 60%;
+    }
+
+    .product-info-box{
+        padding: 0 0vw 0 3vw;
+    }
+
+}

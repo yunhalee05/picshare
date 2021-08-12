@@ -37,16 +37,21 @@ body {
 /* -------Header------ */
 @import url("./style/Header.css");
 
+/* ------Home------ */
+@import url("./style/Home.css");
 
-.main {
-  /* grid-area: main; */
-  z-index: -1;
-}
-.footer {
-  /* grid-area: footer; */
-  background-color: #dbdbdb;
-  color: black;
-}
+
+/* -----Footer------ */
+@import url("./style/Footer.css");
+
+/* -----Product Detail------ */
+@import url("./style/ProductDetail.css");
+
+/* -----Cart------ */
+@import url("./style/Cart.css");
+
+
+
 /* Common */
 h1 {
   font-size: 1.8rem;
@@ -112,12 +117,6 @@ button.small{
   font-family: 'Ubuntu', sans-serif;
 }
 
-.maintopic{
-  text-align: center;
-  padding: 11rem 0rem 3rem 0rem;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 5rem;
-}
 
 .badge{
   background-color: #f02020;
@@ -161,51 +160,6 @@ button.small{
 }
 
 
-/* Footer */
-.footer-row{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 500%;
-  background-color: black;
-  color: white;
-  font-family: 'Fugaz One', cursive;
-  padding: 0 2rem 0 2rem;
-}
-
-.footer-text{
-  text-align: center;
-  font-size: 4rem;
-  box-shadow: -12px 12px;
-  border: 0.5px solid white;
-}
-
-.footer-about{
-  padding-right: 6rem;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 700;
-  font-size: 4rem;
-
-}
-
-.footer-abouttext{
-  padding:2rem;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 700;
-  font-size: 3rem; 
-  color: #dedede;
-}
-
-.footer-reserve{
-  font-size: 2rem;
-  padding-top: 4rem;
-  color: #bdbdbd;
-}
-
-
-
 
 /* Image */
 img {
@@ -232,69 +186,10 @@ img.large{
   border: 2px solid black;
 }
 
-img.topproduct{
-  width: 50%;
-  height: 100rem;
-  object-fit: cover;
-  border-radius: 0;
-  margin-top: -10rem;
-}
-
-/* Cart */
-
-.carttitle{
-  font-family: 'Fugaz One', cursive;
-  font-size: 8rem;
-  font-weight: 600;
-  color: white;
-  background-color: black;
-  border-radius: 50%;
-  padding: 2rem;
-}
-.cart-row{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  box-shadow: -2rem 2rem  black;
-  margin-left: 5rem;
-  padding: 3rem;
-  border: 1px solid black;
-  font-size: 2rem;
-  margin-top: 10rem;
-}
 
 
-/* Card */
-.card {
-  border:none;
-  background-color:white;
-  border-radius: 0.5rem;
-  margin: 1rem;
-  padding: 2vw;  
-  align-self: flex-start;
-}
-.card-body {
-  padding-top: 3rem ;
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 400;
-}
-
-.card-body > * {
-  margin-bottom: 0.5rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
-}
-
-.product-name{
-  text-align: center;
-  color: black;
-}
-.price {
-  font-size: 2rem;
-  padding-top: 1rem;
-}
+/* -------Product Card-------- */
+@import url("./style/ProductCard.css");
 
 /* Seller */
 .seller-name{

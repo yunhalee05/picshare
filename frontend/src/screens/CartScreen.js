@@ -27,89 +27,71 @@ function CartScreen(props) {
         props.history.push('/signin?redirect=shipping');
     }
     return (
-        <>
-       <div className="row top">
-           <div className="col-1" >
-               {error && <MessageBox variant='danger'>{error}</MessageBox>}
-               {cartItems.length ===0? 
-                    (<MessageBox>
-                        Cart is Empty. 
-                        <Link to ="/">Go Shopping</Link>
-                    </MessageBox>
-                    ):(
-                    <ul>
-                        {
-                            cartItems.map(item=>(
-                                <li key = {item.product}>
-                                    <div className="cart-row" >
-                                        <div className="col-1">
-                                            <img src={item.image} alt={item.name} className="small"/>
-                                        </div>
-                                        <div className="col-1">
-                                            <ul>
-                                                <li>
-                                                    <div className="row">
-                                                        <div>Product Name : </div>
-                                                        <Link to={`/product/${item.product}`} style={{"color":"black" ,"marginRight":"2rem"}}>{item.name}</Link>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div className="row">
-                                                        <div>Cost : </div>
-                                                        <div style={{"marginRight":"2rem"}}>
-                                                            ${item.price}
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div className="row">
-                                                        <div>Quantity : </div>
-                                                        <div style={{"marginRight":"2rem"}}>
-                                                            <select value={item.qty} onChange={e=>dispatch(addToCart(item.product, Number(e.target.value)))}>
-                                                            {[...Array(item.countInStock).keys()].map(
-                                                                    (x)=>(<option key={x+1}value={x+1}>{x+1}</option>
-                                                                )
-                                                            )}
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div style={{"textAlign":"center"}}>
-                                                    <div>
-                                                        <button type="button" style={{"color":"white","borderRadius":"50%", "backgroundColor":"black", "padding":"10px"}} onClick={()=>removeFromCartHandler(item.product)}>Delete</button>
-                                                    </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                    )}
+
+       <div className="cart">
+            <div className="shopping-info-hidden">
+                <div className="carttitle">SHOPPING CART</div>
+                <div className="subtotal">
+                    <span className="subtotal-name">Subtotal ({cartItems.reduce((a, c)=> a+c.qty, 0)} items): </span>
+                    <span className="subtotal-value"> &nbsp; ${cartItems.reduce((a, c)=> a+ c.price*c.qty,0)} &nbsp;</span>
+                </div>
+                <button type="button"  onClick={checkoutHandler} disabled={cartItems.length===0}>Checkout</button>
            </div>
-           <div className="col-1">
-               <div className="card card-body" style={{"marginTop":"6rem", "paddingTop":"0rem"}}>
-                        <ul style={{"textAlign":"center"}}>
-                            <li>
-                                <div className="carttitle">SHOPPING CART</div>
-                            </li>
-                            <li style={{"fontSize":"3rem", "fontWeight":"600", "padding":"1rem" ,"marginTop":"5rem"}}>
-                                <div className="row" style={{"justifyContent":"space-evenly"}}>
-                                    <div>Subtotal ({cartItems.reduce((a, c)=> a+c.qty, 0)} items): </div>
-                                    <div style={{"backgroundColor":"#fcba03", "fontStyle":"italic"}}> &nbsp; ${cartItems.reduce((a, c)=> a+ c.price*c.qty,0)} &nbsp;</div>
+           <div className="cart-item" >
+               {error && <MessageBox variant='danger'>{error}</MessageBox>}
+               {    
+                cartItems.length ===0
+                ? <MessageBox>Cart is Empty. <Link to ="/">Go Shopping</Link></MessageBox>
+                :
+                    cartItems.map((item)=>(
+                        <div key = {item.product}>
+                            <div className="cart-row" >
+                                <div className="cart-image">
+                                    <img src={item.image} alt={item.name} />
                                 </div>
-                            </li>
-                            <li>
-                                <button style={{"marginTop":"4rem"}} type="button" className="formbutton" onClick={checkoutHandler} disabled={cartItems.length===0}>Checkout</button>
-                            </li>
-                        </ul>
-               </div>
+
+                                <div className="cart-product-info">
+                                    <div className="cart-info-container">
+                                        <span className="cart-info-name">Product Name : </span>
+                                        <span className="cart-info-value">
+                                            <Link to={`/product/${item.product}`} >{item.name}</Link>
+                                        </span>
+                                    </div>
+
+                                    <div className="cart-info-container">
+                                        <span className="cart-info-name">Cost : </span>
+                                        <span className="cart-info-value">
+                                            ${item.price}
+                                        </span>
+                                    </div>
+
+                                    <div className="cart-info-container">
+                                        <span className="cart-info-name">Quantity : </span>
+                                        <span className="cart-info-value" >
+                                            <select value={item.qty} onChange={e=>dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                            {[...Array(item.countInStock).keys()].map(
+                                                    x=><option key={x+1} value={x+1}>{x+1}</option>
+                                            )}
+                                            </select>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <button type="button" onClick={()=>removeFromCartHandler(item.product)}><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                    ))
+                }
+           </div>
+           <div className="shopping-info">
+                <div className="carttitle">SHOPPING CART</div>
+                <div className="subtotal">
+                    <span className="subtotal-name">Subtotal ({cartItems.reduce((a, c)=> a+c.qty, 0)} items): </span>
+                    <span className="subtotal-value"> &nbsp; ${cartItems.reduce((a, c)=> a+ c.price*c.qty,0)} &nbsp;</span>
+                </div>
+                <button type="button"  onClick={checkoutHandler} disabled={cartItems.length===0}>Checkout</button>
            </div>
        </div>
-       </>
     )
 }
 

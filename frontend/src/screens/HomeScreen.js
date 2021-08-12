@@ -1,6 +1,6 @@
 import React , {useEffect} from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Carousel } from 'react-responsive-carousel';
+import TopProduct from '../components/TopProduct'
 import Product from '../components/Product'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -26,67 +26,32 @@ function HomeScreen() {
         }, [dispatch])
 
     return (
-        <div>
-            {/* <h2>Top Sellers</h2>
-            {loadingSellers ?(
-            <LoadingBox></LoadingBox>
-            ): errorSellers?(
-            <MessageBox variant="danger">{errorSellers}</MessageBox>
-            ): (
+        <div className="home">
+            {loading && <LoadingBox></LoadingBox>}
+            {error && <MessageBox variant="danger">{error}</MessageBox>}
+            {   !error && !loading &&  
+                products.length!==0 &&
                 <>
-                {sellers.length===0 &&  <MessageBox>No Seller Found</MessageBox>}
-                <Carousel showArrows autoPlay showThumbs={false}>
-                    {sellers.map((seller)=>(
-                        <div key={seller._id}>
-                            <Link to = {`/seller/${seller._id}`}>
-                                <img src={seller.seller.logo} alt={seller.seller.name} />
-                                <p className="legend">{seller.seller.name}</p>
-                            </Link>
-                        </div>
-                    ))}
-                </Carousel>
-                </>
-            )} */}
-
-            <div className="topproducts">
-                {   loading 
-                    ?<LoadingBox></LoadingBox>
-                    : error
-                        ?<MessageBox variant="danger">{error}</MessageBox>
-                        : (
-                        <>
-                            {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
-                            <div className="row-center">
-                                {products.map((product, index)=>(
-                                    index<2 &&
-                                    <span key = {product._id} >
-                                        <Link to = {`/product/${product._id}`}>
-                                        <img className="topproduct"  src={product.image} alt={product.name}/>
-                                        </Link> 
-                                    </span>
-                                ))}
-                            </div>
-                        </>
-                        )}
-            </div>
-            <div className="maintopic" >'PICSHARE always with you'</div>
-            {
-                loading 
-                ?<LoadingBox></LoadingBox>
-                : error
-                    ?<MessageBox variant="danger">{error}</MessageBox>
-                    : (
-                        <>
-                        {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
-                        <div className="row center" style={{"marginTop":"4rem", "padding":"3rem"}}>
+                    <TopProduct products={products}/> 
+                    <div className="maintopic" >'PICSHARE always with you'</div> 
+                    <div className="products" >
                             {products.map((product,index)=>(
-                                <div className="col-1" style={{"alignSelf":"flex-start"}}>
                                     <Product key={product._id}  product = {product}/> 
-                                </div>  
                             ))}
-                        </div>
-                    </>
-                    )}
+                    </div> 
+                      
+                </>                
+            }
+
+            {
+                !loading && !error &&
+                products.length ===0 &&
+                <>
+                    <div className="maintopic" >'PICSHARE always with you'</div>
+                    <MessageBox>No Product Found</MessageBox>
+                </>
+
+            }
         </div>
     )
 }

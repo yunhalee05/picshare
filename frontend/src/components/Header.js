@@ -71,7 +71,7 @@ function Header() {
                             </ul>
                         </div>
                         
-                        :   <Link to="/signin">Sign In</Link>
+                        :   <Link to="/signin">SIGN IN</Link>
                     }
                     {
                         userInfo && userInfo.isSeller && (
@@ -113,14 +113,12 @@ function Header() {
                 </div>
         </div>
           <div className={sidebarIsOpen? 'aside open': 'aside'}>
-                <ul className="categories">
-                  <li>
-                    <div style={{"WebkitTextStroke":" 2px black", "color":"white"}}> <br/>CATEGORY
-                    <button style={{"color":"black"}} type="button" className="close-sidebar" onClick={()=>setSidebarIsOpen(false)}>
+                    <div style={{WebkitTextStroke: " 2px black", color:"white", fontSize:"2.5rem", paddingLeft:'1rem'}}> <br/>CATEGORY
+                    <button style={{color:"black" , background:'none', fontSize:"5vw"}} type="button" className="close-sidebar" onClick={()=>setSidebarIsOpen(false)}>
                         <FaRegHandPointRight size="28" />
                       </button>
                     </div>
-                  </li>
+                  <div className="categories">
                   {loadingCategories? <LoadingBox></LoadingBox> :
                     errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
                     (
@@ -134,7 +132,7 @@ function Header() {
                             }
                         </ul>
                     )}
-                </ul>
+                </div>
           </div>
         </div>
     )

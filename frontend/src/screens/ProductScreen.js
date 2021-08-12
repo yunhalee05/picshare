@@ -53,81 +53,68 @@ function ProductScreen(props) {
     }
     return ( 
         <div>
-        {loading ?(
-        <LoadingBox></LoadingBox>
-        ): error?(
+        {loading ?
+            <LoadingBox></LoadingBox>
+        : error?
         <MessageBox variant="danger">{error}</MessageBox>
-        ): (
-        <div>
+        : (
+        <div className="product-detail">
             <Link to ="/" style={{"color":"white","borderRadius":"50%", "backgroundColor":"black", "padding":"10px", "marginLeft":"2rem"}}>Back to result</Link>
 
-            <div className="row top" style={{"position":"relative"}}>
-                <div className="col-2" style={{"textAlign":"center"}}>
-                    <img className="large"src={product.image} alt={product.name} />
+            <div className="product-info">
+                <div className="product-image" >
+                    <img src={product.image} alt={product.name} />
                 </div>
-                {/* <div className="col-1" style={{"position":"absolute", "right":"2rem"}}>
-                    <ul>
-                        <li>
-                            <h1>{product.name}</h1>
-                        </li>
-                        <li>
-                            <Rating rating={product.rating} numReviews={product.numReviews}/>
-                        </li>
-                        <li>
-                            Price : ${product.price}
-                        </li>
-                        <li>
-                            Description: <p>{product.description}</p>
-                        </li>
-                    </ul>
-                </div> */}
-                <div className="col-1" style={{"textAlign":"center", "marginTop":"6rem"}}>
+                <div className="seller-logo">
                     <div className="seller-container" >
-                            <img className="seller-logo" src={product.seller.seller.logo} alt="" />
+                            <img  src={product.seller.seller.logo} alt="" />
                     </div>
                     <div style={{"transform":"translate(0, -150px)"}}>
                             <Link style={{"fontSize":"8.5rem", "fontStyle":"italic","WebkitTextStroke":"1.5px black", "color":"white"}} to={`/seller/${product.seller._id}`}>{product.seller.seller.name.toUpperCase()}</Link>
                     </div>
-                    <div style={{"padding": "0 7rem 0 7rem","transform":"translate(0, -40px)", "fontSize":"2rem"}}>
+                    <div className="product-info-box">
                             <ul>
                                 <li>
                                     <div className="productdetail-name">{product.name}</div>
                                 </li>
                                 <li>
-                                    <div className="row">
-                                        <div>Price</div>
-                                        <div className="price">${product.price}</div>
+                                    <Rating rating={product.rating} numReviews={product.numReviews}/>
+                                </li>
+                                <li>
+                                    <div className="product-info-container" >
+                                        <span className="product-info-name" >Price</span>
+                                        <span className="product-info-value" >${product.price}</span>
                                     </div>   
                                 </li>
                                 <li>
-                                    <div className="row">
-                                        <div>Status</div>
-                                        <div className="status">{product.countInStock>0?( <span className="success">In Stock</span>) : (<span className="danger">Unavailable</span>) }</div>
+                                    <div className="product-info-container">
+                                        <span className="product-info-name">Status</span>
+                                        <span className="product-info-value">{product.countInStock>0?( <span className="success">In Stock</span>) : (<span className="danger">Unavailable</span>) }</span>
                                     </div>
                                 </li>
                                 <li>
-                                    <div className="row">
-                                        <div>Description</div>
-                                        <div className="description">{product.description}</div>
+                                    <div className="product-info-container">
+                                        <span className="product-info-name">Description</span>
+                                        <span className="product-info-value">{product.description}</span>
                                     </div>
                                 </li>
                                 {product.countInStock > 0 && (
                                     <>
                                         <li>
-                                            <div className="row">
-                                                <div>Qty</div>
-                                                <div>
+                                            <div className="product-info-container">
+                                                <span className="product-info-name">Qty</span>
+                                                <span className="product-info-value">
                                                     <select value={qty} onChange={(e)=> setQty(e.target.value)}>
                                                         {[...Array(product.countInStock).keys()].map(
                                                             (x)=>(<option key={x+1}value={x+1}>{x+1}</option>
                                                         )
                                                         )}
                                                     </select>
-                                                </div>
+                                                </span>
                                             </div>
                                         </li>
                                         <li>
-                                            <button onClick={addToCartHandler} className="primary block">
+                                            <button onClick={addToCartHandler} >
                                                 ADD TO CART
                                             </button>
                                         </li>
@@ -139,9 +126,8 @@ function ProductScreen(props) {
 
             </div>
             <hr/>
-            <div className="row">
-                <div className="col-2">
-                    <h2 id="reviews" style={{"textAlign":"center"}}></h2>
+            <div className="review-box">
+                <div className="review-show">
                     {product.reviews.length ===0 && <MessageBox>There is no reviews.</MessageBox> }
                     <ul>
                         {product.reviews.map(review=>(
@@ -158,11 +144,11 @@ function ProductScreen(props) {
                         ))}
                     </ul>
                 </div>
-                <div className="col-1" style={{"padding": "1rem 2rem 4rem 2rem"}}>
-                    <ul>
-                        <li>
-                            {userInfo? (
-                                <form onSubmit={submitHandler} className="form">
+                <div className="review-write" >
+                    {
+                        userInfo
+                        ? (
+                            <form onSubmit={submitHandler} className="form">
                                     <div style={{"textAlign":"center", "fontSize":"5rem"}}>
                                         <FaHamburger style={{"padding":"0", "margin":"0"}}/>write a review
                                     </div>
@@ -190,11 +176,10 @@ function ProductScreen(props) {
                                         {errorReviewCreate && (<MessageBox variant='danger'>{errorReviewCreate}</MessageBox>)}
                                     </div>
                                 </form>
-                            ): (
-                                <MessageBox>Please <Link to ="/signin">Sign In</Link> to write a review.</MessageBox>
-                            )}
-                        </li>
-                    </ul>
+                            
+                        ):<MessageBox>Please <Link to ="/signin">Sign In</Link> to write a review.</MessageBox>
+
+                    }
                 </div>
 
             </div>
