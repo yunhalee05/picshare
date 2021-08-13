@@ -3,7 +3,13 @@
     margin-top: 2rem;
 }
 
+.product-detail-name{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .product-detail .product-info{
+    width: 100%;
     align-items: flex-start;
     position: relative;
     display: flex;
@@ -20,7 +26,8 @@
 
 .product-info-container{
     display:flex;
-    justify-content:space-between
+    justify-content:space-between;
+    font-size: 2rem;
 }
 
 .product-info-name{
@@ -51,6 +58,16 @@
     margin: 6rem 2rem 0 2rem;
 }
 
+.seller-logo .seller-name{
+    transform: translate(0,-150px);
+}
+
+.seller-logo .seller-name a{
+    font-size: 8.5rem;
+    font-style: italic;
+    -webkit-text-stroke: 1.5px black;
+    color: white;
+}
 .seller-logo .seller-container img{
     width: 100%;
     height: 100%;
@@ -73,6 +90,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 
@@ -82,17 +100,20 @@
     display: inline-block;
     position: relative;
   }
+
+  .review-form .write-review-title{
+      font-size: 4.5rem;
+      width: 100%;
+      justify-content: center;
+  }
+
   .review-form >div{
     margin-bottom: 15px;
     display: flex;
     align-items: center;
   }
   
-  .review-form label {
-    width: 200px;
-    margin-right: 10px;
-    font-size: 14px;
-  }
+
   
   .review-form input{
     border: none;
@@ -101,7 +122,11 @@
     width: 50rem;
   
   }
-  
+  .review-form .review-button{
+      width: 100%;
+      justify-content: center;
+  }
+
   .review-form button{
     background-color: white;
     color: black;
@@ -117,20 +142,27 @@
   }
 
 .review-box .review-show{
-    flex:2 1 50rem;
+    flex: 2 1 50rem;
     padding: 2rem;
+
 }
 
 .review-box .review-write{
     flex:1 1 25rem;
     padding: 2rem;
     display: flex;
-    justify-content:space-between
+    justify-content:space-between;
+
 
 }
 
 
 
+@media (max-width:1300px){
+    .review-box .review-show{
+        flex: 1 1 25rem;
+    }
+}
 
 
 @media (max-width: 827px){
@@ -149,5 +181,41 @@
     .product-info-box{
         padding: 0 0vw 0 3vw;
     }
+
+    .review-form .write-review-title{
+        font-size: 5vw;
+    }
+
+}
+
+
+@media (max-width:550px){
+    .product-info .seller-logo{
+        margin: 6rem 0 0 0;
+    }
+
+    .seller-logo .seller-name a{
+        font-size: 7rem;
+    }
+
+    .product-info-box .productdetail-name{
+        font-size: 6vw;
+    }
+
+    .product-info-box .product-info-container{
+        margin-right: 2rem;
+    }
+
+    .review-form .write-review-title{
+        font-size: 8vw;
+    }
+    .review-box .review-write{
+        padding-left: 1rem;
+    }
+    .review-form button{
+        font-size: 8vw;
+    }
+
+    
 
 }

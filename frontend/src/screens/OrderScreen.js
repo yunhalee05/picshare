@@ -74,132 +74,128 @@ function OrderScreen(props) {
     }
 
     return (
+        
         loading
         ? <LoadingBox></LoadingBox>
         :error
             ? <MessageBox variant = 'danger'>{error}</MessageBox>
             :
-            <div>
-                <h1>Order {order._id}</h1>
-                <div className="row top">
-                    <div className="col-2">
-                        <ul>
-                            <li>
-                                <div className="card card-body">
-                                    <h2>Shipping</h2>
-                                    <p>
-                                        <strong>Name:</strong>{order.shippingAddress.fullName}<br/>
-                                        <strong>Address:</strong>{order.shippingAddress.address},{order.shippingAddress.city},{order.shippingAddress.postalCode},{order.shippingAddress.country}
-                                    </p>
-                                    {
-                                        order.isDelivered? <MessageBox variant="success">Delivered at {order.deliveredAt}</MessageBox>
-                                        :<MessageBox variant="danger">Not Delivered</MessageBox>
-                                    }
-                                </div>
-                            </li>
-                            <li>
-                                <div className="card card-body">
-                                    <h2>Payment</h2>
-                                    <p>
-                                        <strong>Method:</strong>{order.paymentMethod}<br/>
-                                    </p>
-                                    {
-                                        order.isPaid? <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
-                                        :<MessageBox variant="danger">Not Paid</MessageBox>
-                                    }
-                                </div>
-                            </li>
-                            <li>
-                                <div className="card card-body">
-                                    <h2>Order Items</h2>
-                                    <ul>
-                                        {order.orderItems.map(item=>(
-                                                <li key = {item.product}>
-                                                    <div className="row">
-                                                        <div>
-                                                            <img src={item.image} alt={item.name} className="small"/>
-                                                        </div>
-                                                        <div className="min-30">
-                                                            <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                                        </div>
-                                                        <div>
-                                                            {item.qty} x ${item.price} = ${item.qty * item.price}
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            ))
-                                        }
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="col-1">
-                        <div className="card card-body">
-                            <ul>
-                                <li>
-                                    <h2>Order Summary</h2>
-                                </li>
-                                <li>
-                                    <div className="row">
-                                        <div>Items</div>
-                                        <div>${order.itemsPrice.toFixed(2)}</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="row">
-                                        <div>Shipping</div>
-                                        <div>${order.shippingPrice.toFixed(2)}</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="row">
-                                        <div>Tax</div>
-                                        <div>${order.taxPrice.toFixed(2)}</div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="row">
-                                        <div>
-                                            <strong>Order Total</strong>
-                                        </div>
-                                        <div>
-                                            <strong>${order.totalPrice.toFixed(2)}</strong>
-                                        </div>
-                                    </div>
-                                </li>
-                                {
-                                    !order.isPaid && (
-                                        <li>
-                                            {!sdkReady? (<LoadingBox></LoadingBox>):
-                                            (
-                                                <>
-                                                {
-                                                    errorPay && <MessageBox variant='danger'>{errorPay}</MessageBox>
-                                                }
-                                                {
-                                                    loadingPay && <LoadingBox></LoadingBox>
-                                                }
-                                                <PayPalButton amount={order.totalPrice}  onSuccess = {successPaymentHandler}></PayPalButton>
-                                                </>
-                                            )}
-                                        </li>
-                                    )
-                                }
-                                {userInfo.isAdmin  && order.isPaid && !order.isDelivered &&(
-                                    <li>
-                                        {loadingDeliver && <LoadingBox></LoadingBox>}
-                                        {errorDeliver && <MessageBox variant='danger'>{errorDeliver}</MessageBox>}
-                                        <button type="button" className="primary block" onClick={deliverHandler}>
-                                            Deliver Order
-                                        </button>
-                                    </li>
-                                )}
-                            
-                            </ul>
+            <div className="order">
+                <div className="tape-container"><div className="tape"></div></div>
+                <div className="order-card">
+                    <div className="order-card-body">
+                        <div className="order-id-container">
+                            ORDER ID : <span className="order-id">{order._id}</span>
                         </div>
+                        <div className="order-card-info">
+                            <div className="order-card-title">
+                                &nbsp;-SHIPPING
+                            </div>
+                            <div className="order-card-container">
+                                <div className="order-card-value">
+                                    {order.shippingAddress.fullName}
+                                </div>
+                                <div className="order-card-value">
+                                    {order.shippingAddress.address},{order.shippingAddress.city},{order.shippingAddress.postalCode},{order.shippingAddress.country}
+                                </div>
+                            </div>
+                            {
+                                order.isDelivered? <MessageBox variant="success">Delivered at {order.deliveredAt}</MessageBox>
+                                :<MessageBox variant="danger">Not Delivered</MessageBox>
+                            }
+                        </div>
+                        <div className="order-card-info">
+                            <div className="order-card-title">
+                                &nbsp;-PAYMENT
+                            </div>
+                            <div className="order-card-container">
+                                <div className="order-card-value">
+                                    {order.paymentMethod}
+                                </div>
+                            </div>
+                            {
+                                order.isPaid? <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
+                                :<MessageBox variant="danger">Not Paid</MessageBox>
+                            }
+                        </div>
+
+
                     </div>
+
                 </div>
+                <div className="order-item">
+                    {order.orderItems.map(item=>(
+                        <div key = {item.product}>
+                            <div className="order-row">
+                                <div className="order-image">
+                                    <img src={item.image} alt={item.name}/>
+                                </div>
+                                <div className="order-product-info">
+                                    <div className="order-info-container">
+                                        {/* <span className="cart-info-name">Product Name : </span> */}
+                                        <span className="cart-info-value">
+                                            <Link to={`/product/${item.product}`} >{item.name}</Link>
+                                        </span>
+                                    </div>
+                                    <div className="order-info-container">
+                                        {/* <span className="cart-info-name">Product Name : </span> */}
+                                        <span className="cart-info-value">
+                                            {item.qty} x ${item.price} = ${item.qty * item.price}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                    }
+                </div>
+
+                <div className="order-info">
+                    <div className="ordertitle">ORDER SUMMARY</div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Items</span>
+                            <span className="subtotal-value">${order.itemsPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Shipping</span>
+                            <span>${order.shippingPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Tax</span>
+                            <span>${order.taxPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Order Total</span>
+                            <span>${order.totalPrice.toFixed(2)}</span>
+                        </div>
+                        {
+                            !order.isPaid && 
+                                !sdkReady
+                                    ? <LoadingBox></LoadingBox>
+                                    :
+                                    <>
+                                    {
+                                        errorPay && <MessageBox variant='danger'>{errorPay}</MessageBox>
+                                    }
+                                    {
+                                        loadingPay && <LoadingBox></LoadingBox>
+                                    }
+                                    <PayPalButton amount={order.totalPrice}  onSuccess = {successPaymentHandler}></PayPalButton>
+                                    </>
+                                    
+                            
+                        }
+                        {userInfo.isAdmin  && order.isPaid && !order.isDelivered &&
+                            loadingDeliver  
+                            ? <LoadingBox></LoadingBox>
+                            : errorDeliver
+                                ?<MessageBox variant='danger'>{errorDeliver}</MessageBox>
+                                :<button type="button"  onClick={deliverHandler}>
+                                    Deliver Order
+                                </button>
+                        }
+                            
+                    </div>
             </div>
         
     )

@@ -60,6 +60,19 @@ body {
 /* -----List Screen------ */
 @import url("./style/List.css");
 
+/* -----Checkout step------ */
+@import url("./style/CheckoutStep.css");
+
+/* -----Shipping------ */
+@import url("./style/Shipping.css");
+
+/* -----Payment------ */
+@import url("./style/Payment.css");
+
+
+/* -----OrderDetail------ */
+@import url("./style/OrderDetail.css");
+
 
 
 /* Common */
@@ -349,19 +362,6 @@ img.large{
   border: 5px dashed black;
 }
 
-
-/* Checkout Steps */
-.checkout-steps >div{
-  border-top: 0.3rem #c0c0c0 solid;
-  color: #c0c0c0;
-  flex: 1;
-  padding: 1rem;
-  font-weight: bold;
-}
-.checkout-steps>div.active{
-  border-top-color: #ff8000;
-  color: #ff8000;
-}
 
 /* Carousel */
 .carousel .slide img{

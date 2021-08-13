@@ -57,39 +57,40 @@ function ShippingAddressScreen(props) {
     return (
         <div>
             <CheckoutSteps step1 step2></CheckoutSteps>
-            <form onSubmit={submitHandler} className="form">
-                <div>
-                    <h1>Shipping Address</h1>
+            <div className="shipping">
+            <form onSubmit={submitHandler} className="shipping-form">
+                <div className="shipping-title">
+                    SHIPPING ADDRESS
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="fullName">Full Name</label>
                     <input type="text" id = "fullName" placeholder="Enter fullname" value = {fullName} onChange={e=>setfullName(e.target.value)} required/>
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="address">Address</label>
                     <input type="text" id = "address" placeholder="Enter address" value = {address} onChange={e=>setAddress(e.target.value)} required/>
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="city">City</label>
                     <input type="text" id = "city" placeholder="Enter city" value = {city} onChange={e=>setCity(e.target.value)} required/>
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="postalCode">Postal Code</label>
                     <input type="text" id = "postalCode" placeholder="Enter postalCode" value = {postalCode} onChange={e=>setPostalCode(e.target.value)} required/>
                 </div>
-                <div>
+                <div className="container">
                     <label htmlFor="country">Country</label>
                     <input type="text" id = "country" placeholder="Enter country" value = {country} onChange={e=>setCountry(e.target.value)} required/>
                 </div>
-                <div>
+                <div className="location-container">
                     <label htmlFor="chooseOnMap">Location</label>
-                    <button type="button" onClick={chooseOnMap}>Choose On Map</button>
+                    <button  className="location-button" type="button" onClick={chooseOnMap}>Choose On Map</button>
                 </div>
-                <div>
-                    <label ></label>
-                    <button className="primary" type = "submit">Continue</button>
+                <div className="container">
+                    <button type = "submit">Continue</button>
                 </div>
             </form>
+            </div>
         </div>
     )
 }

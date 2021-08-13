@@ -1,20 +1,84 @@
-.cart{
+.order{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
     min-height: 80vh;
     margin-bottom: 8rem;
+    margin-top: 4rem;
 }
 
-.cart .cart-item{
+.order .tape-container{
+    display: flex;
+    text-align: center;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+.tape-container .tape{
+    background-color: black;
+    padding: 2rem;
+    width: 20vw;
+    max-width: 20rem;
+    transform: translateY(4rem) rotate(45deg);
+}
+
+.order .order-card{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.order .order-card .order-card-body{
+    border: 7px double black;
+    border-radius: 8% 0 8% 0;
+    width: 90vw;
+    max-width: 120rem;
+    padding: 5rem 2rem 2rem 2rem ;
+}
+ 
+
+.order-id-container{
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.order-id{
+    font-size: 2.5rem;
+    font-style: italic;
+    background-color: #f5d45d;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+
+
+.order-card-body .order-card-info {
+
+    padding: 2rem;
+}
+
+.order-card-info .order-card-title{
+    font-size:2rem;
+    background-color:#598f65 ;
+    width: 12rem;
+    color: white;
+}
+
+.order-card-info .order-card-container{
+    padding: 1rem 3rem 1rem 3rem ;
+    font-size: 13px;
+}
+
+
+.order .order-item{
     flex:1 1 25rem;
 }
 
 
 /* Cart */
 
-  .cart-row{
+  .order-row{
     display: flex;
     flex-wrap: wrap;
     /* justify-content: space-around; */
@@ -28,49 +92,44 @@
     margin-top: 5rem;
   }
 
-  .cart-image{
+  .order-image{
       flex:1 1 25rem;
   }
 
-  .cart-image img{
-      max-height: 50rem;
+  .order-image img{
+      max-height: 30rem;
       width: 100%;
       height: 100%;
       border: 1px solid black;
   }
 
-  .cart-product-info{
+  .order-product-info{
       flex:1 1 25rem;
       margin: 2rem;
   }
 
-  .cart-info-container{
+  .order-info-container{
     display:flex;
     justify-content:space-between
   }
 
-  .cart-info-name{
+  .order-info-name{
     text-align: left;
   }
 
-  .cart-info-value{
+  .order-info-value{
       text-align: right;
       margin-right: 1vw;
   }
 
-  .cart-row button{
+  .order-row button{
       color: white;
       background-color: black;
       padding: 0 3px 0 3px;
       display: flex;
   }
 
-  .shopping-info-hidden{
-      display: none;
-  }
-
-  .shopping-info,
-  .shopping-info-hidden{
+  .order-info{
       flex: 1 1 25rem;
       margin-top: 6rem;
       padding: 0 2vw 0  2vw;
@@ -80,7 +139,7 @@
   }
   
 
-.carttitle{
+.ordertitle{
     margin-left: 2rem;
     text-align: center;
     font-family: 'Fugaz One', cursive;
@@ -104,19 +163,16 @@
 
   }
 
-  .shopping-info .subtotal .subtotal-name,
-  .shopping-info-hidden .subtotal .subtotal-name{
+  .order-info .subtotal .subtotal-name{
       text-align: left;
   }
 
-  .shopping-info .subtotal .subtotal-value,
-  .shopping-info-hidden .subtotal .subtotal-value{
+  .order-info .subtotal .subtotal-value{
       text-align: right;
       background-color: #fcba03;
       font-style: italic;
   }
-.shopping-info button,
-.shopping-info-hidden button{
+.order-info button{
   margin-top: 3rem;
   text-align: center;
   background-color: white;
@@ -127,41 +183,53 @@
   font-size: 2vw;
 }
 
-.shopping-info button:hover,
-.shopping-info-hidden button:hover{
+.order-info button:hover{
   border: 5px dashed black;
 }
 
 @media (max-width:690px){
-    .shopping-info{
-        display: none;
-    }
-    .shopping-info-hidden{
-        display: block;
+
+    .order-info{
+        /* display: block; */
         flex: 2 1 50rem;
     }
 
-    .carttitle{
+    .ordertitle{
         font-size: 7vw;
     }
 
-    .shopping-info-hidden button{
-        font-size: 4.5vw;
-    }
-
-    .cart-item{
+    .order-item{
         display: flex;
         margin-right: 2rem;
     }
-}
 
-
-@media (min-width:1280px){
-    .cart .cart-item{
-        flex: 2 1 50rem;
+    .order button{
+        font-size: 3rem;
+    }
+    .order-id{
+        font-size: 2rem;
     }
 
-    .carttitle{
-        font-size: 2.7vw;
+    .order .order-info{
+        margin-left: 0;
+    }
+}
+
+@media (min-width:1280px){
+    .order .tape-container{
+        justify-content: center;
+    }
+    .tape-container .tape{
+        transform: translateY(3rem);
+        padding: 3rem;
+        border-radius: 50%;
+        
+    }
+    .order .order-item{
+        flex:2 1 50rem;
+    }
+
+    .ordertitle{
+        font-size: 3vw;
     }
 }

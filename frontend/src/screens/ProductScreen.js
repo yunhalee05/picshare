@@ -69,8 +69,8 @@ function ProductScreen(props) {
                     <div className="seller-container" >
                             <img  src={product.seller.seller.logo} alt="" />
                     </div>
-                    <div style={{"transform":"translate(0, -150px)"}}>
-                            <Link style={{"fontSize":"8.5rem", "fontStyle":"italic","WebkitTextStroke":"1.5px black", "color":"white"}} to={`/seller/${product.seller._id}`}>{product.seller.seller.name.toUpperCase()}</Link>
+                    <div className="seller-name">
+                            <Link  to={`/seller/${product.seller._id}`}>{product.seller.seller.name.toUpperCase()}</Link>
                     </div>
                     <div className="product-info-box">
                             <ul>
@@ -149,11 +149,11 @@ function ProductScreen(props) {
                         userInfo
                         ? (
                             <form onSubmit={submitHandler} className="review-form">
-                                    <div style={{ "fontSize":"5rem"}}>
+                                    <div className="write-review-title" >
                                         <FaHamburger style={{"padding":"0", "margin":"0"}}/> &nbsp; write a review
                                     </div>
-                                    <div>
-                                        <label htmlFor="rating">Rating</label>
+                                    <div className="product-info-container">
+                                        <span className="product-info-name" htmlFor="rating">Rating</span>
                                         <select id="rating" value={rating} onChange={e=>setRating(e.target.value)}>
                                             <option value="">Select...</option>
                                             <option value="1">1- Poor</option>
@@ -163,11 +163,13 @@ function ProductScreen(props) {
                                             <option value="5">5- Excelent</option>
                                         </select>
                                     </div>
-                                    <div>
-                                        <label htmlFor="comment">Comment</label>
+                                    <div className="product-info-container">
+                                        <span className="product-info-name" htmlFor="comment">Comment</span>
                                         <textarea id="comment" value={comment} onChange={e=>setComment(e.target.value)}></textarea>
                                     </div>
-                                    <button type="submit">SUBMIT</button>
+                                    <div className="review-button">
+                                        <button type="submit">SUBMIT</button>
+                                    </div>
                                     <div>
                                         {loadingReviewCreate && <LoadingBox></LoadingBox>}
                                         {errorReviewCreate && (<MessageBox variant='danger'>{errorReviewCreate}</MessageBox>)}

@@ -1,0 +1,16 @@
+
+/* Checkout Steps */
+.checkout-steps >div{
+    border-top: 0.3rem #c0c0c0 solid;
+    color: #c0c0c0;
+    flex: 1;
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 4rem 0 2rem 0;
+  }
+  .checkout-steps>div.active{
+    border-top-color: #e36e54;
+    color: #e36e54;
+  }
+  
