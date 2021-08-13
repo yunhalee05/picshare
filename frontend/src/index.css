@@ -73,6 +73,9 @@ body {
 /* -----OrderDetail------ */
 @import url("./style/OrderDetail.css");
 
+/* -----Edit Product------ */
+@import url("./style/EditProduct.css");
+
 
 
 /* Common */

@@ -1,0 +1,112 @@
+
+/* Form */
+
+.edit-product{
+    text-align: center;
+}
+
+.edit-title-container{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+
+}
+
+.edittitle{
+    text-align: center;
+    background-color: black;
+    color: white;
+    width: 65rem;
+    padding: 2rem;
+    font-size: 6.5rem;
+    font-family: 'Fugaz One', cursive;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .edit-form .edit-id-container{
+      width: 100%;
+      justify-content: center;
+  }
+  .edit-id{
+      font-size: 3rem;
+      text-align: center;
+      margin: 2rem 0 3rem 0;
+  }
+
+  .edit-id .id{
+      background-color: #fcba03;
+      font-style: italic;
+      padding-left: 1rem;
+      padding-right: 1rem;
+  }
+  
+  .edit-form{
+    max-width: 80rem;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-right: 2rem;
+  }
+  .edit-form >div{
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .edit-form label {
+    width: 30vw;
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  
+  .edit-form input{
+    border: none;
+    border-bottom: 1px solid gray;
+    border-radius: none;
+    width: 60vw;
+  
+  }
+
+  .edit-form textarea{
+      width:60vw;
+  }
+
+  .edit-form .edit-button{
+      width: 100%;
+      justify-content: center;
+  }
+  
+  .edit-form button{
+    background-color: white;
+    color: black;
+    border: 2px dashed black;
+    border-radius: 50%;
+    font-family: 'Fugaz One', cursive;
+    font-size: 4rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .formbutton:hover{
+    border: 5px dashed black;
+  }
+  
+  @media (max-width:900px){
+      .edittitle{
+          font-size: 6vw;
+          width: 60vw;
+      }
+
+  }
+
+  @media (max-width:650px){
+      .edit-id-container .edit-id{
+          font-size: 4vw;
+      }
+  }

@@ -73,18 +73,23 @@ function ProductEditScreen(props) {
 
     }
     return (
-        <div>
-            <form onSubmit= {submitHandler} style={{"textAlign":"center"}}>
-                <div className="form" >
-                <div className="formtitle" style={{"marginBottom":"8rem"}}>EDIT PRODUCT</div>
-                <div style={{"fontSize":"3rem" , "paddingLeft":"20rem", "marginBottom":"8rem"}}>
-                    ID : {productId}
+        <div className="edit-product">
+            <form onSubmit= {submitHandler} className="edit-form" >
+                <div className="edit-title-container">
+                    <div className="edittitle" >EDIT PRODUCT</div>
+                </div>
+                <div className="edit-id-container">
+                    <div className="edit-id">
+                        ID : <span className="id">{productId}</span>
+                    </div>
                 </div>
                 {loadingUpdate && <LoadingBox></LoadingBox>}
                 {errorUpdate && <MessageBox variant='danger'>{errorUpdate}</MessageBox>}
-                {loading? <LoadingBox></LoadingBox> :
-                error? <MessageBox variant='danger'>{error}</MessageBox>:
-                    <>
+                {loading
+                ? <LoadingBox></LoadingBox> 
+                :error
+                    ? <MessageBox variant='danger'>{error}</MessageBox>
+                    :<>
                         <div>
                             <label htmlFor="name">NAME</label>
                             <input
@@ -162,15 +167,13 @@ function ProductEditScreen(props) {
                                 onChange={(e) => setDescription(e.target.value)}
                             ></textarea>
                             </div>
-                        <div>
-                            <label></label>
-                            <button className="formbutton" type="submit" style={{"margin":" 4rem 0 4rem 9rem "}}>
+                        <div className="edit-button">
+                            <button type="submit" >
                                 Update
                             </button>
                         </div>
                     </>
                 }
-                </div>
             </form>
         </div>
     )
