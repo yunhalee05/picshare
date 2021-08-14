@@ -45,6 +45,10 @@
       padding: 3rem;
   }
 
+  .search-filters li{
+      cursor: pointer;
+  }
+
 
   .active{
     font-size: 1.6vw;
@@ -55,187 +59,78 @@
 }
 
 .search-products{
-    flex: 3 1 75rem
+    flex: 3 1 75rem;
 }
 
+.search-product-container{
+   width: 100%;
+   display: flex;
+   justify-content: flex-start;
+   flex-wrap: wrap;
+}
 
-.product-detail .product-info{
-    width: 100%;
-    align-items: flex-start;
+.search-product{
+    min-width: 300px;
+    height: auto;
+    max-width: 380px;
     position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    cursor: pointer;
+    margin: 2.3rem;
 }
 
-.product-info-box{
-    padding: 0 3vw 0 2.5vw ;
-    transform: translateY(-100px);
-    font-size: 2rem;
-}
-
-
-.product-info-container{
-    display:flex;
-    justify-content:space-between;
-    font-size: 2rem;
-}
-
-.product-info-name{
-    text-align: left;
-}
-.product-info-value{
-    text-align: right;
-    /* border: 1px solid black; */
-
-}
-
-.product-info .product-image{
-    flex:2 1 50rem;
-    text-align: center;
-}
-
-.product-info .product-image img{
-    max-width:95%;
-    margin: 2.5rem 0 0 3rem ;
-    max-height: 100rem;
-    border-radius: 0;
-    border: 2px solid black;
-}
-
-.product-info .seller-logo{
-    flex:1 1 25rem;
-    text-align: center;
-    margin: 6rem 2rem 0 2rem;
-}
-
-.seller-logo .seller-name{
-    transform: translate(0,-150px);
-}
-
-.seller-logo .seller-name a{
-    font-size: 8.5rem;
-    font-style: italic;
-    -webkit-text-stroke: 1.5px black;
-    color: white;
-}
-.seller-logo .seller-container img{
+.search-product img{
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
-}
-
-.product-info button{
-    background-color: black;
-    border-radius: 50%;
-    font-size: 2vw;
-    font-family: 'Fugaz One', cursive;
-    margin-top: 2rem;
-    width:78%;
+    /* margin: 10px; */
+    border: 1px solid gray;
+    /* transition:all 0.2s ease-in-out; */
 
 }
 
+.search-product img:hover{
+    transform: rotate(3deg);
+    transform-origin: 0 0;
+    /* mix-blend-mode: luminosity; */
 
-.review-box{
+}
+
+.search-product-info{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.3vw;
+    padding: 1rem;
 }
 
-
-.review-form{
-    max-width: 80rem;
-    width: 100%;
-    display: inline-block;
-    position: relative;
-  }
-
-  .review-form .write-review-title{
-      font-size: 4.5rem;
-      width: 100%;
-      justify-content: center;
-  }
-
-  .review-form >div{
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-  }
-  
-
-  
-  .review-form input{
-    border: none;
-    border-bottom: 1px solid gray;
-    border-radius: none;
-    width: 50rem;
-  
-  }
-  .review-form .review-button{
-      width: 100%;
-      justify-content: center;
-  }
-
-  .review-form button{
-    background-color: white;
-    color: black;
-    border: 2px dashed black;
-    border-radius: 50%;
-    font-family: 'Fugaz One', cursive;
-    font-size: 4rem;
-    text-align: center;
-  }
-  
-  .review-form button:hover{
-    border: 5px dashed black;
-  }
-
-.review-box .review-show{
-    flex: 2 1 50rem;
-    padding: 2rem;
-
-}
-
-.review-box .review-write{
-    flex:1 1 25rem;
-    padding: 2rem;
-    display: flex;
-    justify-content:space-between;
+.search-product-description{
+    color: #666666;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding-left: 20px;
 
 
 }
 
 
+@media (max-width:1200px){
+    .search-products{
+        flex: 2 1 50rem;
+    }
+    .search-product{
+        margin: 1rem;
+    }
+    .search-product{
+        min-width: 150px;
+    }
+}
 
-@media (max-width:1300px){
-    .review-box .review-show{
+
+@media (max-width: 830px){
+    .search-products{
         flex: 1 1 25rem;
     }
-}
-
-
-@media (max-width: 827px){
-    .product-info .product-image img{
-        margin: 2.5rem 0 0 0rem ;
-    }
-    .product-info .seller-logo{
-        margin-right: 4rem;
-    }
-
-    .product-info button{
-        font-size: 6vw;
-        width: 60%;
-    }
-
-    .product-info-box{
-        padding: 0 0vw 0 3vw;
-    }
-
-    .review-form .write-review-title{
-        font-size: 5vw;
-    }
+    
 
 }
 

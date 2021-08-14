@@ -7,6 +7,9 @@ import Product from '../components/Product';
 import { prices, ratings } from '../utils';
 import Rating from '../components/Rating';
 import { useState } from 'react';
+import SearchProduct from '../components/SearchProduct';
+import {Link} from 'react-router-dom'
+
 
 function SearchScreen(props) {
 
@@ -96,7 +99,7 @@ function SearchScreen(props) {
                                 <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
                                     {ratings.map(r=>(
                                         <li key={r.name} className={`${r.rating}`===`${rating}`? 'active':''} onClick={e=> setRating(r.rating)}>
-                                            <Rating caption={" & up"} rating={r.rating}></Rating>
+                                            {/* <Rating caption={" & up"} rating={r.rating}></Rating> */}
                                         </li>
                                     ))}
                                 </ul>
@@ -113,8 +116,7 @@ function SearchScreen(props) {
                                     <div className="search-product-container">
                                         {products.map(product=>(
                                             <div className="search-product">
-
-                                                <Product key={product._id}  product = {product}/> 
+                                                    <SearchProduct key={product._id}  product = {product}/>
                                             </div>
                                         ))}
                                     </div>
