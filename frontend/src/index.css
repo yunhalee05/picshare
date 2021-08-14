@@ -76,6 +76,9 @@ body {
 /* -----Edit Product------ */
 @import url("./style/EditProduct.css");
 
+/* -----Search Screen------ */
+@import url("./style/SearchScreen.css");
+
 
 
 /* Common */

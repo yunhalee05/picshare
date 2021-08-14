@@ -53,19 +53,7 @@ color: #fac83e;
   
   }
   
-  .search-filter{
-    text-align: center;
-    padding: 2rem;
-    font-size: 5rem;
-    border-radius: 50%;
-    box-shadow: -13px 13px;
-    border: 1px solid black;
-    max-width: 35rem;
-  
-  }
-  .active{
-    font-weight:bold;
-  }
+ 
 
 
 /* Dropdown */

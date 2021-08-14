@@ -1,130 +1,133 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { listProductCategories, listProducts } from '../actions/productActions'
+import { listProductCategories, listProducts, searchProducts } from '../actions/productActions'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Product from '../components/Product';
-import {Link, useParams} from 'react-router-dom'
 import { prices, ratings } from '../utils';
 import Rating from '../components/Rating';
+import { useState } from 'react';
 
 function SearchScreen(props) {
-    const {name = 'all', category='all', min=0, max=0, rating=0, order='newest', pageNumber=1} = useParams();
+
+    const keyword = props.match.params.name || 'all'
+
     const productList = useSelector(state => state.productList)
-    const {loading, error, products, page, pages} = productList
+    const {loading, error, products, result} = productList
     const dispatch = useDispatch()
+    const [category, setCategory] = useState('all')
+    const [min, setMin] = useState(0)
+    const [max, setMax] = useState(0)
+    const [rating, setRating] = useState(0)
+    const [order, setOrder] = useState('newest')
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
-        dispatch(listProducts({name:name!=='all'? name: '', category:category !=='all'? category:'', min, max,rating,order,pageNumber}))
-    }, [pageNumber,category, dispatch,name,min, max,rating,order])
+        dispatch(searchProducts({name:keyword!=='all'? keyword: '', category:category !=='all'? category:'', min, max,rating,order,page}))
+    }, [dispatch,page,category,min, max,rating,order, keyword])
 
     const productCategoryList = useSelector(state => state.productCategoryList)
     const {loading:loadingCategories, error:errorCategories, categories} = productCategoryList
+
     useEffect(()=>{
         dispatch(listProductCategories())
     },[dispatch])
-
-    const getFilterUrl = (filter) =>{
-        const filterPage = filter.page ||pageNumber;
-        const filterCategory = filter.category ||category;
-        const filterName = filter.name ||name;
-        const filterMin = filter.min? filter.min :filter.min===0? 0:min;
-        const filterMax = filter.max? filter.max :filter.max===0? 0:max;
-        const filterRating = filter.rating||rating;
-        const sortOrder = filter.order||order;
-        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`
-    }
+    
     return (
         <div>
-            <div className="row" >
-                {loading? <LoadingBox></LoadingBox> :
-                error? <MessageBox variant='danger'>{error}</MessageBox> :
-                (<div style={{"fontSize":"1.4rem", "marginLeft":"2rem","padding":"1rem","borderRadius":"50%", "border":"1px solid black", "backgroundColor":"black", "color":"white"}}>
-                    {products.length} Results
-                </div>
-                )}
-                <div>
-                    Sort by {' '}
-                    <select value = {order} onChange={e=>props.history.push(getFilterUrl({order:e.target.value}))}>
-                        <option value="newest">Newest Arrivals</option>
-                        <option value="lowest">Price: Low to High</option>
-                        <option value="highest">Price: High to Low</option>
-                        <option value="toprated">Avg. Customer Reviews</option>
-                    </select>
-                </div>
-            </div>
-            <div className="row top">
-                <div className="col-1" style={{"paddingLeft":"3rem", "marginTop":"1rem"}}>
-                    <div>
-                        <div className="search-filter">
-                            Category
-                        </div>
-                        {loadingCategories? <LoadingBox></LoadingBox> :
-                        errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
-                        (
-                            <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
-                                <li >
-                                    <Link to ={getFilterUrl({category:'all'})} className={'all'==='category'? 'active':''}>Any</Link>
-                                </li>
-                                {categories.map(c=>
-                                    (
-                                        <li key = {c}>
-                                            <Link to ={getFilterUrl({category:c})} className={c===category? 'active':''}>{c}</Link>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        )}
+            {loading
+            ? <LoadingBox></LoadingBox> 
+            : error
+                ? <MessageBox variant='danger'>{error}</MessageBox> 
+                :(
+                <div className="search">
+                    <div className="search-result">
+                            <button>{products.length} Results</button>
+                            <div>
+                                Sort by :&nbsp; &nbsp;
+                                <select value = {order} onChange={e=>setOrder(e.target.value)}>
+                                    <option value="newest">Newest Arrivals</option>
+                                    <option value="lowest">Price: Low to High</option>
+                                    <option value="highest">Price: High to Low</option>
+                                    <option value="toprated">Avg. Customer Reviews</option>
+                                </select>
+                            </div>
                     </div>
-                    <div>
-                        <div className="search-filter">
-                            Price
-                        </div>
-                        <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
-                            {prices.map(p=>(
-                                <li key={p.name}>
-                                    <Link className={`${p.min}-${p.max}`=== `${min}-${max}`? 'active':''} to={getFilterUrl({min:p.min, max:p.max})} >{p.name}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <div className="search-filter">
-                            Reviews
-                        </div>
-                        <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
-                            {ratings.map(r=>(
-                                <li key={r.name}>
-                                    <Link className={`${r.rating}`===`${rating}`? 'active':''} to={getFilterUrl({rating:r.rating})} ><Rating caption={" & up"} rating={r.rating}></Rating></Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-                <div className="col-3">
-                    {loading? <LoadingBox></LoadingBox> :
-                    error? <MessageBox variant='danger'>{error}</MessageBox> :
-                    (<>
-                        {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
-                        <div className="row center">
-                            {products.map(product=>(
-                                <div className="col-1">
 
-                                    <Product key={product._id}  product = {product}/> 
+                    <div className="search-info">
+                        <div className="search-filters">
+                            <div className="search-filter">
+                                <div className="search-filter-name">
+                                    Category
                                 </div>
-                            ))}
+                                {loadingCategories? <LoadingBox></LoadingBox> :
+                                errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
+                                (
+                                    <ul >
+                                        <li onClick={e=>setCategory('all')} className={category ==='all'? 'active':''}>
+                                            Any
+                                        </li>
+                                        {categories.map(c=>
+                                            (
+                                                <li key = {c} onClick={e=>setCategory(c)} className={category ===c? 'active':''}>
+                                                {c}
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                )}
+                            </div> 
+                            <div search-filter>
+                                <div className="search-filter-name">
+                                    Price
+                                </div>
+                                <ul >
+                                    {prices.map(p=>(
+                                        <li key={p.name} className={`${p.min}-${p.max}`===`${min}-${max}`? 'active': ''} onClick={e=> {setMin(p.min);setMax(p.max)} }>
+                                            {p.name}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="search-filter">
+                                <div className="search-filter-name">
+                                    Reviews
+                                </div>
+                                <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
+                                    {ratings.map(r=>(
+                                        <li key={r.name} className={`${r.rating}`===`${rating}`? 'active':''} onClick={e=> setRating(r.rating)}>
+                                            <Rating caption={" & up"} rating={r.rating}></Rating>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                        <div className="row center pagination">
-                            {
-                                [...Array(pages).keys()].map((x)=>(
-                                    <Link to={getFilterUrl({page:x+1})} className={x + 1 === page ? 'active' : ''} key = {x+1} >{x+1}</Link>
-                                ))
-                            }
+
+                        <div className="search-products">
+                            {loading
+                            ? <LoadingBox></LoadingBox> 
+                            :error
+                                ? <MessageBox variant='danger'>{error}</MessageBox> 
+                                :(<>
+                                {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
+                                    <div className="search-product-container">
+                                        {products.map(product=>(
+                                            <div className="search-product">
+
+                                                <Product key={product._id}  product = {product}/> 
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>)
+                                }
                         </div>
-                    </>)
-                    }
-                </div>
-            </div>
+                    
+                    </div>
+
+                </div>)
+            
+
+            }
         </div>
     )
 }
