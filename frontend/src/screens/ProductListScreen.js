@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router';
 import { listProducts,deleteProduct } from '../actions/productActions';
@@ -8,12 +8,18 @@ import { PRODUCT_DELETE_RESET} from '../constants/productConstants';
 import {Link} from 'react-router-dom'
 
 function ProductListScreen(props) {
-    const {pageNumber=1} = useParams();
 
     const sellerMode = props.match.path.indexOf('/seller') >=0;
 
     const productList = useSelector(state=>state.productList);
-    const {loading, error, products, page, pages}= productList;
+    const {loading, error, products, pages}= productList;
+
+
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(9)
+
+    const pageRange = [...Array(pages).keys()]    
+
 
     const dispatch = useDispatch()
 
@@ -33,8 +39,8 @@ function ProductListScreen(props) {
         if(successDelete){
             dispatch({type:PRODUCT_DELETE_RESET})
         }
-        dispatch(listProducts({pageNumber, seller:sellerMode? userInfo._id :''}))
-    }, [ dispatch, props.history, successDelete,sellerMode, pageNumber])
+        dispatch(listProducts({page, seller:sellerMode? userInfo._id :''}))
+    }, [ dispatch, props.history, successDelete,sellerMode, page, userInfo._id])
 
     const createHandler=() =>{
         props.history.push('/productcreate')
@@ -80,15 +86,30 @@ function ProductListScreen(props) {
                     ))}
                 </tbody>
             </table>
-            <div className="row center pagination">
-                {
-                    [...Array(pages).keys()].map((x)=>(
-                        <Link to={`/productlist/pageNumber/${x+1}`} className={x + 1 === page ? 'active' : ''} key = {x+1} >{x+1}</Link>
-                    ))
-                }
-            </div>
             </>
             }
+
+            <nav aria-label="Page navigation example" style={{width:'100%'}}>
+                <ul class="pagination" style={{justifyContent:'center'}}>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {
+                        pageRange.map(x=>(
+                            <li class="page-item"><a class="page-link" onClick={e=>setPage(x+1)} style={{color:'black'}}>{x+1}</a></li>
+                        ))
+                    }
+                    <li class="page-item">
+                        <a class="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+                </nav>
         </div>
     )
 }

@@ -8,7 +8,7 @@ const productRouter = express.Router();
 
 productRouter.get('/' ,expressAsyncHandler(async(req, res)=>{
     const limit  = Number(req.query.limit)|| 9;
-    const page = Number(req.query.pageNumber) || 1;
+    const page = Number(req.query.page) || 1;
 
     const seller = req.query.seller || ''
     const name = req.query.name || ''
@@ -37,7 +37,7 @@ productRouter.get('/' ,expressAsyncHandler(async(req, res)=>{
                                     .sort(sortOrder)
                                     .skip(limit * (page-1))
                                     .limit(limit);
-    res.send({products, page,  pages: Math.ceil(count / limit) });
+    res.send({products, page,  pages: Math.ceil(count / limit) , count : count});
 }));
 
 productRouter.get('/categories', expressAsyncHandler(async (req, res) => {
@@ -93,7 +93,7 @@ productRouter.put('/:id', isAuth, isSellerOrAdmin, expressAsyncHandler(async(req
     }
 }))
 
-productRouter.delete('/:id', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{
+productRouter.delete('/:id', isAuth, isSellerOrAdmin, expressAsyncHandler(async(req, res)=>{
     const product = await Product.findById(req.params.id);
     if(product){
         const deletedProduct = await product.remove();

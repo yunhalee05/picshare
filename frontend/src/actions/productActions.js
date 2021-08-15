@@ -1,7 +1,7 @@
 import { PRODUCT_DELETE_FAIL,PRODUCT_DELETE_SUCCESS,PRODUCT_DELETE_REQUEST,PRODUCT_UPDATE_FAIL,PRODUCT_UPDATE_SUCCESS,PRODUCT_UPDATE_REQUEST,PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_CATEGORY_LIST_REQUEST, PRODUCT_CATEGORY_LIST_FAIL, PRODUCT_CATEGORY_LIST_SUCCESS, PRODUCT_REVIEW_CREATE_REQUEST, PRODUCT_REVIEW_CREATE_SUCCESS, PRODUCT_REVIEW_CREATE_FAIL } from "../constants/productConstants"
 import Axios from 'axios'
 
-export const listProducts = () =>async(dispatch)=>{
+export const getProducts = () =>async(dispatch)=>{
     dispatch({
         type:PRODUCT_LIST_REQUEST
     });
@@ -13,12 +13,24 @@ export const listProducts = () =>async(dispatch)=>{
     }
 }
 
-export const searchProducts = ({name, category, min, max, rating,order, page}) =>async(dispatch)=>{
+export const listProducts = ({page, seller}) =>async(dispatch)=>{
     dispatch({
         type:PRODUCT_LIST_REQUEST
     });
     try{
-        const res = await Axios.get(`/api/products?page=${page}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
+        const res = await Axios.get(`/api/products?page=${page}&seller=${seller}`);
+        dispatch({type:PRODUCT_LIST_SUCCESS, payload:res.data});
+    }catch(error){
+        dispatch({type:PRODUCT_LIST_FAIL, payload:error.message});
+    }
+}
+
+export const searchProducts = ({name, category, min, max, rating,order, page, limit}) =>async(dispatch)=>{
+    dispatch({
+        type:PRODUCT_LIST_REQUEST
+    });
+    try{
+        const res = await Axios.get(`/api/products?page=${page}&limit=${limit}&name=${name}&category=${category}&min=${min}&max=${max}&rating=${rating}&order=${order}`);
 
         dispatch({type:PRODUCT_LIST_SUCCESS, payload:res.data});
     }catch(error){
@@ -89,8 +101,10 @@ export const deleteProduct = (productId) =>async(dispatch, getState)=>{
     });
     const {userSignin:{userInfo}} = getState();
     try{
-        const {data} = await Axios.delete(`/api/products/${productId}`,
-        {headers:{Authorization: `Bearer ${userInfo.token}`}});
+        const {data} = await Axios.delete(`/api/products/${productId}`,{
+            headers: {Authorization : `Bearer ${userInfo.token}`}
+    });
+    
         dispatch({type:PRODUCT_DELETE_SUCCESS})
 
     }catch(error){

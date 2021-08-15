@@ -16,18 +16,25 @@ function SearchScreen(props) {
     const keyword = props.match.params.name || 'all'
 
     const productList = useSelector(state => state.productList)
-    const {loading, error, products, result} = productList
-    const dispatch = useDispatch()
+    const {loading, error, products, pages, count} = productList
+
     const [category, setCategory] = useState('all')
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
     const [rating, setRating] = useState(0)
     const [order, setOrder] = useState('newest')
+
     const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(9)
+
+    const pageRange = [...Array(pages).keys()]    
+
+    const dispatch = useDispatch()
+
 
     useEffect(() => {
-        dispatch(searchProducts({name:keyword!=='all'? keyword: '', category:category !=='all'? category:'', min, max,rating,order,page}))
-    }, [dispatch,page,category,min, max,rating,order, keyword])
+        dispatch(searchProducts({name:keyword!=='all'? keyword: '', category:category !=='all'? category:'', min, max,rating,order,page,limit}))
+    }, [dispatch,page,category,min, max,rating,order, keyword, limit])
 
     const productCategoryList = useSelector(state => state.productCategoryList)
     const {loading:loadingCategories, error:errorCategories, categories} = productCategoryList
@@ -45,7 +52,7 @@ function SearchScreen(props) {
                 :(
                 <div className="search">
                     <div className="search-result">
-                            <button>{products.length} Results</button>
+                            <button>{count} Results</button>
                             <div>
                                 Sort by :&nbsp; &nbsp;
                                 <select value = {order} onChange={e=>setOrder(e.target.value)}>
@@ -127,9 +134,29 @@ function SearchScreen(props) {
                     </div>
 
                 </div>)
-            
-
             }
+
+            <nav aria-label="Page navigation example" style={{width:'100%'}}>
+                <ul class="pagination" style={{justifyContent:'center'}}>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {
+                        pageRange.map(x=>(
+                            <li class="page-item"><a class="page-link" onClick={e=>setPage(x+1)} style={{color:'black'}}>{x+1}</a></li>
+                        ))
+                    }
+                    <li class="page-item">
+                        <a class="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+                </nav>
         </div>
     )
 }

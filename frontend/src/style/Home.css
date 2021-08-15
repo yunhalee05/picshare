@@ -1,5 +1,7 @@
 .home{
     background-color: #fffbe8;
+    width: 100%;
+    position: relative;
 }
 
 .topproducts{
