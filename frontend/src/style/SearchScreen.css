@@ -73,7 +73,7 @@
     min-width: 300px;
     height: auto;
     max-width: 380px;
-    position: relative;
+    /* position: relative; */
     cursor: pointer;
     margin: 2.3rem;
 }
@@ -130,38 +130,28 @@
     .search-products{
         flex: 1 1 25rem;
     }
+    .search-product{
+        margin: 0rem;
+    }
+    .search{
+        padding: 1rem;
+    }
     
 
 }
 
 
-@media (max-width:550px){
-    .product-info .seller-logo{
-        margin: 6rem 0 0 0;
+@media (max-width:580px){
+    .search-product{
+        min-width: 0;
     }
 
-    .seller-logo .seller-name a{
-        font-size: 7rem;
+    .search-filters{
+        flex: 1 1 10rem;
     }
 
-    .product-info-box .productdetail-name{
-        font-size: 6vw;
+    .search-products{
+        flex: 1 1 20rem;
     }
-
-    .product-info-box .product-info-container{
-        margin-right: 2rem;
-    }
-
-    .review-form .write-review-title{
-        font-size: 8vw;
-    }
-    .review-box .review-write{
-        padding-left: 1rem;
-    }
-    .review-form button{
-        font-size: 8vw;
-    }
-
-    
 
 }

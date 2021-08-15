@@ -36,6 +36,7 @@ import { GrInbox } from "react-icons/gr";
 import { FaRegHandPointRight } from "react-icons/fa";
 import Footer from './components/Footer';
 import Header from './components/Header';
+import ProductCreateScreen from './screens/ProductCreateScreen';
 
 
 function App() {
@@ -82,7 +83,7 @@ function App() {
             <PrivateRoute path="/profile" component={ProfileScreen} exact></PrivateRoute>
             <AdminRoute path="/productlist" component={ProductListScreen} exact></AdminRoute>
             <AdminRoute path="/productlist/pageNumber/:pageNumber" component={ProductListScreen} exact></AdminRoute>
-            <Route path="/product/:id/edit" component={ProductEditScreen} exact></Route>          
+            <Route path="/product/edit/:id" component={ProductEditScreen} exact></Route>          
             <AdminRoute path="/orderlist" component={OrderListScreen} exact></AdminRoute>          
             <AdminRoute path="/userlist" component={UserListScreen} exact></AdminRoute>          
             <AdminRoute path="/user/:id/edit" component={UserEditScreen} exact></AdminRoute>          
@@ -96,6 +97,8 @@ function App() {
             <PrivateRoute path="/map" component={MapScreen} exact></PrivateRoute>
             <AdminRoute path="/dashboard" component={DashboardScreen} exact></AdminRoute>          
             <AdminRoute path="/support" component={SupportScreen} exact></AdminRoute>          
+            <Route path="/productcreate" component={ProductCreateScreen} exact></Route>          
+
           </div>
           {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo}></ChatBox>}
           

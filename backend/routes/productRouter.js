@@ -57,17 +57,18 @@ productRouter.get('/:id' ,expressAsyncHandler(async(req, res)=>{
 
 
 productRouter.post('/', isAuth, isSellerOrAdmin, expressAsyncHandler(async(req, res)=>{
+    const {name, price, countInStock, category, brand, image, description} = req.body.body
     const product =  new Product({
-        name: 'sample name'+Date.now(),
+        name: name,
         seller: req.user._id,
-        image:'/images/sample1.jpg',
-        price:0,
+        image:image,
+        price:price,
         category:'sample caategory',
-        brand:'sample brand',
-        countInStock: 0,
-        rating: 2,
+        brand:brand,
+        countInStock: countInStock,
+        rating: 0,
         numReviews:0,
-        description:'sample description'
+        description:description
 
     })
     const createdProduct = await product.save();

@@ -1,0 +1,170 @@
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { createProduct } from '../actions/productActions'
+import LoadingBox from '../components/LoadingBox'
+import MessageBox from '../components/MessageBox'
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
+
+function ProductCreateScreen(props) {
+
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState(0)
+    const [category, setCategory] = useState('')
+    const [image, setImage] = useState('')
+    const [brand, setBrand] = useState('')
+    const [description, setDescription] = useState('')
+    const [countInStock, setCountInStock] = useState(0)
+    
+    const productCreate = useSelector(state => state.productCreate)
+    const {loading:loadingCreate, error:errorCreate, success:successCreate} = productCreate
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if(successCreate){
+            dispatch({
+                type:PRODUCT_CREATE_RESET
+            })
+            props.history.goBack()
+        }
+    }, [ dispatch, props.history, successCreate])
+
+
+
+
+    const [loadingUpload, setLoadingUpload] = useState(false)
+    const [errorUpload, setErrorUpload] = useState('')
+    const userSignin = useSelector(state => state.userSignin)
+    const {userInfo} = userSignin
+
+    const uploadFileHandler= async(e)=>{
+        const file = e.target.files[0]//하나의 파일만 업로드가능
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        setLoadingUpload(true);
+        try{
+            const{data} = await axios.post('/api/uploads', bodyFormData,{
+                headers:{'Content-Type':'multipart/form-data',
+                Authorization:`Bearer ${userInfo.token}`}
+            })
+            setImage(data)
+            setLoadingUpload(false);
+        }catch(error){
+            setErrorUpload(error.message)
+            setLoadingUpload(false)
+        }
+
+    }
+
+    const submitHandler= (e)=>{
+        e.preventDefault();
+        dispatch(createProduct({name, price, countInStock, category, brand, image, description}));
+    }
+
+    return (
+        <div className="edit-product">
+            <form onSubmit= {submitHandler} className="edit-form" >
+                <div className="edit-title-container">
+                    <div className="edittitle" >CREATE PRODUCT</div>
+                </div>
+                {loadingCreate
+                ? <LoadingBox></LoadingBox> 
+                :errorCreate
+                    ? <MessageBox variant='danger'>{errorCreate}</MessageBox>
+                    :<>
+                        <div>
+                            <label htmlFor="name">NAME</label>
+                            <input
+                                id="name"
+                                type="text"
+                                placeholder="Enter name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div>
+                            <label htmlFor="price">PRICE</label>
+                            <input
+                                id="price"
+                                type="number"
+                                placeholder="Enter price"
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div>
+                            <label htmlFor="image">IMAGE</label>
+                            <input
+                                id="image"
+                                type="text"
+                                placeholder="Enter image"
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                        <div>
+                            <label htmlFor="imageFile">IMAGEFILE</label>
+                            <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
+                        </div>
+                        {loadingUpload && <LoadingBox></LoadingBox>}
+                        {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>}
+                        <div>
+                            <label htmlFor="category">CATEGORY</label>
+                            <input
+                                id="category"
+                                type="text"
+                                placeholder="Enter category"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            ></input>
+                        </div>
+                        <div>
+                            <label htmlFor="brand">BRAND</label>
+                            <input
+                                id="brand"
+                                type="text"
+                                placeholder="Enter brand"
+                                value={brand}
+                                onChange={(e) => setBrand(e.target.value)}
+                            ></input>
+                        </div>
+                        <div>
+                            <label htmlFor="countInStock">COUNT IN STOCK</label>
+                            <input
+                                id="countInStock"
+                                type="number"
+                                placeholder="Enter countInStock"
+                                value={countInStock}
+                                onChange={(e) => setCountInStock(e.target.value)}
+                                required
+                            ></input>
+                        </div>
+                            <div>
+                            <label htmlFor="description">DESCRIPTION</label>
+                            <textarea
+                                id="description"
+                                rows="3"
+                                type="text"
+                                placeholder="Enter description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                required
+                            ></textarea>
+                            </div>
+                        <div className="edit-button">
+                            <button type="submit" >
+                                Create
+                            </button>
+                        </div>
+                    </>
+                }
+            </form>
+        </div>
+    )
+}
+
+export default ProductCreateScreen
