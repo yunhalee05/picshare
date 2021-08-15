@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteOrder, listOrders } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
@@ -11,18 +12,24 @@ function OrderListScreen(props) {
     const {userInfo} = userSignin
 
     const orderList = useSelector(state => state.orderList)
-    const {loading, error, orders} = orderList
+    const {loading, error, orders, pages, count} = orderList
 
     const orderDelete = useSelector(state => state.orderDelete)
     const {loading:loadingDelete, error:errorDelete, success:successDelete} = orderDelete
+
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(9)
+
+    const pageRange = [...Array(pages).keys()]    
+
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch({
             type:ORDER_DELETE_RESET
         })
-
-        dispatch(listOrders({seller: sellerMode? userInfo._id: ''}));
-    }, [dispatch,successDelete])
+        dispatch(listOrders({seller: sellerMode? userInfo._id: '', page:page, limit:limit}));
+    }, [dispatch,successDelete, page, limit])
 
     const deleteHandler= (order)=>{
         if(window.confirm('Are you sure to delete?')){
@@ -72,6 +79,28 @@ function OrderListScreen(props) {
                         </table>
                     )
             }
+
+            <nav aria-label="Page navigation example" style={{width:'100%'}}>
+                <ul class="pagination" style={{justifyContent:'center'}}>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {
+                        pageRange.map(x=>(
+                            <li class="page-item"><a class="page-link" onClick={e=>setPage(x+1)} style={{color:'black'}}>{x+1}</a></li>
+                        ))
+                    }
+                    <li class="page-item">
+                        <a class="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     )
 }

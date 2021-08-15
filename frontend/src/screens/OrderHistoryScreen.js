@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react'
+import { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { listOrderMine } from '../actions/orderActions'
 import LoadingBox from '../components/LoadingBox'
@@ -6,13 +7,18 @@ import MessageBox from '../components/MessageBox'
 
 function OrderHistoryScreen(props) {
     const orderMineList = useSelector(state => state.orderMineList)
-    const {loading, error, orders} = orderMineList
+    const {loading, error, orders, pages} = orderMineList
+
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(9)
+
+    const pageRange = [...Array(pages).keys()]  
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(listOrderMine());
+        dispatch(listOrderMine({page, limit}));
 
-    }, [dispatch])
+    }, [dispatch, page, limit])
 
     return (
         <div className="list">
@@ -33,7 +39,9 @@ function OrderHistoryScreen(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map((order) => (                                
+                            
+                            {   orders &&
+                            orders.map((order) => (                                
                                 <tr key={order._id}>
                                     <td className="hidden">{order._id}</td>
                                     <td>{order.createdAt.substring(0, 10)}</td>
@@ -49,6 +57,28 @@ function OrderHistoryScreen(props) {
                     </table>
                 )
             }
+
+            <nav aria-label="Page navigation example" style={{width:'100%'}}>
+                <ul class="pagination" style={{justifyContent:'center'}}>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    {
+                        pageRange.map(x=>(
+                            <li class="page-item"><a class="page-link" onClick={e=>setPage(x+1)} style={{color:'black'}}>{x+1}</a></li>
+                        ))
+                    }
+                    <li class="page-item">
+                        <a class="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     )
 }

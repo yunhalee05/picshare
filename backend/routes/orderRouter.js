@@ -8,8 +8,15 @@ import { isAdmin, isAuth, isSellerOrAdmin, mailgun, payOrderEmailTemplate } from
 const orderRouter = express.Router();
 
 orderRouter.get('/mine', isAuth, expressAsyncHandler(async(req, res)=>{
-    const orders = await Order.find({user: req.user._id});
-    res.send(orders); 
+  const page = req.query.page || 1
+  const limit = Number(req.query.limit) || 9
+
+    const count = await Order.find({user: req.user._id}).count();
+    const orders = await Order.find({user: req.user._id})
+                              .sort('-createdAt')
+                              .skip(limit * (page-1))
+                              .limit(limit);
+    res.send({orders, pages:Math.ceil(count / limit), count}); 
 }))
 
 
@@ -113,9 +120,22 @@ orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async (req, res)=>{
 
 orderRouter.get('/', isAuth, isSellerOrAdmin, expressAsyncHandler(async(req, res)=>{
     const seller = req.query.seller || ''
+    const page = req.query.page || 1
+    const limit = Number(req.query.limit) || 9
+
     const sellerFilter = seller? {seller} :{};
-    const orders = await Order.find({...sellerFilter}).populate('user', 'name');
-    res.send(orders);
+
+    const count = await Order.count({...sellerFilter})
+    const orders = await Order.find({...sellerFilter})
+                              .populate('user', 'name')
+                              .sort('-createdAt')
+                              .skip(limit * (page-1))
+                              .limit(limit);
+    res.send({
+      orders:orders,
+      count,
+      pages:Math.ceil(count / limit)
+    });
 }))
 
 orderRouter.delete('/:id', isAuth, isAdmin, expressAsyncHandler(async(req, res)=>{

@@ -86,13 +86,13 @@ export const payOrder = (order, paymentResult)=>(dispatch, getState)=>{
     }
 }
 
-export const listOrderMine = ()=> async(dispatch, getState) =>{
+export const listOrderMine = ({page, limit})=> async(dispatch, getState) =>{
     dispatch({
         type:ORDER_MINE_LIST_REQUEST
     })
     const {userSignin:{userInfo}} = getState();
     try{
-        const {data} = await axios.get('/api/orders/mine', {
+        const {data} = await axios.get(`/api/orders/mine?page=${page}&limit=${limit}`, {
             headers:{Authorization:`Bearer ${userInfo.token}`}
         })
         dispatch({
@@ -110,13 +110,13 @@ export const listOrderMine = ()=> async(dispatch, getState) =>{
     }
 }
 
-export const listOrders = ({seller = ''})=> async(dispatch, getState) =>{
+export const listOrders = ({seller, page, limit})=> async(dispatch, getState) =>{
     dispatch({
         type:ORDER_LIST_REQUEST
     })  
     const {userSignin:{userInfo}} = getState();
     try{
-        const {data} = await axios.get(`/api/orders?seller=${seller}`, {
+        const {data} = await axios.get(`/api/orders?seller=${seller}&page=${page}&limit=${limit}`, {
             headers:{Authorization:`Bearer ${userInfo.token}`}
         })
         dispatch({
