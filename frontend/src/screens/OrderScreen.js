@@ -170,7 +170,7 @@ function OrderScreen(props) {
                         </div>
                         {
                             !order.isPaid && 
-                                !sdkReady
+                                (!sdkReady
                                     ? <LoadingBox></LoadingBox>
                                     :
                                     <>
@@ -182,6 +182,7 @@ function OrderScreen(props) {
                                     }
                                     <PayPalButton amount={order.totalPrice}  onSuccess = {successPaymentHandler}></PayPalButton>
                                     </>
+                                )
                                     
                             
                         }
