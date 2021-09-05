@@ -21,32 +21,41 @@ function MapScreen(props) {
 
     useEffect(() => {
         const fetch = async ()=>{
-            const{data} = await axios.get('/api/config/google');
-            setGoogleApiKey(data);
+            const res = await axios.get('/api/config/google');
+            setGoogleApiKey(res.data);
             getUserCurrentLocation();
         }
         fetch();
     }, [])
 
+
     const onLoad= (map)=>{
         mapRef.current = map;
     }
+
     const onMarkerLoad = (marker)=>{
         markerRef.current = marker;
     }
+
     const onLoadPlaces = (place)=>{
         placeRef.current = place
+        console.log(placeRef.current)
     }
+
     const onIdle = ()=>{
         setLocation({lat:mapRef.current.center.lat(), lng:mapRef.current.center.lng()})
     }
+
     const onPlacesChanged =()=>{
         const place = placeRef.current.getPlaces()[0].geometry.location;        
-        setCenter({lat:place.lat(), lng:place.lng()})
-        setLocation({lat:place.lat(), lng:place.lng()})
+        console.log(place)
+            setCenter({lat:place.lat(), lng:place.lng()})
+            setLocation({lat:place.lat(), lng:place.lng()})
+
     }
 
     const dispatch = useDispatch()
+
     const onConfirm = ()=>{
         const places = placeRef.current.getPlaces();
         if(places && places.length ===1){
@@ -87,11 +96,11 @@ function MapScreen(props) {
     return googleApiKey ? (
         <div className="full-container">
             <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
-                <GoogleMap id="sample-map" mapContainerStyle={{height:'100%',width:'100%' }} center={center} zoom={15} onLoad={onLoad}onIdle={onIdle} >
+                <GoogleMap id="sample-map" mapContainerStyle={{height:'100vh',width:'100vw' }} center={center} zoom={15} onLoad={onLoad}onIdle={onIdle} >
                     <StandaloneSearchBox onLoad={onLoadPlaces} onPlacesChanged={onPlacesChanged}>
                         <div className="map-input-box">
                             <input type="text" placeholder="Enter your address" />
-                            <button className="primary" onClick={onConfirm} type="button">Confirm</button>
+                            <button onClick={onConfirm} type="button">Confirm</button>
                         </div>
                     </StandaloneSearchBox>
                     <Marker position={location} onLoad={onMarkerLoad}></Marker>

@@ -41,97 +41,92 @@ function PlaceOrderScreen(props) {
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
-            <div className="row top">
-                <div className="col-2">
-                    <ul>
-                        <li>
-                            <div className="card card-body">
-                                <h2>Shipping</h2>
-                                <p>
-                                    <strong>Name:</strong>{cart.shippingAddress.fullName}<br/>
-                                    <strong>Address:</strong>{cart.shippingAddress.address},{cart.shippingAddress.city},{cart.shippingAddress.postalCode},{cart.shippingAddress.country}
-                                </p>
+            <div className="order">
+                <div className="tape-container"><div className="tape"></div></div>
+                <div className="order-card">
+                    <div className="order-card-body">
+                        <div className="order-id-container">
+                            PLACE ORDER 
+                        </div>
+                        <div className="order-card-info">
+                            <div className="order-card-title">
+                                &nbsp;-SHIPPING
                             </div>
-                        </li>
-                        <li>
-                            <div className="card card-body">
-                                <h2>Payment</h2>
-                                <p>
-                                    <strong>Method:</strong>{cart.paymentMethod}<br/>
-                                </p>
+                            <div className="order-card-container">
+                                <div className="order-card-value">
+                                    {cart.shippingAddress.fullName}
+                                </div>
+                                <div className="order-card-value">
+                                    {cart.shippingAddress.address},{cart.shippingAddress.city},{cart.shippingAddress.postalCode},{cart.shippingAddress.country}
+                                </div>
                             </div>
-                        </li>
-                        <li>
-                            <div className="card card-body">
-                                <h2>Order Items</h2>
-                                <ul>
-                                    {cart.cartItems.map(item=>(
-                                            <li key = {item.product}>
-                                                <div className="row">
-                                                    <div>
-                                                        <img src={item.image} alt={item.name} className="small"/>
-                                                    </div>
-                                                    <div className="min-30">
-                                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                                    </div>
-                                                    <div>
-                                                         {item.qty} x ${item.price} = ${item.qty * item.price}
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        ))
-                                    }
-                                </ul>
+                        </div>
+                        <div className="order-card-info">
+                            <div className="order-card-title">
+                                &nbsp;-PAYMENT
                             </div>
-                        </li>
-                    </ul>
+                            <div className="order-card-container">
+                                <div className="order-card-value">
+                                    {cart.paymentMethod}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                <div className="col-1">
-                    <div className="card card-body">
-                        <ul>
-                            <li>
-                                <h2>Order Summary</h2>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div>Items</div>
-                                    <div>${cart.itemsPrice.toFixed(2)}</div>
+                <div className="order-item">
+                    {cart.cartItems.map(item=>(
+                        <div key = {item.product}>
+                            <div className="order-row">
+                                <div className="order-image">
+                                    <img src={item.image} alt={item.name}/>
                                 </div>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div>Shipping</div>
-                                    <div>${cart.shippingPrice.toFixed(2)}</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div>Tax</div>
-                                    <div>${cart.taxPrice.toFixed(2)}</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="row">
-                                    <div>
-                                        <strong>Order Total</strong>
+                                <div className="order-product-info">
+                                    <div className="order-info-container">
+                                        {/* <span className="cart-info-name">Product Name : </span> */}
+                                        <span className="cart-info-value">
+                                            <Link to={`/product/${item.product}`} >{item.name}</Link>
+                                        </span>
                                     </div>
-                                    <div>
-                                        <strong>${cart.totalPrice.toFixed(2)}</strong>
+                                    <div className="order-info-container">
+                                        {/* <span className="cart-info-name">Product Name : </span> */}
+                                        <span className="cart-info-value">
+                                            {item.qty} x ${item.price} = ${item.qty * item.price}
+                                        </span>
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <button className="primary block" type="button" onClick={placeOrderHandler} disabled={cart.cartItems.length===0}>Place Order</button>
-                            </li>
-                            {
+                            </div>
+                        </div>
+                    ))
+                    }
+                </div>
+
+                <div className="order-info">
+                    <div className="ordertitle">ORDER SUMMARY</div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Items</span>
+                            <span className="subtotal-value">${cart.itemsPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Shipping</span>
+                            <span>${cart.shippingPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Tax</span>
+                            <span>${cart.taxPrice.toFixed(2)}</span>
+                        </div>
+                        <div className="subtotal">
+                            <span className="subtotal-name">Order Total</span>
+                            <span>${cart.totalPrice.toFixed(2)}</span>
+                        </div>
+                        <button type="button" onClick={placeOrderHandler} disabled={cart.cartItems.length===0}>Place Order</button>
+                        {
                                 loading && <LoadingBox ></LoadingBox>
                             }
                             {
                                 error && <MessageBox variant = 'danger'>{error}</MessageBox>
                             }
-                        </ul>
                     </div>
-                </div>
             </div>
         </div>
     )

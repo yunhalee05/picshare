@@ -1,0 +1,117 @@
+.seller-screen{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+
+}
+
+.seller-info-container{
+    width: 45%;
+}
+
+.seller-info-logo{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.seller-info-name{
+    text-align: center;
+    font-size: 4rem;
+    font-style: italic;
+    margin: 2rem;
+}
+
+.seller-info-logo img{
+    width: 35vw;
+    min-width: 40rem;
+    height: auto;
+    border: 3px solid black;
+    border-radius: 20px;
+}
+
+.seller-products{
+    width: 55%;
+}
+
+.seller-info-information{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.seller-info-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 7rem;
+    margin-bottom: 7rem;
+}
+.seller-info-container button{
+    background-color: black;
+    border-radius: 50%;
+    font-size: 2vw;
+    font-family: 'Fugaz One', cursive;
+    width:60%;
+}
+
+
+@media (max-width:1366px){
+    .seller-screen{
+        display: block;
+        justify-content: center;
+    }    
+    .seller-info-container{
+        width: 100%;
+    }
+    .seller-info-information{
+        margin-left: 30vw;
+        margin-right: 30vw;
+    }
+    .seller-info-container button{
+        width: 25%;
+    }
+}
+@media (max-width:940px){
+    .seller-info-information{
+        margin-left: 20vw;
+        margin-right: 20vw;
+    }
+    .seller-info-container button{
+        width: 35%;
+        font-size: 2.4rem;
+    }
+}
+@media (max-width:600px){
+    .seller-info-information{
+        margin-left: 4rem;
+        margin-right: 4rem;
+    }
+    .seller-info-container button{
+        width: 30rem;
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width:450px){
+    .seller-info-logo img{
+        width: 70vw;
+        min-width: 15rem;
+    }
+    .seller-info-information{
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    .seller-info-container button{
+        width: 25rem;
+        font-size: 2.2rem;
+    }
+    .seller-info-button{
+        margin: 3rem;
+    }
+}
+

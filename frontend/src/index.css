@@ -79,6 +79,9 @@ body {
 /* -----Search Screen------ */
 @import url("./style/SearchScreen.css");
 
+/* -----Seller Screen------ */
+@import url("./style/SellerScreen.css");
+
 
 
 /* Common */
@@ -391,7 +394,7 @@ img.large{
 }
 .map-input-box input {
   border-radius: 1rem 0 0 1rem;
-  border-right: 0;
+  /* border-right: 0; */
 }
 .map-input-box button {
   border-radius: 0 1rem 1rem 0;

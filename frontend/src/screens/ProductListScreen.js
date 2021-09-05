@@ -90,9 +90,9 @@ function ProductListScreen(props) {
             }
 
             <nav aria-label="Page navigation example" style={{width:'100%'}}>
-                <ul class="pagination" style={{justifyContent:'center'}}>
-                    <li class="page-item">
-                        <a class="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
+                <ul className="pagination" style={{justifyContent:'center'}}>
+                    <li className="page-item">
+                        <a className="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
                         </a>
@@ -102,8 +102,8 @@ function ProductListScreen(props) {
                             <li class="page-item"><a class="page-link" onClick={e=>setPage(x+1)} style={{color:'black'}}>{x+1}</a></li>
                         ))
                     }
-                    <li class="page-item">
-                        <a class="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
+                    <li className="page-item">
+                        <a className="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
