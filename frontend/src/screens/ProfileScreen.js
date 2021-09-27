@@ -11,6 +11,7 @@ function ProfileScreen() {
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("")
     const [confirmPassword, setconfirmPassword] = useState("")
+    const [image, setImage] = useState(null)
 
     const [sellerName, setSellerName] = useState('')
     const [sellerLogo, setSellerLogo] = useState('')
@@ -50,26 +51,15 @@ function ProfileScreen() {
         if(password!==confirmPassword){
             alert('Password and Confirm Password Are Not Matched')
         }else{
-            dispatch(updateUserProfile({userId:user._id, name, email, password,sellerName, sellerLogo, sellerDescription}))
+            const bodyFormData = new FormData();
+            bodyFormData.append('image', image);
+            dispatch(updateUserProfile({userId:user._id, name, email, password,sellerName, sellerLogo, sellerDescription}, bodyFormData))
         }
     }
 
     const profileuploadFileHandler = async(e)=>{
         const file = e.target.files[0];
-        const bodyFormData = new FormData();
-        bodyFormData.append('image', file);
-        setLoadingUpload(true);
-        try{
-            const {data} = await axios.post('/api/profileuploads', bodyFormData, {
-                headers:{'Content-Type':'multipart/form-data',
-                Authorization:`Bearer ${userInfo.token}`}
-            })
-            setSellerLogo(data);
-            setLoadingUpload(false);
-        }catch(error){
-            setErrorUpload(error.message);
-            setLoadingUpload(false);
-        }
+        setImage(file)
     }
 
     return (
@@ -109,14 +99,25 @@ function ProfileScreen() {
                                     <label htmlFor="sellerName">SELLER NAME</label>
                                     <input type="text" id="sellerName" placeholder="Enter seller name" value = {sellerName} onChange={(e)=>setSellerName(e.target.value)}/>
                                 </div>
+
                                 <div className="container">
                                     <label htmlFor="sellerLogo">SELLER LOGO</label>
-                                    <input type="text" id="sellerLogo" placeholder="Enter seller logo" value = {sellerLogo} onChange={(e)=>setSellerLogo(e.target.value)}/>
+                                    <div className="sellerLogo_container">
+                                        <div className="profile_seller_image">
+                                        {
+                                            image 
+                                            ? <img src={URL.createObjectURL(image)} alt="" />
+                                            : sellerLogo && 
+                                                    <img src={sellerLogo} alt="" />
+                                        }
+                                        </div>
+                                        <span>
+                                            <i className="fas fa-camera" ></i>
+                                            <input type="file" id="logoFile" label="Choose Image" onChange={profileuploadFileHandler} />
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="container">
-                                    <label htmlFor="logoFile">LOGO FILE</label>
-                                    <input type="file" id="logoFile" label="Choose Image" onChange={profileuploadFileHandler} />
-                                </div>
+
                                 <div className="container">
                                     <label htmlFor="sellerDescription">SELLER DESCRIPTION</label>
                                     <input type="text" id="sellerDescription" placeholder="Enter seller Description" value = {sellerDescription} onChange={(e)=>setSellerDescription(e.target.value)}/>

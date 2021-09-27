@@ -37,7 +37,11 @@ function Header() {
             <div className="header">
                 <div className="brandName">
                     <button type="button"  onClick={()=>setSidebarIsOpen(!sidebarIsOpen)}>
-                        <i className="fas fa-question fa-2x"></i>
+                        {
+                            sidebarIsOpen 
+                            ? <i className="fas fa-exclamation fa-2x"></i>
+                            :<i className="fas fa-question fa-2x"></i>
+                        }
                         <i className="fas fa-exclamation fa-3x"></i>
                     </button>
                     <Link className="brand" to="/">PICSHARE</Link>
@@ -88,32 +92,34 @@ function Header() {
                         </div>
                         )
                     }
-                    {userInfo && userInfo.isAdmin && (
-                        <div className="dropdown">
-                        <Link to="#admin">ADMIN {' '}<i className="fa fa-caret-down"></i></Link>
-                        <ul className="dropdown-content">
-                            <li>
-                            <Link to = "/dashboard">Dashboard</Link>
-                            </li>
-                            <li>
-                            <Link to = "/productlist">Products</Link>
-                            </li>
-                            <li>
-                            <Link to = "/orderlist">Orders</Link>
-                            </li>
-                            <li>
-                            <Link to = "/userlist">Users</Link>
-                            </li>
-                            <li>
-                            <Link to = "/support">Support</Link>
-                            </li>
-                        </ul>
-                        </div>
-                    )}
+                    {
+                        userInfo && userInfo.isAdmin && (
+                            <div className="dropdown">
+                                <Link to="#admin">ADMIN {' '}<i className="fa fa-caret-down"></i></Link>
+                            <ul className="dropdown-content">
+                                <li>
+                                    <Link to = "/dashboard">DASHBOARD</Link>
+                                </li>
+                                <li>
+                                    <Link to = "/productlist">PRODUCTS</Link>
+                                </li>
+                                <li>
+                                    <Link to = "/orderlist">ORDERS</Link>
+                                </li>
+                                <li>
+                                    <Link to = "/userlist">USERS</Link>
+                                </li>
+                                <li>
+                                    <Link to = "/support">SUPPORT</Link>
+                                </li>
+                            </ul>
+                            </div>
+                        )
+                    }
                 </div>
         </div>
           <div className={sidebarIsOpen? 'aside open': 'aside'}>
-                    <div style={{WebkitTextStroke: " 2px black", color:"white", fontSize:"2.5rem", paddingLeft:'1rem'}}> <br/>CATEGORY
+                    <div style={{ color:"black", fontSize:"4rem", marginLeft:'2rem', marginTop:"2rem"}}> <span style={{ border:"2px solid black",padding:"1rem"}}>CATEGORY</span>
                     <button style={{color:"black" , background:'none', fontSize:"5vw"}} type="button" className="close-sidebar" onClick={()=>setSidebarIsOpen(false)}>
                         <FaRegHandPointRight size="28" />
                       </button>

@@ -26,8 +26,8 @@ function UserListScreen(props) {
         }
     }
     return (
-        <div>
-            <h1>Users</h1>
+        <div className="list">
+            <div className="listtitle">USERS</div>
             {loadingDelete && <LoadingBox></LoadingBox>}
             {errorDelete && <MessageBox variant='danger'>{errorDelete}</MessageBox>}
             {successDelete && <MessageBox variant='success'>User Deleted Successfully</MessageBox>}
@@ -38,7 +38,7 @@ function UserListScreen(props) {
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th className="hidden">ID</th>
                                 <th>NAME</th>
                                 <th>EMAIL</th>
                                 <th>IS SELLER</th>
@@ -56,8 +56,8 @@ function UserListScreen(props) {
                                         <td>{user.isSeller? 'YES': 'NO'}</td>
                                         <td>{user.isAdmin? 'YES': 'NO'}</td>
                                         <td>
-                                            <button type = "button" className="small" onClick={()=>props.history.push(`/user/${user._id}/edit`)} >Edit</button>
-                                            <button type = "button" className="small" onClick ={()=>deleteHandler(user)}  >Delete</button>
+                                            <button type = "button" onClick={()=>props.history.push(`/user/${user._id}/edit`)} >Edit</button>
+                                            <button type = "button" onClick ={()=>deleteHandler(user)}  >Delete</button>
                                         </td>
                                     </tr>
                                 ))
@@ -66,6 +66,21 @@ function UserListScreen(props) {
                     </table>
                 )
             }
+                {/* <nav aria-label="Pagination">
+                    <ul className="pagination">
+                        <li className="page-item" style={{borderRadius:"10px 0px 0px 10px"}} onClick={()=>setPage(1)}>
+                            <i className="fas fa-backward" ></i>
+                        </li>
+                        {
+                            pageRange.map((x, index)=>(
+                                <li key={index} className={`page-item ${page===x+1 && 'page_active'}`} onClick={()=>setPage(x+1)}>{x+1}</li>
+                            ))
+                        }
+                        <li className="page-item" style={{borderRadius:"0px 10px 10px 0px"}} onClick={()=>setPage(pageRange.length)}>
+                            <i className="fas fa-forward" ></i>
+                        </li>
+                    </ul>
+                </nav> */}
         </div>
     )
 }

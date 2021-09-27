@@ -8,8 +8,10 @@ function Product({product}) {
     return (
         <div>
             <Link to={`/product/${product._id}`}>
-                <div  className="card" >
-                    <img className="product_image" src={product.image} alt={product.name}></img>
+                <div  className="homeproduct_card" >
+                    <div className="homeproduct_card_image">
+                        <img src={product.image} alt={product.name}></img>
+                    </div>
                     <div className="card-body">
                 <Link to={`/product/${product._id}`}>
                         <img  src={product.seller.seller.logo} alt={product.seller.seller.name} />

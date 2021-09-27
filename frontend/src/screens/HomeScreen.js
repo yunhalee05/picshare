@@ -1,7 +1,7 @@
 import React , {useEffect} from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import TopProduct from '../components/TopProduct'
-import Product from '../components/Product'
+import HomeProduct from '../components/HomeProduct'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import {useDispatch, useSelector} from 'react-redux'
@@ -33,11 +33,14 @@ function HomeScreen() {
                 products.length!==0 &&
                 <>
                     <TopProduct products={products}/> 
-                    <div className="maintopic" >'PICSHARE always with you'</div> 
-                    <div className="products" >
-                            {products.map((product,index)=>(
-                                    <Product key={product._id}  product = {product}/> 
-                            ))}
+                    <div className="maintopic" >
+                        <p>PICSHARE always with you 🌼 PICSHARE always with you 🌼 PICSHARE always with you 🌼 PICSHARE always with you 🌼</p>
+                    </div> 
+                    <div className="homeproducts_card_container" >
+                        {
+                            products.map((product,index)=>(
+                                <HomeProduct key={product._id}  product = {product}/> 
+                        ))}
                     </div> 
                       
                 </>                

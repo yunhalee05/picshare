@@ -3,6 +3,7 @@
 
 .edit-product{
     text-align: center;
+    margin-top: 4rem;
 }
 
 .edit-title-container{
@@ -95,6 +96,39 @@
   
   .formbutton:hover{
     border: 5px dashed black;
+  }
+
+  .editproduct_image_container{
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  .editproduct_image_upload{
+    width: 100px;
+  }
+
+  .editproduct_image_upload input{
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    transform: translate(0px, -25px);
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .editproduct_image{
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .editproduct_image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   @media (max-width:900px){

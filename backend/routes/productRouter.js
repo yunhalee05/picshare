@@ -7,7 +7,7 @@ import { isAdmin, isAuth, isSellerOrAdmin } from '../utils.js';
 const productRouter = express.Router();
 
 productRouter.get('/' ,expressAsyncHandler(async(req, res)=>{
-    const limit  = Number(req.query.limit)|| 9;
+    const limit  = Number(req.query.limit)|| 8;
     const page = Number(req.query.page) || 1;
 
     const seller = req.query.seller || ''

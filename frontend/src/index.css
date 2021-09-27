@@ -7,6 +7,8 @@ html {
   font-size: 62.5%; /* 16px x 62.5 = 10px = 1rem */
   box-sizing: border-box;
 }
+
+
 body {
   margin: 0;
   width:  100%;
@@ -82,7 +84,10 @@ body {
 /* -----Seller Screen------ */
 @import url("./style/SellerScreen.css");
 
-
+.main{
+  min-height: 77vh;
+  margin-top: 4rem;
+}
 
 /* Common */
 h1 {
@@ -400,21 +405,7 @@ img.large{
   border-radius: 0 1rem 1rem 0;
   border-left: 0;
 }
-/* Pagenation */
 
-.pagination a{
-  padding:1rem;
-  margin:0.5rem;
-  border-radius: 0.5rem;
-  border:0.1rem #a4a4a4 solid;
-  font-family: Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-}
-.pagination a.active {
-  font-weight: bold;
-}
 /* Dashboard */
 
 .summary > li {

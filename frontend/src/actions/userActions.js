@@ -79,25 +79,32 @@ export const detailsUser = (userId) => async(dispatch, getState)=>{
     }
 }
 
-export const updateUserProfile = (user)=> async (dispatch, getState)=>{
+export const updateUserProfile = (user, bodyFormData)=> async (dispatch, getState)=>{
     dispatch({
         type: USER_UPDATE_PROFILE_REQUEST,
         payload:user
     })
     const {userSignin:{userInfo}} = getState();
     try{
-        const {data} = await axios.put(`/api/users/profile`, user, {
+        if(bodyFormData.image!== null){
+            const {data} = await axios.post('/api/profileuploads', bodyFormData, {
+                headers:{'Content-Type':'multipart/form-data',
+                Authorization:`Bearer ${userInfo.token}`}
+            })
+            user = {...user, sellerLogo:data}
+        }
+        const {res} = await axios.put(`/api/users/profile`, user, {
             headers:{Authorization: `Bearer ${userInfo.token}`}
         })
         dispatch({
             type: USER_UPDATE_PROFILE_SUCCESS,
-            payload:data
+            payload:res
         })
         dispatch({
             type:USER_SIGNIN_SUCCESS,
-            payload:data
+            payload:res
         })
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('userInfo', JSON.stringify(res))
     }catch(error){
         const message = error.response && error.response.data.message
         ? error.response.data.message

@@ -17,6 +17,7 @@ function ProductEditScreen(props) {
     const [brand, setBrand] = useState('')
     const [description, setDescription] = useState('')
     const [countInStock, setCountInStock] = useState('')
+    const [productImage, setProductImage] = useState(null)
     
     const productDetails = useSelector(state => state.productDetails)
     const {loading, error, product} =productDetails
@@ -47,30 +48,16 @@ function ProductEditScreen(props) {
 
     const submitHandler= (e)=>{
         e.preventDefault();
-        dispatch(updateProduct({_id:productId, name, price, countInStock, category, brand, image, description}));
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', productImage);
+        dispatch(updateProduct({_id:productId, name, price, countInStock, category, brand, description}, bodyFormData));
     }
 
-    const [loadingUpload, setLoadingUpload] = useState(false)
-    const [errorUpload, setErrorUpload] = useState('')
     const userSignin = useSelector(state => state.userSignin)
     const {userInfo} = userSignin
     const uploadFileHandler= async(e)=>{
         const file = e.target.files[0]//하나의 파일만 업로드가능
-        const bodyFormData = new FormData();
-        bodyFormData.append('image', file);
-        setLoadingUpload(true);
-        try{
-            const{data} = await axios.post('/api/uploads', bodyFormData,{
-                headers:{'Content-Type':'multipart/form-data',
-                Authorization:`Bearer ${userInfo.token}`}
-            })
-            setImage(data)
-            setLoadingUpload(false);
-        }catch(error){
-            setErrorUpload(error.message)
-            setLoadingUpload(false)
-        }
-
+        setProductImage(file)
     }
     return (
         <div className="edit-product">
@@ -112,20 +99,23 @@ function ProductEditScreen(props) {
                         </div>
                         <div>
                             <label htmlFor="image">IMAGE</label>
-                            <input
-                                id="image"
-                                type="text"
-                                placeholder="Enter image"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
-                            ></input>
+                            <div className="editproduct_image_container">
+                                <div className="editproduct_image">
+                                {
+                                    productImage 
+                                    ? <img src={URL.createObjectURL(productImage)} alt="" />
+                                    : image && 
+                                            <img src={image} alt="" />
+                                }
+                                </div>
+                                <span className="editproduct_image_upload">
+                                    <i className="fas fa-camera" ></i>
+                                    <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
+                                </span>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="imageFile">IMAGEFILE</label>
-                            <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
-                        </div>
-                        {loadingUpload && <LoadingBox></LoadingBox>}
-                        {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>}
+                        {/* {loadingUpload && <LoadingBox></LoadingBox>}
+                        {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>} */}
                         <div>
                             <label htmlFor="category">CATEGORY</label>
                             <input

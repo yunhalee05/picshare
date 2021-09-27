@@ -1,6 +1,9 @@
 
 .search{
-    padding: 2rem;
+    /* padding: 2rem; */
+    max-width: 1450px;
+    margin: auto;
+    margin-top: 4rem;
 }
 
 .search-result{
@@ -19,100 +22,155 @@
     font-weight: 600;
 }
 
-.search-info{
-    width: 100%;
-    align-items: flex-start;
-    position: relative;
+
+.search-filter-container{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2rem;
+    align-items: flex-end;
+}
+
+.search-filters{
+    display: block;
+    margin: 2rem;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: 370px;
+    padding: 3px 3px 1px 3px;
+    background-color: black;
+}
+
+.search-filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    padding-left: 19px;
+    margin-bottom: 3px;
 }
 
 .search-filter-name{
     text-align: center;
-    padding: 2rem;
-    font-size: 2vw;
-    border-radius: 50%;
-    box-shadow: -13px 13px;
-    border: 1px solid black;
-    max-width: 35rem;
-    width: 40%;
-  
-  }
-  .search-filters ul{
-      font-size: 1vw;
-      padding: 3rem;
-  }
-
-  .search-filters li{
-      cursor: pointer;
-  }
-
-
-  .active{
-    font-size: 1.6vw;
-  }
-
-.search-filters{
-    flex: 1 1 25rem;
+    font-size: 13px;
 }
+
+.search-filter select{
+    width: 250px;
+}
+
+.search-filter-categories{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.search-filter-category{
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 17px;
+    cursor: pointer;
+    margin-right: 2rem;
+    padding-top: 5px;
+    position: relative;
+}
+
+.search-filter-category .active{
+    font-weight: 800;
+}
+
+.search-filter-category:hover::before{
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #e66825;
+    position: absolute;
+    left: 98%;
+}
+
 
 .search-products{
-    flex: 3 1 75rem;
-}
-
-.search-product-container{
-   width: 100%;
-   display: flex;
-   justify-content: flex-start;
-   flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+    justify-content: center;
+    grid-gap:30px;
+    overflow: hidden;
 }
 
 .search-product{
-    min-width: 300px;
-    height: auto;
-    max-width: 380px;
-    /* position: relative; */
+    margin: auto;
+    height: 500px;
+    position: relative;
+    margin-top: 2rem;
     cursor: pointer;
-    margin: 2.3rem;
+}
+
+.search-product-image{
+    width: 370px;
+    height: 420px;
+    overflow: hidden;
 }
 
 .search-product img{
     width: 100%;
     height: 100%;
-    display: block;
     object-fit: cover;
-    /* margin: 10px; */
-    border: 1px solid gray;
-    /* transition:all 0.2s ease-in-out; */
-
 }
 
-.search-product img:hover{
-    transform: rotate(3deg);
-    transform-origin: 0 0;
-    /* mix-blend-mode: luminosity; */
-
-}
 
 .search-product-info{
     display: flex;
     justify-content: space-between;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.3vw;
-    padding: 1rem;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    padding: 1rem 2rem 1rem 2rem;
+    font-weight: 500;
+    border: 3px solid black;
+    width:  370px;
+    height: 80px;
+    text-overflow: hidden;
 }
 
-.search-product-description{
-    color: #666666;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    padding-left: 20px;
 
+.search-product:hover .search-product-info{
+    background-color: black;
+    color: white;
+}
 
+nav{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.pagination{
+    font-weight: 800;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.pagination li{
+    padding: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    z-index: 1;
+}
+.page_number{
+    border-right: 1px solid black;
+}
+
+.page_active{
+  background-color: #ff643d;
 }
 
 
+/* 
 @media (max-width:1200px){
     .search-products{
         flex: 2 1 50rem;
@@ -154,4 +212,4 @@
         flex: 1 1 20rem;
     }
 
-}
+} */

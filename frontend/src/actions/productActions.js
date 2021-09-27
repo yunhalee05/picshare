@@ -74,7 +74,7 @@ export const createProduct = (product) =>async(dispatch, getState)=>{
 
 
 
-export const updateProduct = (product)=>async(dispatch, getState)=>{
+export const updateProduct = (product, bodyFormData)=>async(dispatch, getState)=>{
     dispatch({
         type: PRODUCT_UPDATE_REQUEST,
         payload:product
@@ -82,12 +82,17 @@ export const updateProduct = (product)=>async(dispatch, getState)=>{
     const {userSignin:{userInfo}} = getState();
 
     try{
-        const {data} = await Axios.put(`/api/products/${product._id}`,product, {
+        const{data} = await Axios.post('/api/uploads', bodyFormData,{
+            headers:{'Content-Type':'multipart/form-data',
+            Authorization:`Bearer ${userInfo.token}`}
+        })
+        product = {...product, image:data}
+        const {res} = await Axios.put(`/api/products/${product._id}`,product, {
             headers: {Authorization : `Bearer ${userInfo.token}`}
         } )
         dispatch({
             type:PRODUCT_UPDATE_SUCCESS,
-            payload:data
+            payload:res
         })
     }catch(error){
         dispatch({type:PRODUCT_UPDATE_FAIL, payload:error.response && error.response.data.message? error.response.data.message:error.message})

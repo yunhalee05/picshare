@@ -3,8 +3,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    min-height: 80vh;
+    min-height: calc(100vh - 30rem);
     margin-bottom: 8rem;
+    margin-top: 2rem;
 }
 
 .cart .cart-item{

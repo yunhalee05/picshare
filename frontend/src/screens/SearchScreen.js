@@ -24,6 +24,8 @@ function SearchScreen(props) {
     const [rating, setRating] = useState(0)
     const [order, setOrder] = useState('newest')
 
+    const [price, setPrice] = useState('Any')
+
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(9)
 
@@ -33,8 +35,9 @@ function SearchScreen(props) {
 
 
     useEffect(() => {
+        handleMinMax();
         dispatch(searchProducts({name:keyword!=='all'? keyword: '', category:category !=='all'? category:'', min, max,rating,order,page,limit}))
-    }, [dispatch,page,category,min, max,rating,order, keyword, limit])
+    }, [dispatch,page,category,min, max,rating,order, keyword, limit, price])
 
     const productCategoryList = useSelector(state => state.productCategoryList)
     const {loading:loadingCategories, error:errorCategories, categories} = productCategoryList
@@ -42,6 +45,16 @@ function SearchScreen(props) {
     useEffect(()=>{
         dispatch(listProductCategories())
     },[dispatch])
+
+    const handleMinMax = () =>{
+        prices.forEach(p =>{
+            if(p.name===price){
+                setMax(p.max)
+                setMin(p.min)
+                return;
+            }
+        })
+    } 
     
     return (
         <div>
@@ -53,8 +66,12 @@ function SearchScreen(props) {
                 <div className="search">
                     <div className="search-result">
                             <button>{count} Results</button>
-                            <div>
-                                Sort by :&nbsp; &nbsp;
+                    </div>
+                    <div className="search-filter-container">
+                        <div className="search-filters">
+                            <div className="search-filter">
+                                <span className="search-filter-name">Sort by</span>
+
                                 <select value = {order} onChange={e=>setOrder(e.target.value)}>
                                     <option value="newest">Newest Arrivals</option>
                                     <option value="lowest">Price: Low to High</option>
@@ -62,101 +79,91 @@ function SearchScreen(props) {
                                     <option value="toprated">Avg. Customer Reviews</option>
                                 </select>
                             </div>
-                    </div>
-
-                    <div className="search-info">
-                        <div className="search-filters">
                             <div className="search-filter">
-                                <div className="search-filter-name">
-                                    Category
-                                </div>
-                                {loadingCategories? <LoadingBox></LoadingBox> :
+                                <span className="search-filter-name">Price</span>
+                                <select value = {price} onChange={e=>setPrice(e.target.value)}>
+                                    {
+                                        prices.map((p, index)=>(
+                                            <option key={index} className={`${p.min}-${p.max}`===`${min}-${max}`? 'active': ''} value={p.name}>{p.name}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                            <div className="search-filter" style={{marginBottom:"2px"}}>
+                                <span className="search-filter-name">Rating</span>
+                                <select value = {rating} onChange={e=>setRating(e.target.value)}>
+                                    {
+                                        ratings.map((r, index)=>(
+                                            <option key={index} className={`${r.rating}`===`${rating}`? 'active':''} value={r.rating}>
+                                                {/* <Rating caption={" & up"} rating={r.rating}></Rating> */}
+                                                {r.name}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div className="search-filter-categories">
+                            {loadingCategories? <LoadingBox></LoadingBox> :
                                 errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
                                 (
-                                    <ul >
-                                        <li onClick={e=>setCategory('all')} className={category ==='all'? 'active':''}>
+                                    <>
+                                        <div onClick={e=>setCategory('all')} className='search-filter-category' style={category ==='all'&& {fontWeight:"800"}}>
                                             Any
-                                        </li>
+                                        </div>
                                         {categories.map(c=>
                                             (
-                                                <li key = {c} onClick={e=>setCategory(c)} className={category ===c? 'active':''}>
-                                                {c}
-                                                </li>
+                                                <><span style={{marginRight:"2rem"}}>|</span>
+                                                <div key = {c} onClick={e=>setCategory(c)} className='search-filter-category' style={category=== c ? {fontWeight:"800"}:{}}>
+                                                    {c}
+                                                </div>
+                                                </>
                                             ))
                                         }
-                                    </ul>
-                                )}
-                            </div> 
-                            <div search-filter>
-                                <div className="search-filter-name">
-                                    Price
-                                </div>
-                                <ul >
-                                    {prices.map(p=>(
-                                        <li key={p.name} className={`${p.min}-${p.max}`===`${min}-${max}`? 'active': ''} onClick={e=> {setMin(p.min);setMax(p.max)} }>
-                                            {p.name}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="search-filter">
-                                <div className="search-filter-name">
-                                    Reviews
-                                </div>
-                                <ul style={{"fontSize":"2rem", "padding":"3rem"}}>
-                                    {ratings.map(r=>(
-                                        <li key={r.name} className={`${r.rating}`===`${rating}`? 'active':''} onClick={e=> setRating(r.rating)}>
-                                            {/* <Rating caption={" & up"} rating={r.rating}></Rating> */}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                                    </>
+                                )
+                            }
                         </div>
+                    </div>
 
-                        <div className="search-products">
-                            {loading
-                            ? <LoadingBox></LoadingBox> 
-                            :error
-                                ? <MessageBox variant='danger'>{error}</MessageBox> 
-                                :(<>
-                                {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
-                                    <div className="search-product-container">
-                                        {products.map(product=>(
-                                            <div className="search-product">
-                                                    <SearchProduct key={product._id}  product = {product}/>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </>)
-                                }
-                        </div>
-                    
+                    <div>
+                        {loading
+                        ? <LoadingBox></LoadingBox> 
+                        :error
+                            ? <MessageBox variant='danger'>{error}</MessageBox> 
+                            :(<>
+                            {products.length===0 &&  <MessageBox>No Product Found</MessageBox>}
+                                <div className="search-products">
+                                    {products.map(product=>(
+                                        <div className="search-product">
+                                                <SearchProduct key={product._id}  product = {product}/>
+                                        </div>
+                                    ))}
+                                </div>
+                            </>)
+                            }
                     </div>
 
                 </div>)
             }
 
-            <nav aria-label="Page navigation example" style={{width:'100%'}}>
-                <ul class="pagination" style={{justifyContent:'center'}}>
-                    <li class="page-item">
-                        <a class="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    {
-                        pageRange.map(x=>(
-                            <li class="page-item"><a class="page-link" onClick={e=>setPage(x+1)} style={{color:'black'}}>{x+1}</a></li>
-                        ))
-                    }
-                    <li class="page-item">
-                        <a class="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
+                <nav aria-label="Pagination">
+                    <ul className="pagination">
+                        <li className="page-item" style={{borderRadius:"10px 0px 0px 10px"}} onClick={()=>setPage(1)}>
+                            <i className="fas fa-backward" ></i>
+                        </li>
+                        {
+                            pageRange.map((x, index)=>(
+                                <li key={index} className={`page-item ${page===x+1 && 'page_active'}`} onClick={()=>setPage(x+1)}>{x+1}</li>
+                            ))
+                        }
+                        <li className="page-item" style={{borderRadius:"0px 10px 10px 0px"}} onClick={()=>setPage(pageRange.length)}>
+                            <i className="fas fa-forward" ></i>
+                        </li>
+                    </ul>
                 </nav>
+
+
         </div>
     )
 }

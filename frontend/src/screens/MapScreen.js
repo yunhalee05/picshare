@@ -39,7 +39,6 @@ function MapScreen(props) {
 
     const onLoadPlaces = (place)=>{
         placeRef.current = place
-        console.log(placeRef.current)
     }
 
     const onIdle = ()=>{
@@ -48,7 +47,7 @@ function MapScreen(props) {
 
     const onPlacesChanged =()=>{
         const place = placeRef.current.getPlaces()[0].geometry.location;        
-        console.log(place)
+        // console.log(place)
             setCenter({lat:place.lat(), lng:place.lng()})
             setLocation({lat:place.lat(), lng:place.lng()})
 

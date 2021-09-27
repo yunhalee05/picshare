@@ -80,27 +80,21 @@ function OrderListScreen(props) {
                     )
             }
 
-            <nav aria-label="Page navigation example" style={{width:'100%'}}>
-                <ul class="pagination" style={{justifyContent:'center'}}>
-                    <li class="page-item">
-                        <a class="page-link" aria-label="Previous" onClick={e=>setPage(1)} style={{color:'black'}}>
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    {
-                        pageRange.map(x=>(
-                            <li class="page-item"><a class="page-link" onClick={e=>setPage(x+1)} style={{color:'black'}}>{x+1}</a></li>
-                        ))
-                    }
-                    <li class="page-item">
-                        <a class="page-link" onClick={e=>setPage(pages)} aria-label="Next" style={{color:'black'}}>
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+                <nav aria-label="Pagination">
+                    <ul className="pagination">
+                        <li className="page-item" style={{borderRadius:"10px 0px 0px 10px"}} onClick={()=>setPage(1)}>
+                            <i className="fas fa-backward" ></i>
+                        </li>
+                        {
+                            pageRange.map((x, index)=>(
+                                <li key={index} className={`page-item ${page===x+1 && 'page_active'}`} onClick={()=>setPage(x+1)}>{x+1}</li>
+                            ))
+                        }
+                        <li className="page-item" style={{borderRadius:"0px 10px 10px 0px"}} onClick={()=>setPage(pageRange.length)}>
+                            <i className="fas fa-forward" ></i>
+                        </li>
+                    </ul>
+                </nav>
         </div>
     )
 }

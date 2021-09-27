@@ -10,7 +10,7 @@ function SearchBox({history}) {
     return (
             <div className="search">
                 <input type="text" name="name" id = "name" onChange={e=>setName(e.target.value)} />
-                <Link to={`/search/name/${name}`}><i className="fa fa-search" style={{color:'#fac83e'}}></i></Link>
+                <Link to={`/search/name/${name}`}><i className="fa fa-search" ></i></Link>
             </div>
     )
 }
