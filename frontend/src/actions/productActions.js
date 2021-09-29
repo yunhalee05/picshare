@@ -52,7 +52,7 @@ export const detailsProduct = (productId) =>async(dispatch)=>{
 
 }
 
-export const createProduct = (product) =>async(dispatch, getState)=>{
+export const createProduct = (product,bodyFormData) =>async(dispatch, getState)=>{
     // console.log(product)
     dispatch({
         type: PRODUCT_CREATE_REQUEST
@@ -60,6 +60,13 @@ export const createProduct = (product) =>async(dispatch, getState)=>{
     const {userSignin:{userInfo}} = getState();
 
     try{
+        const{res} = await Axios.post('/api/uploads', bodyFormData,{
+            headers:{'Content-Type':'multipart/form-data',
+            Authorization:`Bearer ${userInfo.token}`}
+        })
+
+        product = {...product, image:res}
+
         const {data} = await Axios.post('/api/products',{body:product}, {
             headers: {Authorization : `Bearer ${userInfo.token}`}
         } )

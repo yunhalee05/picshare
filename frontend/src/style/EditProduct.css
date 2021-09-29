@@ -130,6 +130,11 @@
     height: 100%;
     object-fit: cover;
   }
+
+  .edit-form select{
+    width: 60vw;
+    text-align: center;
+  }
   
   @media (max-width:900px){
       .edittitle{

@@ -5,6 +5,7 @@ import { createProduct } from '../actions/productActions'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
+import {productCategory} from '../utils'
 
 function ProductCreateScreen(props) {
 
@@ -15,6 +16,7 @@ function ProductCreateScreen(props) {
     const [brand, setBrand] = useState('')
     const [description, setDescription] = useState('')
     const [countInStock, setCountInStock] = useState(0)
+
     
     const productCreate = useSelector(state => state.productCreate)
     const {loading:loadingCreate, error:errorCreate, success:successCreate} = productCreate
@@ -40,26 +42,15 @@ function ProductCreateScreen(props) {
 
     const uploadFileHandler= async(e)=>{
         const file = e.target.files[0]//하나의 파일만 업로드가능
-        const bodyFormData = new FormData();
-        bodyFormData.append('image', file);
-        setLoadingUpload(true);
-        try{
-            const{data} = await axios.post('/api/uploads', bodyFormData,{
-                headers:{'Content-Type':'multipart/form-data',
-                Authorization:`Bearer ${userInfo.token}`}
-            })
-            setImage(data)
-            setLoadingUpload(false);
-        }catch(error){
-            setErrorUpload(error.message)
-            setLoadingUpload(false)
-        }
-
+        setImage(file)
     }
 
     const submitHandler= (e)=>{
+
         e.preventDefault();
-        dispatch(createProduct({name, price, countInStock, category, brand, image, description}));
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', image);
+        dispatch(createProduct({name, price, countInStock, category, brand, description}, bodyFormData));
     }
 
     return (
@@ -97,30 +88,34 @@ function ProductCreateScreen(props) {
                         </div>
                         <div>
                             <label htmlFor="image">IMAGE</label>
-                            <input
-                                id="image"
-                                type="text"
-                                placeholder="Enter image"
-                                value={image}
-                                onChange={(e) => setImage(e.target.value)}
-                                required
-                            ></input>
+                            <div className="editproduct_image_container">
+                                <div className="editproduct_image">
+                                {
+                                    image 
+                                    ? <img src={URL.createObjectURL(image)} alt="" />
+                                    : ""
+                                }
+                                </div>
+                                <span className="editproduct_image_upload">
+                                    <i className="fas fa-camera" ></i>
+                                    <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
+                                </span>
+                                <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
+
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="imageFile">IMAGEFILE</label>
-                            <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
-                        </div>
+
                         {loadingUpload && <LoadingBox></LoadingBox>}
                         {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>}
                         <div>
                             <label htmlFor="category">CATEGORY</label>
-                            <input
-                                id="category"
-                                type="text"
-                                placeholder="Enter category"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                            ></input>
+                            <select name="category" onChange={(e)=>setCategory(e.target.value)}>
+                                {
+                                    productCategory.map((c, index)=>(
+                                        <option selected={c===category? true:false} value={c}>{c}</option>
+                                    ))
+                                }
+                            </select>
                         </div>
                         <div>
                             <label htmlFor="brand">BRAND</label>

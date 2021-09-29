@@ -36,4 +36,7 @@ export const ratings = [
     },
 ]
 
+export const productCategory = ['Landscape', 'Drawing', 'Life','People','Others']
+
 export const BASE_URL = "http://localhost:3000"
+

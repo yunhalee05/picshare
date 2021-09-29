@@ -5,6 +5,8 @@ import { detailsProduct, updateProduct } from '../actions/productActions'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
+import {productCategory} from '../utils'
+
 
 function ProductEditScreen(props) {
 
@@ -118,13 +120,13 @@ function ProductEditScreen(props) {
                         {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>} */}
                         <div>
                             <label htmlFor="category">CATEGORY</label>
-                            <input
-                                id="category"
-                                type="text"
-                                placeholder="Enter category"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                            ></input>
+                            <select name="category" onChange={(e)=>setCategory(e.target.value)}>
+                                {
+                                    productCategory.map((c, index)=>(
+                                        <option selected={c===category? true:false} value={c}>{c}</option>
+                                    ))
+                                }
+                            </select>
                         </div>
                         <div>
                             <label htmlFor="brand">BRAND</label>
