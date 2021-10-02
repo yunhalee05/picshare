@@ -15,6 +15,10 @@
 
 /* Cart */
 
+.cart a:hover{
+    color: #f27216;
+}
+
   .cart-row{
     display: flex;
     flex-wrap: wrap;
@@ -24,7 +28,8 @@
     box-shadow: -2rem 2rem  black;
     margin-left: 5rem;
     padding: 3rem;
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 20px;
     font-size: 2rem;
     margin-top: 5rem;
   }

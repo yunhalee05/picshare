@@ -9,6 +9,7 @@ import Rating from '../components/Rating';
 import { useState } from 'react';
 import SearchProduct from '../components/SearchProduct';
 import {Link} from 'react-router-dom'
+import {productCategory} from '../utils'
 
 
 function SearchScreen(props) {
@@ -18,13 +19,11 @@ function SearchScreen(props) {
     const productList = useSelector(state => state.productList)
     const {loading, error, products, pages, count} = productList
 
-    const [category, setCategory] = useState('all')
+    const [category, setCategory] = useState('')
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
     const [rating, setRating] = useState(0)
     const [order, setOrder] = useState('newest')
-
-    const [price, setPrice] = useState('Any')
 
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(9)
@@ -33,29 +32,10 @@ function SearchScreen(props) {
 
     const dispatch = useDispatch()
 
-
     useEffect(() => {
-        handleMinMax();
-        dispatch(searchProducts({name:keyword!=='all'? keyword: '', category:category !=='all'? category:'', min, max,rating,order,page,limit}))
-    }, [dispatch,page,category,min, max,rating,order, keyword, limit, price])
+        dispatch(searchProducts({name:keyword!=='all'? keyword: '', category, min, max,rating,order,page,limit}))
+    }, [dispatch,page,min, max,rating,order, keyword, limit, category])
 
-    const productCategoryList = useSelector(state => state.productCategoryList)
-    const {loading:loadingCategories, error:errorCategories, categories} = productCategoryList
-
-    useEffect(()=>{
-        dispatch(listProductCategories())
-    },[dispatch])
-
-    const handleMinMax = () =>{
-        prices.forEach(p =>{
-            if(p.name===price){
-                setMax(p.max)
-                setMin(p.min)
-                return;
-            }
-        })
-    } 
-    
     return (
         <div>
             {loading
@@ -81,21 +61,20 @@ function SearchScreen(props) {
                             </div>
                             <div className="search-filter">
                                 <span className="search-filter-name">Price</span>
-                                <select value = {price} onChange={e=>setPrice(e.target.value)}>
+                                <select onChange={e=>{setMin(Number(e.target.value.split(',')[0])); setMax(Number(e.target.value.split(',')[1]));}}>
                                     {
                                         prices.map((p, index)=>(
-                                            <option key={index} className={`${p.min}-${p.max}`===`${min}-${max}`? 'active': ''} value={p.name}>{p.name}</option>
+                                            <option key={index} className={`${p.min}-${p.max}`===`${min}-${max}`? 'active': ''} value={`${p.min},${p.max}`} name={p.max} selected={p.min-p.max===min-max? true:false}>{p.name}</option>
                                         ))
                                     }
                                 </select>
                             </div>
                             <div className="search-filter" style={{marginBottom:"2px"}}>
                                 <span className="search-filter-name">Rating</span>
-                                <select value = {rating} onChange={e=>setRating(e.target.value)}>
+                                <select value = {rating} onChange={e=>setRating(Number(e.target.value))}>
                                     {
                                         ratings.map((r, index)=>(
-                                            <option key={index} className={`${r.rating}`===`${rating}`? 'active':''} value={r.rating}>
-                                                {/* <Rating caption={" & up"} rating={r.rating}></Rating> */}
+                                            <option key={index} className={`${r.rating}`===`${rating}`? 'active':''} value={r.rating} selected={rating===r.rating? true:false}>
                                                 {r.name}
                                             </option>
                                         ))
@@ -104,25 +83,21 @@ function SearchScreen(props) {
                             </div>
                         </div>
                         <div className="search-filter-categories">
-                            {loadingCategories? <LoadingBox></LoadingBox> :
-                                errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
+                            <div onClick={()=>setCategory('')} className='search-filter-category' style={{fontWeight:category ===''&&"800"}}>
+                                Any
+                            </div>
+                            {
+                                productCategory.map(c=>
                                 (
                                     <>
-                                        <div onClick={e=>setCategory('all')} className='search-filter-category' style={category ==='all'&& {fontWeight:"800"}}>
-                                            Any
+                                        <span style={{marginRight:"2rem"}}>|</span>
+                                        <div onClick={()=>setCategory(c)} className='search-filter-category' style={{fontWeight:category=== c ? '800':''}}>
+                                            {c}
                                         </div>
-                                        {categories.map(c=>
-                                            (
-                                                <><span style={{marginRight:"2rem"}}>|</span>
-                                                <div key = {c} onClick={e=>setCategory(c)} className='search-filter-category' style={category=== c ? {fontWeight:"800"}:{}}>
-                                                    {c}
-                                                </div>
-                                                </>
-                                            ))
-                                        }
                                     </>
-                                )
+                                ))
                             }
+                            {console.log(category)}
                         </div>
                     </div>
 

@@ -154,6 +154,15 @@ button.small{
   font-family: 'Ubuntu', sans-serif;
 }
 
+a{
+  color: black;
+}
+
+a:hover{
+  text-decoration: none;
+  color: black;
+}
+
 
 .badge{
   background-color: #f02020;

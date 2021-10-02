@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import  {BrowserRouter,Route} from 'react-router-dom'
 import ProductScreen from './screens/ProductScreen';
 import HomeScreen from './screens/HomeScreen';
 import CartScreen from './screens/CartScreen';
-import {Link} from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import SigninScreen from './screens/SigninScreen';
-import { signout } from './actions/userActions';
 import RegisterScreen from './screens/RegisterScreen';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
@@ -23,17 +21,11 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
 import SellerScreen from './screens/SellerScreen';
-import SearchBox from './components/SearchBox';
 import SearchScreen from './screens/SearchScreen';
-import { listProductCategories, listProductsCategories } from './actions/productActions';
-import LoadingBox from './components/LoadingBox';
-import MessageBox from './components/MessageBox';
 import MapScreen from './screens/MapScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SupportScreen from './screens/SupportScreen';
 import ChatBox from './components/ChatBox';
-import { GrInbox } from "react-icons/gr";
-import { FaRegHandPointRight } from "react-icons/fa";
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ProductCreateScreen from './screens/ProductCreateScreen';
@@ -41,27 +33,8 @@ import ProductCreateScreen from './screens/ProductCreateScreen';
 
 function App() {
 
-  const cart = useSelector(state=> state.cart);
-  const {cartItems} = cart;
   const userSignin = useSelector(state=>state.userSignin);
   const {userInfo} = userSignin;
-
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
-
-
-  const dispatch = useDispatch()
-  const signoutHandler = () =>{
-    dispatch(signout());
-  }
-  
-
-
-  const productCategoryList = useSelector(state => state.productCategoryList)
-  const {loading:loadingCategories, error:errorCategories, categories} = productCategoryList
-
-  useEffect(() => {
-    dispatch(listProductCategories())
-  }, [dispatch])
 
   return (
     <BrowserRouter >
@@ -91,9 +64,9 @@ function App() {
             <SellerRoute path="/orderlist/seller" component={OrderListScreen} exact></SellerRoute>   
             <Route path="/seller/:id" component={SellerScreen} exact></Route>
             <Route path="/search/name/:name?" component={SearchScreen} exact></Route>
-            <Route path="/search/category/:category" component={SearchScreen} exact></Route>
+            {/* <Route path="/search/category/:category" component={SearchScreen} exact></Route>
             <Route path="/search/category/:category/name/:name" component={SearchScreen} exact></Route>
-            <Route path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route>
+            <Route path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route> */}
             <PrivateRoute path="/map" component={MapScreen} exact></PrivateRoute>
             <AdminRoute path="/dashboard" component={DashboardScreen} exact></AdminRoute>          
             <AdminRoute path="/support" component={SupportScreen} exact></AdminRoute>          

@@ -43,7 +43,7 @@ function SellerScreen(props) {
                      </div>
 
                      <div className="seller-info-information">
-                        <span >Email : </span>
+                        <label >Email : </label>
                         <span >{user.email}</span>
                      </div>
 
@@ -56,22 +56,21 @@ function SellerScreen(props) {
                 )}
             </div>
 
-            <div className="search-products" >
-                 {loadingProducts? <LoadingBox></LoadingBox> :
-                 errorProducts? <MessageBox variant='danger'>{errorProducts}</MessageBox> :
-                 (
-                     <>
-                    {products.length===0 &&<MessageBox>No Product Found</MessageBox>}
-                    <div className="search-product-container">
-                            {products.map(product=>(
-                        <div className="search-product">
-                        <SearchProduct key={product._id}  product = {product}/> 
-                        </div>
+            <div className="seller-products">
+                
+                    {loadingProducts? <LoadingBox></LoadingBox> :
+                    errorProducts? <MessageBox variant='danger'>{errorProducts}</MessageBox> :
+                    (
+                    <div className="search-products" style={{width:"100%", gridGap:"10px"}} >
+                        {products.length===0 &&<MessageBox>No Product Found</MessageBox>}
+                        {products.map(product=>(
+                            <div className="search-product">
+                                <SearchProduct key={product._id}  product = {product}/> 
+                            </div>
                         ))}
                     </div>
-                    </>
-                 )
-                }
+                    )
+                    }
             </div>
         </div>
     )

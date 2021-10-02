@@ -52,7 +52,7 @@ function Header() {
                 <div className="header-menu">
                     <Link to="/cart">CART
                         {cartItems.length>0 &&(
-                            <span className="badge">{cartItems.length}</span>
+                            <span className="badge">{cartItems.reduce((a,c)=>a+c.qty,0)}</span>
                         )}
                     </Link>
                     {

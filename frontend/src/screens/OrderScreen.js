@@ -186,14 +186,17 @@ function OrderScreen(props) {
                                     
                             
                         }
-                        {userInfo.isAdmin  && order.isPaid && !order.isDelivered &&
-                            loadingDeliver  
-                            ? <LoadingBox></LoadingBox>
-                            : errorDeliver
-                                ?<MessageBox variant='danger'>{errorDeliver}</MessageBox>
-                                :<button type="button"  onClick={deliverHandler}>
-                                    Deliver Order
-                                </button>
+                        {
+                        (userInfo.isAdmin ||  (userInfo._id===order.seller &&order.isPaid && !order.isDelivered)) &&
+                            (
+                                loadingDeliver  
+                                ? <LoadingBox></LoadingBox>
+                                : errorDeliver
+                                    ?<MessageBox variant='danger'>{errorDeliver}</MessageBox>
+                                    :<button type="button"  onClick={deliverHandler}>
+                                        Deliver Order
+                                    </button>
+                            )
                         }
                             
                     </div>

@@ -7,6 +7,7 @@ import MessageBox from '../components/MessageBox';
 import { createReview, detailsProduct } from '../actions/productActions';
 import { PRODUCT_REVIEW_CREATE_RESET } from '../constants/productConstants';
 import {FaHamburger} from "react-icons/fa";
+import ReviewCard from '../components/ReviewCard';
 
 
 function ProductScreen(props) {
@@ -131,16 +132,7 @@ function ProductScreen(props) {
                     {product.reviews.length ===0 && <MessageBox>There is no reviews.</MessageBox> }
                     <ul>
                         {product.reviews.map(review=>(
-                            <li key={review._id}>
-                                <strong>{review.name}</strong>
-                                <Rating rating = {review.rating} caption=" "></Rating>
-                                <p>
-                                    {review.createdAt.substring(0,10)}
-                                </p>
-                                <p>
-                                    {review.comment}
-                                </p>
-                            </li>
+                            <ReviewCard key={review._id} review={review}/>
                         ))}
                     </ul>
                 </div>

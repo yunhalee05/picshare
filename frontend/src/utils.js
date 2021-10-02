@@ -19,21 +19,25 @@ export const prices = [{
 
 export const ratings = [
     {
-        name:'4starts & up',
-        rating:4
+        name:'all',
+        rating:0
     },
     {
-        name:'3starts & up',
-        rating:3
+        name:'1starts & up',
+        rating:1
     },
     {
         name:'2starts & up',
         rating:2
     },
     {
-        name:'1starts & up',
-        rating:1
+        name:'3starts & up',
+        rating:3
     },
+    {
+        name:'4starts & up',
+        rating:4
+    }
 ]
 
 export const productCategory = ['Landscape', 'Drawing', 'Life','People','Others']
