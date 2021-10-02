@@ -114,7 +114,20 @@
     width: 15px;
     height: 15px;
     overflow: hidden;
-    transform: translate(0px, -25px);
+    transform: translate(-20px, 10px);
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .createproduct_image_upload{
+    width: 100px;
+  }
+
+  .createproduct_image_upload input{
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    transform: translate(-20px, 10px);
     opacity: 0;
     cursor: pointer;
   }

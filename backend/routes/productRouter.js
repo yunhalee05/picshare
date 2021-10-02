@@ -55,6 +55,14 @@ productRouter.get('/:id' ,expressAsyncHandler(async(req, res)=>{
     }
 }))
 
+productRouter.get('/products/top-products', expressAsyncHandler(async (req, res) => {
+    const products = await Product.find()
+                                    .sort({rating:-1})
+                                    .limit(2)
+    res.send(products)
+}))
+
+
 
 productRouter.post('/', isAuth, isSellerOrAdmin, expressAsyncHandler(async(req, res)=>{
     const {name, price, countInStock, category, brand, image, description} = req.body.body
@@ -63,7 +71,7 @@ productRouter.post('/', isAuth, isSellerOrAdmin, expressAsyncHandler(async(req, 
         seller: req.user._id,
         image:image,
         price:price,
-        category:'sample caategory',
+        category:category,
         brand:brand,
         countInStock: countInStock,
         rating: 0,
@@ -123,6 +131,8 @@ productRouter.post('/:id/reviews', isAuth, expressAsyncHandler(async(req, res)=>
         res.status(404).send({message:'Product Not Found'})
     }
 }))
+
+
 
 
 export default productRouter;

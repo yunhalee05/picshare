@@ -1,11 +1,11 @@
-import React , {useEffect} from 'react'
+import React , {useEffect, useState} from 'react'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import TopProduct from '../components/TopProduct'
 import HomeProduct from '../components/HomeProduct'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import {useDispatch, useSelector} from 'react-redux'
-import { getProducts, listProducts } from '../actions/productActions';
+import { getProducts, getTopProducts, listProducts } from '../actions/productActions';
 import { listTopSellers } from '../actions/userActions';
 import {Link} from 'react-router-dom'
 
@@ -17,22 +17,23 @@ function HomeScreen() {
     const productList = useSelector(state=>state.productList);
     const {loading, error, products} = productList;
 
-    const userTopSellersList = useSelector(state => state.userTopSellersList)
-    const{loading:loadingSellers, error:errorSellers, users:sellers} = userTopSellersList
+    const [topProducts, setTopProducts] = useState([])
 
     useEffect(() => {
         dispatch(getProducts());
-        dispatch(listTopSellers());
+        dispatch(getTopProducts()).then(res=>
+            setTopProducts(res)
+        )
         }, [dispatch])
 
     return (
         <div className="home">
             {loading && <LoadingBox></LoadingBox>}
             {error && <MessageBox variant="danger">{error}</MessageBox>}
-            {   !error && !loading &&  
+            {   !error && !loading && 
                 products.length!==0 &&
                 <>
-                    <TopProduct products={products}/> 
+                    <TopProduct products={topProducts}/> 
                     <div className="maintopic" >
                         <p>PICSHARE always with you 🌼 PICSHARE always with you 🌼 PICSHARE always with you 🌼 PICSHARE always with you 🌼</p>
                     </div> 

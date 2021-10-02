@@ -11,7 +11,7 @@ function ProductCreateScreen(props) {
 
     const [name, setName] = useState('')
     const [price, setPrice] = useState(0)
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('Landscape')
     const [image, setImage] = useState('')
     const [brand, setBrand] = useState('')
     const [description, setDescription] = useState('')
@@ -92,15 +92,13 @@ function ProductCreateScreen(props) {
                                 <div className="editproduct_image">
                                 {
                                     image 
-                                    ? <img src={URL.createObjectURL(image)} alt="" />
-                                    : ""
+                                    && <img src={URL.createObjectURL(image)} alt="" />
                                 }
                                 </div>
-                                <span className="editproduct_image_upload">
+                                <span className="createproduct_image_upload">
                                     <i className="fas fa-camera" ></i>
                                     <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
                                 </span>
-                                <input type="file" id = "imageFile" label="Choose Image" onChange={uploadFileHandler}/>
 
                             </div>
                         </div>

@@ -50,9 +50,9 @@ function ProductEditScreen(props) {
 
     const submitHandler= (e)=>{
         e.preventDefault();
-        const bodyFormData = new FormData();
-        bodyFormData.append('image', productImage);
-        dispatch(updateProduct({_id:productId, name, price, countInStock, category, brand, description}, bodyFormData));
+        // const bodyFormData = new FormData();
+        // bodyFormData.append('image', productImage);
+        dispatch(updateProduct({_id:productId, name, price, countInStock, category, brand, description, image}, productImage));
     }
 
     const userSignin = useSelector(state => state.userSignin)
