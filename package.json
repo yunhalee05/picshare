@@ -5,12 +5,8 @@
   "description": "share your memory with other people.",
   "main": "index.js",
   "scripts": {
-    "start" :"node server.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
-  },
-  "engine": {
-    "node": "16.1.0",
-    "npm": "7.11.2"
+    "build": "cd frontend && npm install && npm run build",
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
   },
   "author": "yunhalee",
   "license": "ISC",
@@ -30,5 +26,9 @@
   "devDependencies": {
     "eslint": "^7.27.0",
     "nodemon": "^2.0.7"
+  },
+  "engine": {
+    "node": "16.1.0",
+    "npm": "7.11.2"
   }
 }
