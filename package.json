@@ -1,9 +1,9 @@
 {
-  "name": "amazon-clone",
+  "name": "picshare",
   "type": "module",
   "version": "1.0.0",
-  "description": "e-commerce clone",
-  "main": "index.js",
+  "description": "share your memory with other people.",
+  "main": "server.js",
   "scripts": {
     "start ": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
     "start": "node /backent/server.js",
