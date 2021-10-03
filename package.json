@@ -5,8 +5,9 @@
   "description": "e-commerce clone",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "start ": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
+    "start": "node backend/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
   },
   "engine": {
     "node": "16.1.0",
