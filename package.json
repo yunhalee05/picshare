@@ -5,8 +5,12 @@
   "description": "e-commerce clone",
   "main": "index.js",
   "scripts": {
-    "start ": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "engine": {
+    "node": "16.1.0",
+    "npm": "7.11.2"
   },
   "author": "yunhalee",
   "license": "ISC",
