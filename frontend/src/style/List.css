@@ -4,7 +4,8 @@
     width: auto;
     justify-content: space-around;
     display: flex;
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 20px;
     flex-wrap: wrap;
     align-items: center;
     position: relative;

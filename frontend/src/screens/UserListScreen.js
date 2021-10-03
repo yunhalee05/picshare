@@ -40,7 +40,7 @@ function UserListScreen(props) {
                             <tr>
                                 <th className="hidden">ID</th>
                                 <th>NAME</th>
-                                <th>EMAIL</th>
+                                <th className="hidden">EMAIL</th>
                                 <th>IS SELLER</th>
                                 <th>IS ADMIN</th>
                                 <th>ACTIONS</th>
@@ -50,9 +50,9 @@ function UserListScreen(props) {
                             {
                                 users.map(user=>(
                                     <tr key = {user._id}>
-                                        <td>{user._id}</td>
+                                        <td className="hidden">{user._id}</td>
                                         <td>{user.name}</td>
-                                        <td>{user.email}</td>
+                                        <td className="hidden">{user.email}</td>
                                         <td>{user.isSeller? 'YES': 'NO'}</td>
                                         <td>{user.isAdmin? 'YES': 'NO'}</td>
                                         <td>

@@ -169,47 +169,29 @@ nav{
   background-color: #ff643d;
 }
 
-
-/* 
-@media (max-width:1200px){
-    .search-products{
-        flex: 2 1 50rem;
-    }
-    .search-product{
-        margin: 1rem;
-    }
-    .search-product{
-        min-width: 150px;
+@media (max-width:1000px){
+    .search-filter-container{
+        display: block;
+        justify-content: flex-start;
     }
 }
 
-
-@media (max-width: 830px){
-    .search-products{
-        flex: 1 1 25rem;
+@media (max-width:625px){
+    .search-filter-categories{
+        overflow: wrap;
+        flex-wrap: wrap;
     }
-    .search-product{
-        margin: 0rem;
-    }
-    .search{
-        padding: 1rem;
-    }
-    
-
 }
 
-
-@media (max-width:580px){
-    .search-product{
-        min-width: 0;
+@media (max-width:400px){
+    .search-filter select{
+        width: 150px;
     }
 
     .search-filters{
-        flex: 1 1 10rem;
+        width: 80vw;
+        margin: 2rem auto 2rem auto;
     }
 
-    .search-products{
-        flex: 1 1 20rem;
-    }
 
-} */
+}

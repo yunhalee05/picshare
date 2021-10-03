@@ -99,12 +99,14 @@
     width: 100%;
     display: inline-block;
     position: relative;
+    padding: 1rem;
   }
 
   .review-form .write-review-title{
-      font-size: 4.5rem;
+      font-size: 4.2rem;
       width: 100%;
       justify-content: center;
+      margin-bottom: 4rem;
   }
 
   .review-form >div{
@@ -128,12 +130,14 @@
   }
 
   .review-form button{
+      margin-top: 4rem;
     background-color: white;
     color: black;
     border: 2px dashed black;
     border-radius: 50%;
     font-family: 'Fugaz One', cursive;
-    font-size: 4rem;
+    font-size: 3rem;
+    padding: 1rem 2rem 1rem 2rem ;
     text-align: center;
   }
   
