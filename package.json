@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "share your memory with other people.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start ": "nodemon --watch backend --exec node --experimental-modules backend/server.js",
     "start": "node /backent/server.js",
