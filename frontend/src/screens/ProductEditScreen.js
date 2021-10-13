@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { detailsProduct, updateProduct } from '../actions/productActions'
@@ -50,8 +49,6 @@ function ProductEditScreen(props) {
 
     const submitHandler= (e)=>{
         e.preventDefault();
-        // const bodyFormData = new FormData();
-        // bodyFormData.append('image', productImage);
         dispatch(updateProduct({_id:productId, name, price, countInStock, category, brand, description, image}, productImage));
     }
 
@@ -116,8 +113,6 @@ function ProductEditScreen(props) {
                                 </span>
                             </div>
                         </div>
-                        {/* {loadingUpload && <LoadingBox></LoadingBox>}
-                        {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>} */}
                         <div>
                             <label htmlFor="category">CATEGORY</label>
                             <select name="category" onChange={(e)=>setCategory(e.target.value)}>

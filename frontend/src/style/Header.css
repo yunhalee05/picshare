@@ -123,7 +123,7 @@ color: black;
   }
 
   .categories ul{
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
   
   .brandName button{
@@ -138,6 +138,7 @@ color: black;
     color: black;
     text-transform: uppercase;
     margin-bottom: 1rem;
+    height: 6rem;
   }
   
 .categories_category:hover{

@@ -64,9 +64,7 @@ function App() {
             <SellerRoute path="/orderlist/seller" component={OrderListScreen} exact></SellerRoute>   
             <Route path="/seller/:id" component={SellerScreen} exact></Route>
             <Route path="/search/name/:name?" component={SearchScreen} exact></Route>
-            {/* <Route path="/search/category/:category" component={SearchScreen} exact></Route>
-            <Route path="/search/category/:category/name/:name" component={SearchScreen} exact></Route>
-            <Route path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber" component={SearchScreen} exact></Route> */}
+            <Route path="/search/category/:category" component={SearchScreen} exact></Route>
             <PrivateRoute path="/map" component={MapScreen} exact></PrivateRoute>
             <AdminRoute path="/dashboard" component={DashboardScreen} exact></AdminRoute>          
             <AdminRoute path="/support" component={SupportScreen} exact></AdminRoute>          

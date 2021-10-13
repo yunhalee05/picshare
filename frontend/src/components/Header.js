@@ -9,6 +9,7 @@ import LoadingBox from './LoadingBox';
 import MessageBox from './MessageBox';
 import SearchBox from './SearchBox';
 import {BASE_URL} from '../utils'
+import {productCategory} from '../utils'
 
 
 
@@ -19,9 +20,6 @@ function Header() {
     const {userInfo} = userSignin;
     const cart = useSelector(state=> state.cart);
     const {cartItems} = cart;
-    const productCategoryList = useSelector(state => state.productCategoryList)
-    const {loading:loadingCategories, error:errorCategories, categories} = productCategoryList
-  
 
     const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
 
@@ -119,25 +117,21 @@ function Header() {
                 </div>
         </div>
           <div className={sidebarIsOpen? 'aside open': 'aside'}>
-                    <div style={{ color:"black", fontSize:"4rem", marginLeft:'2rem', marginTop:"2rem"}}> <span style={{ border:"2px solid black",padding:"1rem"}}>CATEGORY</span>
+                    <div style={{ color:"black", fontSize:"4rem", marginLeft:'2rem', marginTop:"2rem"}}> <span style={{ border:"2px solid black",padding:"1rem", borderRadius:"20px"}}>CATEGORY</span>
                     <button style={{color:"black" , background:'none', fontSize:"5vw"}} type="button" className="close-sidebar" onClick={()=>setSidebarIsOpen(false)}>
                         <FaRegHandPointRight size="28" />
                       </button>
                     </div>
                   <div className="categories">
-                  {loadingCategories? <LoadingBox></LoadingBox> :
-                    errorCategories? <MessageBox variant='danger'>{errorCategories}</MessageBox> :
-                    (
-                        <ul>
-                            {categories.map(c=>
-                                (
-                                    <li key = {c}>
-                                        <Link to ={`/search/category/${c}`} onClick={()=>setSidebarIsOpen(false)}  className="categories_category">{c}</Link>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    )}
+                    <ul>
+                        {productCategory.map(c=>
+                            (
+                                <li key = {c} className="categories_category">
+                                    <Link to ={`/search/category/${c}`} onClick={()=>setSidebarIsOpen(false)}  >{c}</Link>
+                                </li>
+                            ))
+                        }
+                    </ul>
                 </div>
           </div>
         </div>

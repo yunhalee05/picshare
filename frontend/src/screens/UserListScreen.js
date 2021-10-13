@@ -66,21 +66,6 @@ function UserListScreen(props) {
                     </table>
                 )
             }
-                {/* <nav aria-label="Pagination">
-                    <ul className="pagination">
-                        <li className="page-item" style={{borderRadius:"10px 0px 0px 10px"}} onClick={()=>setPage(1)}>
-                            <i className="fas fa-backward" ></i>
-                        </li>
-                        {
-                            pageRange.map((x, index)=>(
-                                <li key={index} className={`page-item ${page===x+1 && 'page_active'}`} onClick={()=>setPage(x+1)}>{x+1}</li>
-                            ))
-                        }
-                        <li className="page-item" style={{borderRadius:"0px 10px 10px 0px"}} onClick={()=>setPage(pageRange.length)}>
-                            <i className="fas fa-forward" ></i>
-                        </li>
-                    </ul>
-                </nav> */}
         </div>
     )
 }

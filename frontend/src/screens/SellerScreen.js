@@ -4,7 +4,6 @@ import { listProducts } from '../actions/productActions'
 import { detailsUser } from '../actions/userActions'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Product from '../components/Product';
 import Rating from '../components/Rating';
 import SearchProduct from '../components/SearchProduct';
 

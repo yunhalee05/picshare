@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { listProductCategories, listProducts, searchProducts } from '../actions/productActions'
+import { searchProducts } from '../actions/productActions'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import Product from '../components/Product';
 import { prices, ratings } from '../utils';
-import Rating from '../components/Rating';
 import { useState } from 'react';
 import SearchProduct from '../components/SearchProduct';
-import {Link} from 'react-router-dom'
 import {productCategory} from '../utils'
 
 
@@ -19,7 +16,7 @@ function SearchScreen(props) {
     const productList = useSelector(state => state.productList)
     const {loading, error, products, pages, count} = productList
 
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState(props.match.params.category || '')
     const [min, setMin] = useState(0)
     const [max, setMax] = useState(0)
     const [rating, setRating] = useState(0)

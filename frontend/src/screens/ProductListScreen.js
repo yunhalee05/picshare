@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router';
 import { listProducts,deleteProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { PRODUCT_DELETE_RESET} from '../constants/productConstants';
-import {Link} from 'react-router-dom'
 
 function ProductListScreen(props) {
 

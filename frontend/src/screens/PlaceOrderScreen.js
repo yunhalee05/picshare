@@ -83,13 +83,11 @@ function PlaceOrderScreen(props) {
                                 </div>
                                 <div className="order-product-info">
                                     <div className="order-info-container">
-                                        {/* <span className="cart-info-name">Product Name : </span> */}
                                         <span className="cart-info-value">
                                             <Link to={`/product/${item.product}`} >{item.name}</Link>
                                         </span>
                                     </div>
                                     <div className="order-info-container">
-                                        {/* <span className="cart-info-name">Product Name : </span> */}
                                         <span className="cart-info-value">
                                             {item.qty} x ${item.price} = ${item.qty * item.price}
                                         </span>

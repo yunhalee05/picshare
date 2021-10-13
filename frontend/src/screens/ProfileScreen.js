@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import axios from '../../node_modules/axios/index'
 import { detailsUser, updateUserProfile } from '../actions/userActions'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
@@ -24,9 +23,6 @@ function ProfileScreen() {
 
     const userUpdateProfile = useSelector(state => state.userUpdateProfile)
     const {success: successUpdate, error:errorUpdate, loading: loadingUpdate} = userUpdateProfile
-
-    const [loadingUpload, setLoadingUpload] = useState(false)
-    const [errorUpload, setErrorUpload] = useState('')
 
     const dispatch = useDispatch()
     useEffect(()=>{
