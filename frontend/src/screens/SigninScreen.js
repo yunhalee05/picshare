@@ -4,6 +4,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import { signin } from '../actions/userActions'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
+import { GoogleLogin } from 'react-google-login';
+import axios from '../../node_modules/axios/index'
+import { USER_SIGNIN_SUCCESS } from '../constants/userConstants'
 
 
 function SigninScreen(props) {
@@ -27,6 +30,24 @@ function SigninScreen(props) {
             props.history.push(redirect)
         }
     }, [props.history, redirect, userInfo])
+
+    const responseSuccess = async(response) =>{
+        try{
+            const {tokenObj : {access_token}, profileObj : {email, name}} = response;
+            const {data} = await axios.post('/api/users/socialLogin', {email, name, access_token});
+            dispatch({
+                type:USER_SIGNIN_SUCCESS,
+                payload:data
+            });
+            localStorage.setItem("userInfo", JSON.stringify(data));
+        }catch(error){
+            console.log(error.message)
+        }
+    }
+
+    const responseError = (response) =>{
+        console.log(response)
+    }
 
     return (
         <div>
@@ -53,6 +74,13 @@ function SigninScreen(props) {
                     <Link to = {`/register?redirect=${redirect}`}>Create your Account</Link>
                 </div>
 
+                <GoogleLogin
+                    clientId="874439421614-p4nuvrkllni7ji1n63b4dj6fcdst9606.apps.googleusercontent.com"
+                    buttonText="Login with GOOGLE"
+                    onSuccess={responseSuccess}
+                    onFailure={responseError}
+                    cookiePolicy={'single_host_origin'}
+                />
             </form>
         </div>
 

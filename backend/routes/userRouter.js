@@ -130,4 +130,36 @@ userRouter.put(
   })
 );
 
+userRouter.post('/socialLogin', expressAsyncHandler(async(req, res)=>{
+  var user = await User.findOne({email : req.body.email})
+  if(user){
+    if(user.name!==req.body.name){
+      user.name = req.body.name
+    }
+  }else{
+    user = new User({
+                  name: req.body.name, 
+                  email: req.body.email, 
+                  password: req.body.access_token,
+                  isSeller: false,
+                  seller:{
+                    name:req.body.name
+                  }
+                  })
+    
+  
+  }
+
+  const savedUser = await user.save();
+      
+  res.send({
+    _id:savedUser.id,
+    name:savedUser.name,
+    email:savedUser.email,
+    isAdmin:user.isAdmin,
+    isSeller:savedUser.isSeller,
+    token:generateToken(savedUser)
+  });
+}))
+
 export default userRouter;

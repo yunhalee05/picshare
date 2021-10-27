@@ -29,6 +29,7 @@ import ChatBox from './components/ChatBox';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import ProductCreateScreen from './screens/ProductCreateScreen';
+import RedirectUri from './screens/RedirectUri';
 
 
 function App() {
@@ -69,6 +70,8 @@ function App() {
             <AdminRoute path="/dashboard" component={DashboardScreen} exact></AdminRoute>          
             <AdminRoute path="/support" component={SupportScreen} exact></AdminRoute>          
             <Route path="/productcreate" component={ProductCreateScreen} exact></Route>          
+
+            <Route path="/redirect_uri" component={RedirectUri} exact></Route>          
 
           </div>
           {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo}></ChatBox>}

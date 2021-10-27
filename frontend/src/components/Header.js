@@ -54,9 +54,9 @@ function Header() {
                         )}
                     </Link>
                     {
-                        userInfo 
+                        userInfo && userInfo.user
                         ?<div className="dropdown">
-                            <Link to="#" >{userInfo.name.toUpperCase()} <i className="fa fa-caret-down"></i> </Link>
+                            <Link to="#" >{userInfo.user.username.toUpperCase()} <i className="fa fa-caret-down"></i> </Link>
                             <ul className="dropdown-content" >
                                 <li>
                                     <Link to = "/profile">PROFILE</Link>
