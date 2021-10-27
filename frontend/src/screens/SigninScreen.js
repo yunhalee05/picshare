@@ -7,6 +7,7 @@ import MessageBox from '../components/MessageBox'
 import { GoogleLogin } from 'react-google-login';
 import axios from '../../node_modules/axios/index'
 import { USER_SIGNIN_SUCCESS } from '../constants/userConstants'
+import dotenv from 'dotenv';
 
 
 function SigninScreen(props) {
@@ -75,7 +76,7 @@ function SigninScreen(props) {
                 </div>
 
                 <GoogleLogin
-                    clientId="874439421614-p4nuvrkllni7ji1n63b4dj6fcdst9606.apps.googleusercontent.com"
+                    clientId={process.env.GOOGLE_CLIENT_ID}
                     buttonText="Login with GOOGLE"
                     onSuccess={responseSuccess}
                     onFailure={responseError}
