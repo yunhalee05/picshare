@@ -7,10 +7,10 @@ import MessageBox from '../components/MessageBox'
 import { GoogleLogin } from 'react-google-login';
 import axios from '../../node_modules/axios/index'
 import { USER_SIGNIN_SUCCESS } from '../constants/userConstants'
-import dotenv from 'dotenv';
-
+import {GOOGLE_CLIENT_ID, CLIENT_SECRET} from '../env'
 
 function SigninScreen(props) {
+
     const dispatch = useDispatch()
 
     const [email, setemail] = useState("")
@@ -75,8 +75,10 @@ function SigninScreen(props) {
                     <Link to = {`/register?redirect=${redirect}`}>Create your Account</Link>
                 </div>
 
+                {console.log(GOOGLE_CLIENT_ID)}
+
                 <GoogleLogin
-                    clientId={process.env.GOOGLE_CLIENT_ID}
+                    clientId={GOOGLE_CLIENT_ID}
                     buttonText="Login with GOOGLE"
                     onSuccess={responseSuccess}
                     onFailure={responseError}
