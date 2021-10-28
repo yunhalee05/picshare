@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import mg from 'mailgun-js'
+import nodemailer from 'nodemailer'
  
 
 export const generateToken = (user)=>{
@@ -57,17 +58,22 @@ export const isSellerOrAdmin = (req, res, next)=>{
 }
 
 
-export const mailgun =() => mg({
-    apiKey: process.env.MALIGUN_API_KEY,
-    domain: process.env.MALIGUN_DOMAIN
-}) 
+export  var transport = nodemailer.createTransport({
+        host: "smtp.mailtrap.io",
+        port: 2525,
+        auth: {
+          user: process.env.MAILTRAP_USER,
+          pass: process.env.MAILTRAP_PASS
+        }
+      });
+
 
 export const payOrderEmailTemplate = (order)=>{
     return `<h1>Thanks for shopping with us <h1>
     <p>
     Hi ${order.user.name},</p>
     <p>We have finished proessing your order.</p>
-    <h2>[Order %{order._id}]  (${order.createdAt.toString().substring(0,10)})</h2>
+    <h2>[Order ${order._id}]  (${order.createdAt.toString().substring(0,10)})</h2>
     <table>
     <thead>
     <tr>
@@ -105,7 +111,7 @@ export const payOrderEmailTemplate = (order)=>{
     </tr>
     <tr>
     <td colspan="2">Payment Method</td>
-    <td align="right">${order.paymentMethod.toFixed(2)}</td>
+    <td align="right">${order.paymentMethod}</td>
     </tr>
     </tfoot>
     </table>
