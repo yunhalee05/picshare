@@ -17,7 +17,18 @@
     <br/>
     <br/>
 <div>
-    <h2>🌿 Improvement</h2>
+    <h2>🚀 Shortcut</h2>
+<div> 
+        
+- [__Improvement__](#improvement)
+- [__Tech Stack Used__](#tech)
+- [__Features__](#feature)
+- [__Structure__](#structure)
+    <br/>
+    <br/>
+    <br/>
+<div>
+    <h2 id="improvement">🌿 Improvement</h2>
     <ul>
       <li>
         <h3>✔️ MERN </h3> 
@@ -155,7 +166,7 @@
     <br/>
     <br/>
 <div>
-    <h2>🛠 Tech Stack Used</h2>
+    <h2 id="tech">🛠 Tech Stack Used</h2>
     <ul>
       <li>
         <h4>Frontend</h4> 
@@ -181,6 +192,8 @@
     <br/>
     <br/>
     <br/>
+<div id="feature">
+</div>
     
 🪵 Features
 --
@@ -204,3 +217,113 @@
 |<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 58 42" src="https://user-images.githubusercontent.com/63947424/137112145-2712ee7a-c67f-4a3a-be08-bb138bfcd9ae.png"></br><p><strong>주문상세페이지</strong></p><p>배송정보, 결제정보 확인 가능.</p></div>|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/137112173-a22226df-ac64-402e-af97-dec1960333c4.png"></br><p><strong>주문리스트</strong></p><p>주문리스트에서 주문확인 가능.</p></div>|
 |<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 58 42" src="https://user-images.githubusercontent.com/63947424/139514794-21f19df5-1710-4b46-91dd-f7633251e708.jpg"></br><p><strong>로그인 페이지</strong></p><p>소셜 로그인 가능.</p></div>|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/139514848-4ee6ba2b-3f6d-4d1e-9f33-628b5d3b0d7d.jpg"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/139514853-993bfedf-a50b-4467-a992-ccd874cc134e.jpg"></br><p><strong>Responsive 페이지</strong></p><p>화면크기에 따라 반응형 웹페이지 가능.</p></div>|
 |<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 58 42" src="https://user-images.githubusercontent.com/63947424/139515350-2ceae572-5bcf-4164-aff2-80907df2c506.png"></br><p><strong>Mail</strong></p><p>판매자에게 연락하기 가능.</p></div>|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/139514976-238b5297-1cd4-490c-a8bb-5040a9755d81.jpg"></br><p><strong>Mail</strong></p><p>주문내역확인 메일 수신 가능.</p></div>|
+   
+<div>
+    <br/>
+    <br/>
+    <br/>
+    <h2 id="structure">🧱 Structure</h2>
+</div>
+
+```bash
+📦Picshare
+├── 🗂backend
+│   ├── models
+│   │   ├── orderModel.js
+│   │   ├── productModel.js
+│   │   └── userModel.js
+│   ├── routes
+│   │   ├── orderRouter.js
+│   │   ├── productRouter.js
+│   │   ├── profileuploadRouter.js
+│   │   ├── uploadRouter.js
+│   │   └── userRouter.js
+│   ├── server.js
+│   └── utils.js
+├── 🗂frontend
+│   ├── src
+│   │   ├── App.js
+│   │   ├── actions
+│   │   │   ├── cartActions.js
+│   │   │   ├── orderActions.js
+│   │   │   ├── productActions.js
+│   │   │   └── userActions.js
+│   │   ├── components
+│   │   │   ├── AdminRoute.js
+│   │   │   ├── ChatBox.js
+│   │   │   ├── CheckoutSteps.js
+│   │   │   ├── Footer.js
+│   │   │   ├── Header.js
+│   │   │   ├── HomeProduct.js
+│   │   │   ├── LoadingBox.js
+│   │   │   ├── MessageBox.js
+│   │   │   ├── PrivateRoute.js
+│   │   │   ├── Product.js
+│   │   │   ├── Rating.js
+│   │   │   ├── ReviewCard.js
+│   │   │   ├── SearchBox.js
+│   │   │   ├── SearchProduct.js
+│   │   │   ├── SellerRoute.js
+│   │   │   └── TopProduct.js
+│   │   ├── constants
+│   │   │   ├── cartConstants.js
+│   │   │   ├── orderConstants.js
+│   │   │   ├── productConstants.js
+│   │   │   └── userConstants.js
+│   │   ├── reducers
+│   │   │   ├── cartReducers.js
+│   │   │   ├── orderReducers.js
+│   │   │   ├── productReducers.js
+│   │   │   └── userReducers.js
+│   │   ├── screens
+│   │   │   ├── CartScreen.js
+│   │   │   ├── DashboardScreen.js
+│   │   │   ├── HomeScreen.js
+│   │   │   ├── MapScreen.js
+│   │   │   ├── OrderHistoryScreen.js
+│   │   │   ├── OrderListScreen.js
+│   │   │   ├── OrderScreen.js
+│   │   │   ├── PaymentMethodScreen.js
+│   │   │   ├── PlaceOrderScreen.js
+│   │   │   ├── ProductCreateScreen.js
+│   │   │   ├── ProductEditScreen.js
+│   │   │   ├── ProductListScreen.js
+│   │   │   ├── ProductScreen.js
+│   │   │   ├── ProfileScreen.js
+│   │   │   ├── RedirectUri.js
+│   │   │   ├── RegisterScreen.js
+│   │   │   ├── SearchScreen.js
+│   │   │   ├── SellerScreen.js
+│   │   │   ├── ShippingAddressScreen.js
+│   │   │   ├── SigninScreen.js
+│   │   │   ├── SupportScreen.js
+│   │   │   ├── UserEditScreen.js
+│   │   │   └── UserListScreen.js
+│   │   ├── style
+│   │   │   ├── Auth.css
+│   │   │   ├── Cart.css
+│   │   │   ├── CheckoutStep.css
+│   │   │   ├── EditProduct.css
+│   │   │   ├── Footer.css
+│   │   │   ├── Header.css
+│   │   │   ├── Home.css
+│   │   │   ├── List.css
+│   │   │   ├── OrderDetail.css
+│   │   │   ├── Payment.css
+│   │   │   ├── ProductCard.css
+│   │   │   ├── ProductDetail.css
+│   │   │   ├── Profile.css
+│   │   │   ├── SearchScreen.css
+│   │   │   ├── SellerScreen.css
+│   │   │   └── Shipping.css
+│   │   ├── store.js
+│   │   ├── env.js
+│   │   ├── images
+│   │   ├── index.css
+│   │   ├── index.js
+│   │   └── utils.js
+├── Procfile
+├── profileuploads
+├── template
+└── uploads
+```
