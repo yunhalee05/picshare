@@ -73,6 +73,18 @@
           </ul>       
       </li>
       <li>
+        <h3>✔️ Social Login</h3> 
+          <ul>
+            <li>
+              <h4>Challenge : </h4>
+              <p>사용자의 편의성을 고려한 소셜로그인 기능을 만들고자 하였습니다.</p>
+            </li>
+            <li>
+              <h4>Solution : </h4>
+              <p>react-googel-login 라이브러리를 이용하여 로그인 버튼을 만들고 구글에서 사용자 정보를 받아오면 받아온 사용자정보를 사용해 회원가입을 진행하도록 하였습니다.</p>
+            </li>
+          </ul>       
+      </li>      <li>
         <h3>✔️ Redux</h3> 
           <ul>
             <li>
@@ -91,6 +103,7 @@
             <li>
               <h4>Challenge : </h4>
               <p>데이터 양이 많아질 수록 한번에 모든 데이터를 가져오는 것이 힘들어졌습니다. 또한 데이터를 가져올때, 지정된 기준에 따라 순서대로 데이터를 가져오는 것이 필요해졌습니다. </p>
+            </li>
             <li>
               <h4>Solution : </h4>
               <p>데이터를 불러올 때, mongoDB의 sort기능을 통해서 정렬기준을 설정해 정렬된 데이터를 순서대로 가져오도록 설정했습니다. 또한 정렬된 데이터에 limit을 두어 각각의 페이지에 따라서 불러올 데이터를 다르게 설정하도록 하였습니다. </p>
@@ -103,9 +116,36 @@
             <li>
               <h4>Challenge : </h4>
               <p>실제로 주문과 구매가 이루어지는 e-commerce이기 때문에 결제시스템이 필요하였습니다. </p>
+            </li>
             <li>
               <h4>Solution : </h4>
               <p>Paypal developer에서 계정을 생성하고 'react-paypal-button-v2'의 Paypal버튼을 이용하여 주문이 이루어질 수 있도록 설정하였습니다. </p>
+            </li>
+          </ul> 
+        </li>
+      <li>
+        <h3>✔️ Map</h3> 
+          <ul>
+            <li>
+              <h4>Challenge : </h4>
+              <p>사용자가 주소를 검색을 이용할 때, 보다 정확한 위치를 파악하도록 하는 것이 필요하였습니다. </p>
+            </li>
+            <li>
+              <h4>Solution : </h4>
+              <p>react google api를 이용하여 주소를 검색한 후 지도상에서 보다 정확한 위치를 파악할 수 있도록 진행하였습니다. </p>
+            </li>
+          </ul> 
+        </li>
+      <li>
+        <h3>✔️ Mail</h3> 
+          <ul>
+            <li>
+              <h4>Challenge : </h4>
+              <p>사용자가 주문을 완료하면 주문내역을 메일로 전송하여 확인하도록 하고자 하였습니다. 또, 판매자에게 직접 사용자가 링크를 통해 메일보내기가 가능하도록 하고자 하였습니다. </p>
+            </li>
+            <li>
+              <h4>Solution : </h4>
+              <p>nodemailer와 mailtrap포트를 이용하여 주문이 완료되면 안내메일이 전달되도록 설정하였습니다. 판매자 프로필페이지에서는 'contact'버튼을 누르면 mailto기능을 사용하여 메일보내기가 가능하도록 설정하였습니다. </p>
             </li>
           </ul> 
         </li>
@@ -121,6 +161,8 @@
         <h4>Frontend</h4> 
         <img src="https://img.shields.io/badge/react-6cc1d9?style=for-the-badge&logo=react&logoColor=white">
         <img src="https://img.shields.io/badge/redux-bb93e6?style=for-the-badge&logo=redux&logoColor=white">
+        <img src="https://img.shields.io/badge/fontawesome-102969?style=for-the-badge&logo=redux&logoColor=white">
+        <img src="https://img.shields.io/badge/bootstrap-3e1b6b?style=for-the-badge&logo=redux&logoColor=white">
         <img src="https://img.shields.io/badge/socket.io Client-e37dc9?style=for-the-badge&logo=socket.io&logoColor=white">
       </li>
       <li>
@@ -148,6 +190,8 @@
 <h4> 🌱 상품을 원하는 방식에 따라서 평점, 가격, 기타의 조건으로 조회 가능</h4>
 <h4> 🌱 상품을 카테고리별로 조회 가능</h4>
 <h4> 🌱 판매자 정보를 확인할 수 있고 mail을 통해서 연락하기 가능</h4>
+<h4> 🌱 주문완료시 주문내역을 이메일로 확인 가능</h4>
+<h4> 🌱 구글 계정으로 소셜로그인 가능</h4>
 <br/>
 
 |  |  |
@@ -158,3 +202,5 @@
 |<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 58 42" src="https://user-images.githubusercontent.com/63947424/137110772-ce774b00-9fcf-471f-b3d1-1d930c951a27.png"></br><p><strong>카트페이지</strong></p><p>좌측에는 상품정보, 우측엔 total.</p></div>|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/137110978-67c2782f-7e86-4281-9b3c-d3143b03b6d4.png"></br><p><strong>배송주소페이지</strong></p><p>배송받을 주소를 작성하는 페이지.</p></div>|
 |<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 58 42" src="https://user-images.githubusercontent.com/63947424/137111593-b197de3a-664b-4743-950b-500fa0100013.png"></br><p><strong>주문페이지</strong></p><p>주문후 결제창.</p></div>|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/137111690-8e1e6231-872d-449d-a751-97766567fa02.png"></br><p><strong>페이팔</strong></p><p>페이팔을 통해 결제가 가능.</p></div>|
 |<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 58 42" src="https://user-images.githubusercontent.com/63947424/137112145-2712ee7a-c67f-4a3a-be08-bb138bfcd9ae.png"></br><p><strong>주문상세페이지</strong></p><p>배송정보, 결제정보 확인 가능.</p></div>|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/137112173-a22226df-ac64-402e-af97-dec1960333c4.png"></br><p><strong>주문리스트</strong></p><p>주문리스트에서 주문확인 가능.</p></div>|
+|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 58 42" src="https://user-images.githubusercontent.com/63947424/139514794-21f19df5-1710-4b46-91dd-f7633251e708.jpg"></br><p><strong>로그인 페이지</strong></p><p>소셜 로그인 가능.</p></div>|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/139514848-4ee6ba2b-3f6d-4d1e-9f33-628b5d3b0d7d.jpg"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/139514853-993bfedf-a50b-4467-a992-ccd874cc134e.jpg"></br><p><strong>Responsive 페이지</strong></p><p>화면크기에 따라 반응형 웹페이지 가능.</p></div>|
+|<div align="center"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/139514973-353f9aba-3244-4e19-a7f5-81cfc381fc3d.jpg"><img height="200px" alt="스크린샷 2021-10-02 오후 6 48 23" src="https://user-images.githubusercontent.com/63947424/139514976-238b5297-1cd4-490c-a8bb-5040a9755d81.jpg"></br><p><strong>Mail</strong></p><p>판매자에게 메일보내기, 주문내역확인 메일 가능</p></div>|  |
